@@ -7,5 +7,5 @@
 ### 后端服务基于若依分离版后端服务V3.8.5
 
 ##### 文档
-[API文档](https://frame-project.gitlab.io/nv3-ljs-tools/)
+[API文档](https://ljs-y.github.io/ljs-vue3)
 
