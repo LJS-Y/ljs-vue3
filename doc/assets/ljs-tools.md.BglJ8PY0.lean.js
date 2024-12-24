@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as i,a5 as n}from"./chunks/framework.CAoZkQiS.js";const g=JSON.parse('{"title":"什么是ljs-tools？","description":"","frontmatter":{},"headers":[],"relativePath":"ljs-tools.md","filePath":"ljs-tools.md"}'),l={name:"ljs-tools.md"},t=n("",19),e=[t];function p(h,k,o,r,d,E){return i(),a("div",null,e)}const y=s(l,[["render",p]]);export{g as __pageData,y as default};

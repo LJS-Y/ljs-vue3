@@ -1,0 +1,1 @@
+import{_ as a,c as e,o as s,a5 as n}from"./chunks/framework.D2w-0S4J.js";const u=JSON.parse('{"title":"请作者喝杯卡布奇诺","description":"","frontmatter":{},"headers":[],"relativePath":"callMe.md","filePath":"callMe.md"}'),t={name:"callMe.md"},l=n("",12),p=[l];function i(r,o,c,d,h,_){return s(),e("div",null,p)}const f=a(t,[["render",i]]);export{u as __pageData,f as default};
