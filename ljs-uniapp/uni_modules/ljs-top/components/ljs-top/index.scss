@@ -1,0 +1,53 @@
+.ljs-top{
+	width: 100%;
+	.topZw{
+		width: 100%;
+		.comStatus{
+			width: 100%;
+			position: relative;
+		}
+		.topMain{
+			width: 100%;
+		}
+	}
+	.top{
+		width: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 1000;
+		.comStatus{
+			width: 100%;
+			position: relative;
+		}
+		.topMain{
+			width: 100%;
+			position: relative;
+			display: flex;
+			align-items: center;
+			.back{
+				width: 60upx;
+				height: 60upx;
+				box-sizing: border-box;
+				padding: 10upx;
+				position: absolute;
+				left: 20upx;
+				z-index: 2;
+				.img{
+					width: 40upx;
+					height: 40upx;
+					display: block;
+				}
+			}
+			.title{
+				width: 100%;
+				text-align: center;
+				color: #FFF;
+				font-size: 32upx;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
+	}
+}

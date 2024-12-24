@@ -1,0 +1,681 @@
+.framePage{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #081F37;
+  .top{
+    width: 100%;
+    height: 58px;
+    // background: var(--frame_topBg);
+    // -moz-box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.08);
+    // -webkit-box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.08);
+    // box-shadow: 0px 2px 6px 1px rgba(0,0,0,0.08);
+    background-image: url("@/assets/images/common/topBg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    overflow: hidden;
+    .left{
+      min-width: 230px;
+      padding: 2px 10px 2px 15px;
+      float: left;
+      cursor: pointer;
+      .logo{
+        width: auto;
+        max-width: 300px;
+        height: 54px;
+        float: left;
+        cursor: pointer;
+      }
+      .title{
+        float: left;
+        overflow: hidden;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-left: 10px;
+        .font{
+          line-height: 54px;
+          float: left;
+          color: #FFF;
+          font-weight: bold;
+        }
+        .line{
+          width: 1px;
+          height: 16px;
+          float: left;
+          background-color: #B8C6D9;
+          margin: 0 16px;
+          margin-top: 7px;
+        }
+      }
+    }
+    .midd{
+      width: calc(100% - 450px);
+      float: left;
+      .item{
+        height: 58px;
+        line-height: 58px;
+        float: left;
+        padding: 0 15px;
+        color: #FFF;
+        overflow: hidden;
+        cursor: pointer;
+        .icon{
+          width: 16px;
+          height: 58px;
+          text-align: center;
+          margin-right: 5px;
+          float: left;
+        }
+        .name{
+          float: left;
+          font-size: 16px;
+        }
+        &:hover{
+          background-color: rgba(#07364B, .2);
+        }
+        &.active{
+          // background-color: var(--frame_moduleMenuBg);
+          background-color: rgba(#07364B, .5);
+          border-bottom: 4px solid #1890FF;
+        }
+        &.more{
+          .icon{
+            margin-right: 0;
+          }
+        }
+      }
+    }
+    .right{
+      height: 100%;
+      float: right;
+      overflow: hidden;
+      .khMenu{
+        float: left;
+        color: #FFF;
+        font-size: 14px;
+        overflow: hidden;
+        margin-right: 5px;
+        .but{
+          height: 58px;
+          line-height: 58px;
+          float: left;
+          padding: 0 15px;
+          cursor: pointer;
+          :deep(.icon){
+            text-align: center;
+            font-size: 18px;
+            color: #FFF;
+            font-size: 16px;
+          }
+          &:hover{
+            background-color: rgba(#1f2d3e, .6);
+          }
+        }
+        :deep(.iconC){
+          &.blue{
+            color: #1890FF;
+          }
+        }
+      }
+      .info{
+        height: 58px;
+        line-height: 58px;
+        float: left;
+        overflow: hidden;
+        color: #FFF;
+        font-size: 13px;
+        .name{
+          float: left;
+        }
+        .org{
+          float: left;
+          margin-left: 10px;
+        }
+        .head{
+          width: 40px;
+          height: 40px;
+          float: left;
+          margin: 10px 6px 0 0;
+          border-radius: 50%;
+          cursor: pointer;
+        }
+        .jt{
+          height: 58px;
+          line-height: 58px;
+          text-align: center;
+          font-size: 18px;
+          float: left;
+          padding: 0 15px;
+          font-size: 16px;
+          color: #FFF;
+          cursor: pointer;
+        }
+      }
+    }
+    
+  }
+  .mainBox{
+    width: 100%;
+    height: calc(100% - 58px);
+    .menu{
+      width: 230px;
+      height: 100%;
+      line-height: 32px;
+      float: left;
+      overflow: hidden;
+      background-color: var(--frame_menuBg);
+      border-top: 1px solid #FFF;
+      border-right: 1px solid #FFF;
+      position: relative;
+      z-index: 2;
+      :deep(.__panel){
+        z-index: 2;
+      }
+      &.shrink_open{
+        animation: shrink_open 0.2s 1;
+        -webkit-animation: shrink_open 0.2s 1;
+        /* 动画结束应用于元素 */
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+        .one{
+          .name{
+            display: block;
+          }
+          .jt{
+            display: block;
+          }
+        }
+      }
+      @keyframes shrink_open {
+        from {
+          width: 64px;
+        }
+        to {
+          width: 230px;
+        }
+      }
+      /*Safari 和 Chrome:*/
+      @-webkit-keyframes shrink_open {
+        from {
+          width: 64px;
+        }
+        to {
+          width: 230px;
+        }
+      }
+      &.shrink{
+        animation: shrink 0.2s 1;
+        -webkit-animation: shrink 0.2s 1;
+        /* 动画结束应用于元素 */
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+        .one{
+          .name{
+            display: none;
+          }
+          .jt{
+            display: none;
+          }
+        }
+      }
+      @keyframes shrink {
+        from {
+          width: 230px;
+        }
+        to {
+          width: 64px;
+        }
+      }
+      /*Safari 和 Chrome:*/
+      @-webkit-keyframes shrink {
+        from {
+          width: 230px;
+        }
+        to {
+          width: 64px;
+        }
+      }
+    }
+    .main{
+      width: calc(100% - 230px);
+      height: 100%;
+      float: left;
+      position: relative;
+      z-index: 1;
+      &.shrink{
+        width: calc(100% - 64px);
+      }
+      .address{
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        background-color: #FFF;
+        border-bottom: 1px solid #f6f6f6;
+        padding-left: 20px;
+        overflow: hidden;
+        position: relative;
+        z-index: 2;
+        .jt{
+          height: 40px;
+          line-height: 40px;
+          font-size: 16px;
+          float: left;
+          cursor: pointer;
+          &:hover{
+            color: #000;
+            font-weight: 600;
+          }
+        }
+      }
+      .tab{
+        width: 100%;
+        height: 50px;
+        background-color: #07364B;
+        border-top: 1px solid #FFF;
+        box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+        padding: 8px;
+        overflow: hidden;
+        position: relative;
+        z-index: 2;
+        .menuShrink{
+          width: 34px;
+          height: 34px;
+          float: left;
+          .jt{
+            display: block;
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            cursor: pointer;
+            color: #FFF;
+          }
+          &:hover{
+            .jt{
+              color: #1890FF;
+            }
+          }
+        }
+        .tabControl{
+          width: 34px;
+          height: 34px;
+          float: left;
+          .icon{
+            display: block;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            margin: 9px;
+            text-align: center;
+            cursor: pointer;
+            color: #FFF;
+            .box1{
+              width: 16px;
+              height: 6px;
+              display: block;
+              position: relative;
+              &::after{
+                content: "";
+                display: block;
+                position: absolute;
+                left: 1px;
+                width: 6px;
+                height: 6px;
+                background-color: #9a9a9a;
+              }
+              &::before{
+                content: "";
+                display: block;
+                position: absolute;
+                left: 9px;
+                width: 6px;
+                height: 6px;
+                background-color: #9a9a9a;
+              }
+            }
+            .box2{
+              width: 16px;
+              height: 6px;
+              display: block;
+              position: relative;
+              margin-top: 2px;
+              &::after{
+                content: "";
+                display: block;
+                position: absolute;
+                left: 1px;
+                width: 6px;
+                height: 6px;
+                background-color: #9a9a9a;
+              }
+              &::before{
+                content: "";
+                display: block;
+                position: absolute;
+                left: 9px;
+                width: 6px;
+                height: 6px;
+                background-color: #9a9a9a;
+              }
+            }
+            &.hover{
+              .box1{
+                &::after{
+                  background-color: #1890FF;
+                }
+                &::before{
+                  background-color: #1890FF;
+                }
+              }
+              .box2{
+                &::after{
+                  background-color: #1890FF;
+                }
+                &::before{
+                  background-color: #1890FF;
+                }
+              }
+              animation: tabControlIcon 0.4s 1;
+              -webkit-animation: tabControlIcon 0.4s 1;
+              /* 动画结束应用于元素 */
+              animation-fill-mode: forwards;
+              -webkit-animation-fill-mode: forwards;
+              .box1{
+                &::after{
+                  animation: tabControlIconHoverBox1After 0.4s 1;
+                  -webkit-animation: tabControlIconHoverBox1After 0.4s 1;
+                  /* 延迟多长时间开始 */
+                  animation-delay: 0.4s;
+                  -webkit-animation-delay: 0.4s;
+                  /* 动画结束应用于元素 */
+                  animation-fill-mode: forwards;
+                  -webkit-animation-fill-mode: forwards;
+                }
+                @keyframes tabControlIconHoverBox1After {
+                  from {
+                    transform: rotate(0deg);
+                  }
+                  to {
+                    transform: rotate(45deg);
+                  }
+                }
+                /*Safari 和 Chrome:*/
+                @-webkit-keyframes tabControlIconHoverBox1After {
+                  from {
+                    transform: rotate(0deg);
+                  }
+                  to {
+                    transform: rotate(45deg);
+                  }
+                }
+              }
+            }
+            @keyframes tabControlIcon {
+              from {
+                transform: rotate(0deg);
+              }
+              to {
+                transform: rotate(90deg);
+              }
+            }
+            /*Safari 和 Chrome:*/
+            @-webkit-keyframes tabControlIcon {
+              from {
+                transform: rotate(0deg);
+              }
+              to {
+                transform: rotate(90deg);
+              }
+            }
+            &.leave{
+              animation: tabControlIconLeave 0.4s 1;
+              -webkit-animation: tabControlIconLeave 0.4s 1;
+              /* 动画结束应用于元素 */
+              animation-fill-mode: forwards;
+              -webkit-animation-fill-mode: forwards;
+              .box1{
+                &::after{
+                  transform: rotate(45deg);
+                  animation: tabControlIconHoverBox1AfterLeave 0.4s 1;
+                  -webkit-animation: tabControlIconHoverBox1AfterLeave 0.4s 1;
+                  /* 延迟多长时间开始 */
+                  animation-delay: 0.4s;
+                  -webkit-animation-delay: 0.4s;
+                  /* 动画结束应用于元素 */
+                  animation-fill-mode: forwards;
+                  -webkit-animation-fill-mode: forwards;
+                }
+                @keyframes tabControlIconHoverBox1AfterLeave {
+                  from {
+                    transform: rotate(45deg);
+                  }
+                  to {
+                    transform: rotate(0deg);
+                  }
+                }
+                /*Safari 和 Chrome:*/
+                @-webkit-keyframes tabControlIconHoverBox1AfterLeave {
+                  from {
+                    transform: rotate(45deg);
+                  }
+                  to {
+                    transform: rotate(0deg);
+                  }
+                }
+              }
+            }
+            @keyframes tabControlIconLeave {
+              from {
+                transform: rotate(90deg);
+              }
+              to {
+                transform: rotate(0deg);
+              }
+            }
+            /*Safari 和 Chrome:*/
+            @-webkit-keyframes tabControlIconLeave {
+              from {
+                transform: rotate(90deg);
+              }
+              to {
+                transform: rotate(0deg);
+              }
+            }
+          }
+        }
+        .tabs{
+          width: calc(100% - 36px * 2);
+          overflow: hidden;
+          float: left;
+          .left{
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            float: left;
+            margin-top: 7px;
+            cursor: pointer;
+            color: #999;
+            &:hover{
+              color: #1890FF;
+              font-weight: 600;
+            }
+          }
+          .midd{
+            float: left;
+            overflow: hidden;
+            .tabsBox{
+              height: 34px;
+              // 禁止左键选中页面内容
+              &{
+                -webkit-touch-callout: none;
+                /*系统默认菜单被禁用*/
+                -webkit-user-select: none;
+                /*webkit浏览器*/
+                -khtml-user-select: none;
+                /*早期浏览器*/
+                -moz-user-select: none;
+                /*火狐*/
+                -ms-user-select: none;
+                /*IE10*/
+                user-select: none;
+              }
+              .one{
+                box-sizing: border-box;
+                height: 34px;
+                margin-right: 5px;
+                line-height: 34px;
+                border: 1px solid #dcdfe6;
+                border-radius: 2.5px;
+                float: left;
+                padding: 0 20px;
+                cursor: pointer;
+                color: #FFF;
+                overflow: hidden;
+                background-color: transparent;
+                &:last-child{
+                  margin-right: 0;
+                }
+                .ico{
+                  width: 14px;
+                  padding: 1px;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-right: 3px;
+                  margin-top: 10px;
+                  float: left;
+                }
+                .name{
+                  font-size: 14px;
+                  font-weight: 500;
+                  float: left;
+                }
+                .close{
+                  width: 0;
+                  height: 14px;
+                  line-height: 14px;
+                  text-align: center;
+                  float: left;
+                  font-size: 14px;
+                  font-weight: 500;
+                  margin-top: 10px;
+                  margin-left: 5px;
+                  overflow: hidden;
+                  &:hover{
+                    background-color: var(--tabs_activeColor);
+                    border-radius: 50%;
+                    color: #FFF;
+                  }
+                }
+                &.hover{
+                  color: var(--tabs_activeColor);
+                  // border-color: var(--tabs_activeColor);
+                  animation: tabColor 0.5s 1;
+                  -webkit-animation: tabColor 0.5s 1;
+                  /* 动画结束应用于元素 */
+                  animation-fill-mode: forwards;
+                  -webkit-animation-fill-mode: forwards;
+                  .close{
+                    animation: tabClose 0.5s 1;
+                    -webkit-animation: tabClose 0.5s 1;
+                    /* 动画结束应用于元素 */
+                    animation-fill-mode: forwards;
+                    -webkit-animation-fill-mode: forwards;
+                  }
+                }
+                @keyframes tabClose {
+                  from {
+                    width: 0;
+                  }
+                  to {
+                    width: 14px;
+                  }
+                }
+                /*Safari 和 Chrome:*/
+                @-webkit-keyframes tabClose {
+                  from {
+                    width: 0;
+                  }
+                  to {
+                    width: 14px;
+                  }
+                }
+                
+                @keyframes tabColor {
+                  from {
+                    padding: 0 20px;
+                  }
+                  to {
+                    padding: 0 12.9px;
+                  }
+                }
+                /*Safari 和 Chrome:*/
+                @-webkit-keyframes tabColor {
+                  from {
+                    padding: 0 20px;
+                  }
+                  to {
+                    padding: 0 12.9px;
+                  }
+                }
+                &.active{
+                  background-color: var(--tabs_activeBgColor);
+                  color: var(--tabs_activeColor);
+                  border-color: var(--tabs_activeColor);
+                  padding: 0 13px;
+                  .close{
+                    width: 14px;
+                  }
+                }
+              }
+            }
+          }
+          .right{
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            float: left;
+            margin-top: 7px;
+            cursor: pointer;
+            color: #999;
+            &:hover{
+              color: #1890FF;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .page{
+        width: 100%;
+        height: calc(100% - 50px);
+        position: relative;
+        z-index: 1;
+        background-color: #081F37;
+      }
+      .fade-enter-active,
+      .fade-leave-active {
+        transition: all 0.5s ease-out;
+      }
+
+      .fade-enter-from,
+      .fade-leave-to {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+    }
+  }
+}
+// pc
+@media (min-width: 1440px) and (max-width: 1650px) {
+  
+}
+// pc
+@media (min-width: 1200px) and (max-width: 1439px) {
+  
+}
+// pc
+@media (min-width: 1024px) and (max-width: 1199px) {
+  
+}

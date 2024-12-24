@@ -1,0 +1,19 @@
+
+.el-login-footer {
+  line-height: 0.75rem;
+  position: fixed;
+  bottom: 1.75rem;
+  width: 100%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.50);
+  font-family: Arial;
+  font-size: 0.75rem;
+  letter-spacing: 0.0625rem;
+  .active{
+    cursor: pointer;
+    &:hover{
+      font-weight: bold;
+      color: #FFF;
+    }
+  }
+}

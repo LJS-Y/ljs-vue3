@@ -1,0 +1,42 @@
+.ljs-dialog{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+	overflow-y: auto;
+  .ljs-dialog-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+		overflow: hidden;
+    .ljs-dialog-title{
+      width: 100%;
+			text-align: center;
+      font-weight: 600;
+      padding: 0 30upx;
+			box-sizing: border-box;
+			position: relative;
+			.ljs-dialog-close{
+				width: 90upx;
+				height: 90upx;
+				text-align: center;
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: 30upx;
+				box-sizing: border-box;
+			}
+    }
+    >.ljs-dialog-content{
+      width: 100%;
+			overflow: hidden;
+    }
+    >.ljs-dialog-butBox{
+      width: 100%;
+			padding: 30upx;
+			box-sizing: border-box;
+    }
+  }
+}

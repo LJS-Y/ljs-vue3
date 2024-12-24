@@ -1,0 +1,34 @@
+.childPage{
+  overflow: hidden;
+  .left{
+    width: 240px;
+    height: 100%;
+    float: left;
+    background-color: #07364B;
+    margin-right: 12px;
+    padding: 10px;
+    .module{
+      width: 100%;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 20px;
+      cursor: pointer;
+      color: #DDD;
+      &:last-child{
+        border-bottom: 0;
+      }
+      &:hover{
+        color: #409eff;
+      }
+      &.active{
+        background-color: #409eff;
+        color: #FFF;
+      }
+    }
+  }
+  .right{
+    width: calc(100% - 240px - 12px);
+    height: 100%;
+    float: right;
+  }
+}
