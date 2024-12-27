@@ -86,7 +86,7 @@ export function numDxsCheck(opt) {
 		}
 		// 只能输入两个小数
 		obj[key] = obj[key].replace(c, '$1$2.$3');
-	}, 0)
+	}, 50)
 }
 
 /**
@@ -109,7 +109,7 @@ export function numCheck(form, key = 'num', type = 'Number', numberFristIs0 = tr
 		if (type === 'Number' && form[key].length > 0) {
 			form[key] = Number(form[key]);
 		}
-	}, 0)
+	}, 50)
 }
 
 /**
@@ -126,7 +126,7 @@ export function numEnCheck(form, key = 'username') {
 		form[key] = form[key].replace(/[^\w]/g, '');
 		// 去掉下划线
 		form[key] = form[key].replace(/\_/g, '');
-	}, 0)
+	}, 50)
 }
 
 /**

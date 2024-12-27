@@ -140,9 +140,11 @@ export default {
 			});
 		},
 		
-		imgClick(url) {
-			this.bigImage.path = url;
-			this.bigImage.open = true;
+		imgClick(imgList) {
+			if (imgList.length > 0) {
+				this.bigImage.path = imgList[0].url;
+				this.bigImage.open = true;
+			}
 		},
 		// 修改头像 - 取消按钮
 		editHeadpicCancel() {

@@ -128,7 +128,7 @@ export function setRemUnit() {
  * 字典值回显，接口值回显
  * @param {Array} datas 基础数据
  * @param {String} value value
- * @param {String} labelKey 查找的名称key
+ * @param {String} labelKey 查找的名称key。如果参数值为$index，则返回索引值。
  * @param {String} valueKey 比对的数据key
  * @param {Boolean} isTrue false时为字符串，true时为布尔型
  * @returns {Array} 返回值所对应的文本。
@@ -138,13 +138,22 @@ export function selectDictLabel(datas, value, labelKey = 'dictLabel', valueKey =
   if (value === undefined) {
     return '';
   }
-  var actions = [];
-  Object.keys(datas).some((key) => {
+  let actions = [];
+  Object.keys(datas).some((key, i) => {
     if (datas[key][valueKey] == ('' + value)) {
-      actions.push(datas[key][labelKey]);
+			if (labelKey === '$index') {
+				actions = i;
+				return i;
+			} else {
+				actions.push(datas[key][labelKey]);
+			}
       return true;
     }
   })
+	// 返回索引值
+	if (labelKey === '$index') {
+		return actions;
+	}
   if (actions.length === 0) {
     actions.push(value);
   }

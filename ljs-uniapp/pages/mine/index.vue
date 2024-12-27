@@ -109,7 +109,7 @@
 							:colCount="2"
 							:imgHeight="200"
 							:imgRadius="10"
-							@imgClick="imgClick"
+							@imgClick="imgClick(editHeadpic_form.data.imgList)"
 							>
 						</ljs-dragImages>
 					</view>
@@ -123,7 +123,8 @@
 		
 		<ljs-big-image
 			v-model="bigImage.open"
-			:path="bigImage.path">
+			:path="bigImage.path"
+			:zIndex="1000">
 		</ljs-big-image>
 	</view>
 </template>
