@@ -10,9 +10,14 @@
 			// #endif
 		},
 		onShow: function() {
+			// #ifdef MP-WEIXIN
+			// 生产可用
+			if (this.$base.wxCheckForUpdate()) {
+				this.$base.wxUpdate()
+			}
+			// #endif
 		},
 		onHide: function() {
-			uni.removeStorageSync("myuniapp_menu"); // 隐藏时，清楚菜单缓存
 		},
 		onUnhandledRejection: function() {
 			// console.log('App onError')
