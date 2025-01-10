@@ -69,6 +69,7 @@ export default {
 			}
 			uni.clearStorageSync();
 			this.$store.commit('RESET_STORE');
+			this.$ljsPublic.msg.loading_close();
 		},
 		
 		init() {
