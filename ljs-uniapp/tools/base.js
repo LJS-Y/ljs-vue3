@@ -59,9 +59,31 @@ export function wxUpdate() {
 	});
 }
 
+/**
+  *  检查app版本 - 安卓
+  *  @example this.$base.androidCheckApp()
+  * */
+export function androidCheckApp() {
+	// this.$ljsPublic.base.getAppBaseInfo().appVersion
+	const edition = uni.getStorageSync('ljs-app-edition');
+	if ($ljsPublic.base.fieldCheck(edition)) {
+		uni.setStorageSync('ljs-app-edition', $ljsPublic.base.getAppBaseInfo().appVersion);
+	} else {
+		// 检查是否需要重启应用的条件
+		if (edition !== $ljsPublic.base.getAppBaseInfo().appVersion) {
+			// 通过plus对象重启应用
+			if (uni.getSystemInfoSync().platform === 'android') {
+				uni.removeStorageSync('ljs-app-edition');
+				plus.runtime.restart();
+			}
+		}
+	}
+}
+
 export default {
   logout,
 	initShare,
 	wxCheckForUpdate,
 	wxUpdate,
+	androidCheckApp,
 };

@@ -16,6 +16,9 @@
 				this.$base.wxUpdate()
 			}
 			// #endif
+			// #ifdef APP-ANDROID
+			this.$base.androidCheckApp()
+			// #endif
 		},
 		onHide: function() {
 		},
