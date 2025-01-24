@@ -12,6 +12,9 @@ page {
 }
 button{
 	border: 0;
+	&::after{
+	  border: none;
+	}
 }
 
 /***全局公共样式 - 开始***/
