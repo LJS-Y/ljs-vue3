@@ -89,8 +89,12 @@ export function getImageUrl(url) {
   *  @param {string} url 默认图片地址
   *  @example this.$base.picError(item, 'imgPath')
   * */
-export function picError(form, key = 'src', url = 'images/common/errorImg.png') {
-  form[key] = getImageUrl(url);
+export async function picError(form, key = 'src', img) {
+  if (LJSbase.fieldCheck(img)) {
+    img = new URL('@/assets/images/common/errorImg.png', import.meta.url).href;
+    
+  }
+  form[key] = img;
 }
 
 export default {
