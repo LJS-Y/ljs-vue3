@@ -78,9 +78,9 @@ httpService.interceptors.response.use(
       });
       return data; // 流数据
     } else if (data.code !== 200 && data.code !== 401) {
-      // let rqData = JSON.parse(response.config.data); // 请求数据
-      // console.error(BASE.getNowTime(), rqData.interfaceid+"："+data.message)
-      ElMessage.warning(LJSbase.fieldCheck(data.msg) ? '服务端异常错误，请联系管理员查看。' : data.msg);
+      // console.error('服务出错：', LJSbase.fieldCheck(data.msg) ? '未知错误。' : data.msg);
+      // ElMessage.warning('服务异常，请联系客服或稍后重试！');
+      ElMessage.warning(LJSbase.fieldCheck(data.msg) ? '未知错误。' : data.msg);
       store.commit('loadingStore', {
         tag: false,
         text: '加载中....'
