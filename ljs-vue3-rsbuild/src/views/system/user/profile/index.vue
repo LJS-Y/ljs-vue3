@@ -92,6 +92,7 @@
 import userInfo from "./userInfo.vue";
 import resetPwd from "./resetPwd.vue";
 import { getUserProfile, uploadAvatar } from "@/api/system/user.js";
+import errorHead from '@/assets/images/common/head.png';
 
 export default {
   name: "Profile",
@@ -139,9 +140,8 @@ export default {
       getUserProfile().then(res => {
         if (res.code === 200) {
           this.user = res.data;
-          const defaultSrc = this.$base.getImageUrl('images/common/head.png');
           const BASEURL = import.meta.env.PUBLIC_API_URL;
-          this.headUrl = this.user.avatar && this.user.avatar !== '' && this.user.avatar !== null ? BASEURL + this.user.avatar : defaultSrc;
+          this.headUrl = this.user.avatar && this.user.avatar !== '' && this.user.avatar !== null ? BASEURL + this.user.avatar : errorHead;
           const userinfo = this.$store.getters.userinfo;
           userinfo.avatar = this.headUrl;
           this.$store.commit('SET_userinfo', userinfo);

@@ -6,7 +6,6 @@ export default {
     return {
       projectName: import.meta.env.PUBLIC_PROJECT_NAME,
       userinfo: '', // 用户信息
-      headUrl: '',
       // 皮肤
       skin: {
         value: 'default', // 显示的皮肤值
@@ -98,7 +97,7 @@ export default {
         // 获取菜单文字导航数据address
       };
       // 跳转数据未更新。
-      this.$LJSmenu.menuControl(this.$store, this.$run, item); // 自主跳转
+      this.$LJSmenu.menuControl({store: this.$store, run: this.$run, menuObj: item}); // 自主跳转
     },
     // 去住应用
     goMainApp() {
@@ -209,7 +208,7 @@ export default {
         value: tab.menuId,
         key: 'menuId'
       });
-      this.$LJSmenu.updateTreeOpen(this.menu.list, parents);
+      this.$LJSmenu.updateTreeOpen({menuList: this.menu.list, parents});
 
       this.$run.push({
         path: tab.url
@@ -307,8 +306,6 @@ export default {
     init() {
       this.skin.value = this.$base.initSkin(); 
       this.userinfo = this.$store.getters.userinfo;
-      const defaultSrc = this.$base.getImageUrl('images/common/head.png');
-      this.headUrl = this.userinfo.headUrl && this.userinfo.headUrl !== '' && this.userinfo.headUrl !== null ? this.userinfo.headUrl : defaultSrc;
       setTimeout(() => {
         this.getModuleMenu();
       }, 200);

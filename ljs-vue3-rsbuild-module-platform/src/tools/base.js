@@ -87,15 +87,14 @@ export function getImageUrl(url) {
   *  默认图片
   *  @param {object} form 表单对象
   *  @param {string} key 键名不叫phone时需要传入新的键名
-  *  @param {string} url 默认图片地址
-  *  @example this.$base.picError(item, 'imgPath')
+  *  @param {string} img import的图片
+  *  @example this.$base.picError({form, key: 'imgPath', img: 'path'})
   * */
-export async function picError(form, key = 'src', img) {
+export async function picError({form, key = 'src', img}) {
   if (LJSbase.fieldCheck(img)) {
     img = new URL('@/assets/images/common/errorImg.png', import.meta.url).href;
-    
+    form[key] = img;
   }
-  form[key] = img;
 }
 
 /**

@@ -85,7 +85,7 @@ export function routerAndMenuChange(commit, res) {
       key: 'menuId'
     });
     if (parents.length > 0) {
-      LJSmenu.updateTreeOpen(menuList, parents);
+      LJSmenu.updateTreeOpen({menuList, parents});
     }
   }
 

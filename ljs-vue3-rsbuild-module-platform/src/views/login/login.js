@@ -3,7 +3,7 @@ import {
   getInfo,
   getCodeImg
 } from '@/api/common/login';
-import img_head from '@/assets/images/common/head.png';
+import errorHead from '@/assets/images/common/head.png';
 export default {
   name: 'Login',
   data() {
@@ -91,7 +91,7 @@ export default {
             if (res2.code === 200) {
               // 处理用户头像
               let avatar = res2.user.avatar;
-              avatar = (avatar == "" || avatar == null) ? img_head : import.meta.env.PUBLIC_API_URL + avatar;
+              avatar = (avatar == "" || avatar == null) ? errorHead : import.meta.env.PUBLIC_API_URL + avatar;
               res2.user.avatar = avatar;
               // 存储用户、模块
               this.$store.commit('SET_userinfo', res2.user);

@@ -87,7 +87,7 @@ export function routerAndMenuChange(commit, res) {
       value: menuId,
       key: 'menuId'
     });
-    LJSmenu.updateTreeOpen(menuList, parents);
+    LJSmenu.updateTreeOpen({menuList, parents});
   }
 
   store.commit('SET_menuList', menuList);

@@ -53,7 +53,7 @@ export default {
   methods: {
     // 菜单点击方法
     menuCF(item) {
-      this.$LJSmenu.menuControl(this.$store, this.$run, item);
+      this.$LJSmenu.menuControl({store: this.$store, run: this.$run, menuObj: item});
     },
     init() {
       this.menu.choose = this.$store.getters.menuNowOpen;
