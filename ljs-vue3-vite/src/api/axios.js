@@ -38,19 +38,16 @@ const httpService = axios.create({
 // http request 拦截器
 httpService.interceptors.request.use(
   (config) => {
+    let { headers, params, url, method } = config;
     // 所有请求添加token字段
     const token = store.getters.token;
-    const headers = config.headers;
-    if (token !== null && config.url !== '/login') {
+    if (token !== null && url !== '/login') {
       headers.Authorization = 'Bearer ' + token;
-      config.headers = headers;
     }
     // get请求映射params参数
-    if (config.method === 'get' && config.params) {
-      let url = config.url + '?' + tansParams(config.params);
-      url = url.slice(0, -1);
-      config.params = {};
-      config.url = url;
+    if (method === 'get' && params) {
+      params = {};
+      config.url = (url + '?' + tansParams(params)).slice(0, -1);
     }
     return config;
   },
