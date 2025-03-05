@@ -121,7 +121,11 @@ export default {
         pieData.push(temp)
       }
       this.$nextTick(() => {
-        this.top.getPie1.ecDom = ec.getPie1(this.top.getPie1.ecDom, 'getPie1', pieData);
+        this.top.getPie1.ecDom = ec.getPie1({
+          myChart: this.top.getPie1.ecDom,
+          id: 'getPie1',
+          data: pieData
+        });
       });
     },
     // getPie2
@@ -138,7 +142,11 @@ export default {
         pieData.push(temp)
       }
       this.$nextTick(() => {
-        this.top.getPie2.ecDom = ec.getPie2(this.top.getPie2.ecDom, 'getPie2', pieData);
+        this.top.getPie2.ecDom = ec.getPie2({
+          myChart: this.top.getPie2.ecDom,
+          id: 'getPie2',
+          data: pieData
+        });
       });
     },
     // getPie3
@@ -159,7 +167,11 @@ export default {
         pieData.push(temp)
       }
       this.$nextTick(() => {
-        this.top.getPie3.ecDom = ec.getPie3(this.top.getPie3.ecDom, 'getPie3', pieData);
+        this.top.getPie3.ecDom = ec.getPie3({
+          myChart: this.top.getPie3.ecDom,
+          id: 'getPie3',
+          data: pieData
+        });
       });
     },
     // getLine1
@@ -172,7 +184,13 @@ export default {
         data.push(num);
       }
       this.$nextTick(() => {
-        this.top.getLine1.ecDom = ec.getLine1(this.top.getLine1.ecDom, 'getLine1', dataX, data, '次');
+        this.top.getLine1.ecDom = ec.getLine1({
+          myChart: this.top.getLine1.ecDom,
+          id: 'getLine1',
+          dataX,
+          data,
+          dw: '次'
+        });
       });
     },
 
@@ -210,7 +228,14 @@ export default {
         data.push(temp);
       }
       this.$nextTick(() => {
-        this.midd.getLine2.ecDom = ec.getLine2(this.midd.getLine2.ecDom, 'getLine2', dataX, data, color, '次');
+        this.midd.getLine2.ecDom = ec.getLine2({
+          myChart: this.midd.getLine2.ecDom,
+          id: 'getLine2',
+          dataX,
+          data,
+          color,
+          dw: '次'
+        });
       });
     },
     // getLine3
@@ -239,7 +264,14 @@ export default {
         data.push(temp);
       }
       this.$nextTick(() => {
-        this.midd.getLine3.ecDom = ec.getLine2(this.midd.getLine3.ecDom, 'getLine3', dataX, data, color, '次');
+        this.midd.getLine3.ecDom = ec.getLine2({
+          myChart: this.midd.getLine3.ecDom,
+          id: 'getLine3',
+          dataX,
+          data,
+          color,
+          dw: '次'
+        });
       });
     },
     getBar1() {
@@ -263,7 +295,14 @@ export default {
         data.push(temp);
       }
       this.$nextTick(() => {
-        this.midd.getBar1.ecDom = ec.getBar1(this.midd.getLine3.ecDom, 'getBar1', dataX, data, color, '次');
+        this.midd.getBar1.ecDom = ec.getBar1({
+          myChart: this.midd.getLine3.ecDom,
+          id: 'getBar1',
+          dataX,
+          data,
+          color,
+          dw: '次'
+        });
       });
     },
 
@@ -359,7 +398,14 @@ export default {
         data.push(stackTemp);
       }
       this.$nextTick(() => {
-        this.bottom.getBar2.ecDom = ec.getBar2(this.bottom.getBar2.ecDom, 'getBar2', dataX, data, legend, '次');
+        this.bottom.getBar2.ecDom = ec.getBar2({
+          myChart: this.bottom.getBar2.ecDom,
+          id: 'getBar2',
+          dataX,
+          data,
+          legend,
+          dw: '次'
+        });
       });
     },
     getBar3() {
@@ -524,7 +570,14 @@ export default {
         data.push(temp4);
       }
       this.$nextTick(() => {
-        this.bottom.getBar3.ecDom = ec.getBar3(this.bottom.getBar3.ecDom, 'getBar3', dataX, data, legend, '次');
+        this.bottom.getBar3.ecDom = ec.getBar3({
+          myChart: this.bottom.getBar3.ecDom,
+          id: 'getBar3',
+          dataX,
+          data,
+          legend,
+          dw: '次'
+        });
       });
     },
   }

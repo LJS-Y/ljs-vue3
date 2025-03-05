@@ -50,7 +50,7 @@
           </el-dropdown>
         </div>
         <div class="info">
-          <img class="head" @click="goUserInfo" :src="userinfo.avatar" @error="$base.picError({form: userinfo, key: 'avatar', img: '@/assets/images/common/head.png'})"/>
+          <img class="head" @click="goUserInfo" :src="userinfo.avatar" @error="$base.picError({form: userinfo, key: 'avatar', img: $em.errorImage_head})"/>
           <div class="name">{{userinfo.nickName}}</div>
           <div class="org" v-if="userinfo.dept && userinfo.dept.deptName">{{userinfo.dept.deptName}}</div>
           <el-dropdown class="jt">

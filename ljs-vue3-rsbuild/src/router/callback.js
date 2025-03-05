@@ -1,10 +1,8 @@
 import router from './index.js'
 import store from '../store/index.js';
 import { LJSmenu, LJSsession } from 'ljs-tools';
-import $base from '@/tools/base.js';
 import { getInfo } from '@/api/common/login.js';
-
-import errorHead from '@/assets/images/common/head.png';
+import $em from '@/tools/errorImages.js';
 
 /**
  * 路由的钩子函数，处理是否登录的判断
@@ -85,7 +83,7 @@ async function getUserInfo(next) {
   if (res2) {
     // 处理用户头像
     let avatar = res2.user.avatar;
-    avatar = (avatar == "" || avatar == null) ? errorHead : import.meta.env.PUBLIC_API_URL + avatar;
+    avatar = (avatar == "" || avatar == null) ? $em.errorImage_head : import.meta.env.PUBLIC_API_URL + avatar;
     res2.user.avatar = avatar;
     // 存储用户、权限
     store.commit('SET_userinfo', res2.user);

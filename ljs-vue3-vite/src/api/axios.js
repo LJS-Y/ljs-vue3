@@ -61,13 +61,13 @@ httpService.interceptors.request.use(
 // respone拦截器
 httpService.interceptors.response.use(
   (response) => {
-    const { data } = response;
-    if (!data.code) {
+    const { data, data: {code, msg} } = response;
+    if (!code) {
       return data; // 流数据
     }
-    if (data.code === 200) {
+    if (code === 200) {
       tokenGq = false;
-    } else if (data.code === 401) {
+    } else if (code === 401) {
       if (!tokenGq) {
         ElMessage.info('您的访问权限已过期，请重新登录！');
         tokenGq = true;
@@ -77,10 +77,10 @@ httpService.interceptors.response.use(
         path: '/login'
       });
       return data; // 流数据
-    } else if (data.code !== 200 && data.code !== 401) {
-      // console.error('服务出错：', LJSbase.fieldCheck(data.msg) ? '未知错误。' : data.msg);
+    } else if (code !== 200 && code !== 401) {
+      // console.error('服务出错：', LJSbase.fieldCheck(msg) ? '未知错误。' : msg);
       // ElMessage.warning('服务异常，请联系客服或稍后重试！');
-      ElMessage.warning(LJSbase.fieldCheck(data.msg) ? '未知错误。' : data.msg);
+      ElMessage.warning(LJSbase.fieldCheck(msg) ? '未知错误。' : msg);
       store.commit('loadingStore', {
         tag: false,
         text: '加载中....'

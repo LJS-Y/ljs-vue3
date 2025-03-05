@@ -4,6 +4,7 @@ import base from '@/tools/base.js';
 import run from '@/tools/run.js';
 import dict from '@/tools/dict/index.js';
 import modal from '@/tools/ruoyi/modal';
+import em from '@/tools/errorImages.js';
 import comB from '@/assets/js/base.js'; // 公共js（每个项目不一样）
 // 指令
 import directives from '@/tools/directives/index.js';
@@ -39,6 +40,7 @@ const tools = [
   {type: 'function', name: 'dict', entity: dict},
   {type: 'function', name: 'modal', entity: modal},
   {type: 'function', name: 'comB', entity: comB},
+  {type: 'function', name: 'em', entity: em},
   
   {type: 'directive', name: 'directives', entity: directives},
 

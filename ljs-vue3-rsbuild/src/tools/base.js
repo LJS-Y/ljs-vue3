@@ -3,6 +3,7 @@
  * @description 基础常用处理方法
  *  */
 import store from '@/store/index.js';
+import $em from '@/tools/errorImages.js';
 import { LJSbase, LJSsession } from 'ljs-tools';
 
 
@@ -74,33 +75,20 @@ export function initSkin (initTheme) {
 }
 
 /**
- * 获取动态内部图片资源
- * @param {String} url 本地资源文件地址
- * @example this.$base.getImageUrl('images/common/head.png'); 真实的地址为：/assets/images/common/head.png
- */
-export function getImageUrl(url) {
-  return new URL(`../assets/${url}`, import.meta.url).href;
-}
-
-/**
   *  默认图片
   *  @param {object} form 表单对象
   *  @param {string} key 键名不叫phone时需要传入新的键名
-  *  @param {string} img import的图片
-  *  @example this.$base.picError({form, key: 'imgPath', img: 'path'})
+  *  @param {Object} img import的图片
+  *  @example this.$base.picError({form, key: 'imgPath', img: $em.errorImage_def})
   * */
-export async function picError({form, key = 'src', img}) {
-  if (LJSbase.fieldCheck(img)) {
-    img = new URL('@/assets/images/common/errorImg.png', import.meta.url).href;
-    form[key] = img;
-  }
+export function picError({form, key = 'src', img = $em.errorImage_def}) {
+  form[key] = img;
 }
 
 export default {
   screenListen,
   checkWindowRatio,
   initSkin,
-  getImageUrl,
   picError,
 };
 

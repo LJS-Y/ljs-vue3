@@ -1,7 +1,6 @@
 import screenfull from 'screenfull';
 import Menu from '@/components/frame/Menu/index.vue';
 import Address from '@/components/frame/Address/index.vue';
-import errorHead from '@/assets/images/common/head.png';
 export default {
   data() {
     return {
