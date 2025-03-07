@@ -1,7 +1,7 @@
 {
   "id": "ljs-dragImages-vue3",
   "displayName": "ljs-dragImages-vue3 可拖拽排序的图片上传组件 拖动排序",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ljs-dragImages-vue3 可拖拽排序的图片上传组件 拖动排序",
   "keywords": [
     "拖拽",

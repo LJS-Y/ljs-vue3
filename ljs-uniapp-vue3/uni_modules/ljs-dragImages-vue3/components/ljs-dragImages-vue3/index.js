@@ -282,16 +282,11 @@ export default {
 			this.dataList.sort((a, b) => {
 				return a.sort - b.sort
 			})
-			// #ifdef H5
-			this.initXY();
-			// #endif
-			// #ifndef H5
 			setTimeout(() => {
 				this.$nextTick(() => {
 					this.initXY();
 				});
 			}, 0);
-			// #endif
 		},
 		// 初始化元素的位置，根据dataList数组的数量计算
 		initXY() {
