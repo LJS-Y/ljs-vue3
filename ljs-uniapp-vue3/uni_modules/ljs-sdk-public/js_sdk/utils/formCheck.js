@@ -106,9 +106,9 @@ export function numCheck(form, key = 'num', type = 'Number', numberFristIs0 = tr
 		form[key] = form[key].replace(/[^\d]/g, '');
 
 		// 处理为数字
-		if (type === 'Number' && form[key].length > 0) {
-			form[key] = Number(form[key]);
-		}
+		// if (type === 'Number' && form[key].length > 0) {
+		// 	form[key] = Number(form[key]);
+		// }
 	}, 50)
 }
 

@@ -96,7 +96,7 @@ export function editTreeParentIdCheck(data, opts = [], disabled = false) {
 }
 
 /**
- * 转换树型结构为list
+ * 数据转换 - tree转list
  * @param {Array} treeList 待转换的树结构数据。
  * @param {Array} list 转换后的数据。
  * @example this.$ljsPublic.base.handleTreeList(tree, []);
@@ -112,6 +112,58 @@ export function handleTreeList(treeList, list = []) {
     list.push(newRow);
     this.handleTreeList(currentRow.children, list)
   }
+}
+
+/**
+ * 数据转换 - list转tree
+ * @param {Array} data 待转换的数据。
+ * @param {String} id 自身id键。
+ * @param {String} parentId 父id键。
+ * @param {String} children children键。
+ * @example this.$ljsPublic.base.handleListTree(arr, 'id', 'pid');
+ */
+export function handleListTree(data, id, parentId, children) {
+  let config = {
+    id: id || 'id',
+    parentId: parentId || 'parentId',
+    childrenList: children || 'children'
+  };
+
+  var childrenListMap = {};
+  var nodeIds = {};
+  var tree = [];
+
+  for (let d of data) {
+    let parentId = d[config.parentId];
+    if (childrenListMap[parentId] == null) {
+      childrenListMap[parentId] = [];
+    }
+    nodeIds[d[config.id]] = d;
+    childrenListMap[parentId].push(d);
+  }
+
+  for (let d of data) {
+    let parentId = d[config.parentId];
+    if (nodeIds[parentId] == null) {
+      tree.push(d);
+    }
+  }
+
+  for (let t of tree) {
+    adaptToChildrenList(t);
+  }
+
+  function adaptToChildrenList(o) {
+    if (childrenListMap[o[config.id]] !== null) {
+      o[config.childrenList] = childrenListMap[o[config.id]];
+    }
+    if (o[config.childrenList]) {
+      for (let c of o[config.childrenList]) {
+        adaptToChildrenList(c);
+      }
+    }
+  }
+  return tree;
 }
 
 /**
@@ -362,6 +414,7 @@ export default {
   getTreeParents,
   editTreeParentIdCheck,
   handleTreeList,
+  handleListTree,
   colorLog,
   selectDictLabel,
   getUrlParameter,

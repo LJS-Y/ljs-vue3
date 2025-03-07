@@ -8,7 +8,6 @@ import config from '@/request/config.js'
 import BASE from '../base.js'
 import MSG from '../msg.js'
 import RUN from '../run.js'
-// import BASE from '../base.js'
 
 let tokenGq = false; // token是否过期
 /**
@@ -70,12 +69,15 @@ export function ax({url, params = {}, headerParams = {}, methodTag, submitDD = f
 			header: header,
 			timeout: timeout,
 			success: (response) => {
-				if (response.statusCode === 200) {
+				const {statusCode, data: {
+					code, msg
+				}} = response;
+				if (statusCode === 200) {
 					// 内部请求,使用内部解析规则
 					if (isInternalRequest && responseInterceptor) {
-						if (response.data.code === 200) {
+						if (code === 200) {
 							tokenGq = false;
-						} else if (response.data.code === 401) {
+						} else if (code === 401) {
 							if (!tokenGq) {
 								MSG.msg("您的访问权限已过期，请重新登录！", 3000);
 								tokenGq = true;
@@ -86,7 +88,7 @@ export function ax({url, params = {}, headerParams = {}, methodTag, submitDD = f
 							}, 3000)
 							return false; // 流数据
 						} else {
-							MSG.msg(response.data.msg, 3000);
+							MSG.msg(!BASE.fieldCheck(msg) ? msg : '未知错误！', 3000);
 						}
 					}
 				} else {
