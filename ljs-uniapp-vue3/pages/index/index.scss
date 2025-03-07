@@ -1,0 +1,80 @@
+.comMain{
+	overflow: hidden;
+	.comPage{
+		height: 100%;
+		overflow: hidden;
+		.list{
+			height: calc(100% - 136upx);
+			padding: 20upx;
+			overflow-y: auto;
+			.listBox{
+				width: 100%;
+				.item{
+					width: 100%;
+					background-color: #FFF;
+					padding: 20upx;
+					border-radius: 20upx;
+					margin-bottom: 20upx;
+					font-size: 26upx;
+					overflow: hidden;
+					&:nth-last-child(2){
+						margin-bottom: 0;
+					}
+					.pic{
+						width: 170upx;
+						height: 170upx;
+						border-radius: 40upx;
+						float: left;
+					}
+					.info{
+						width: calc(100% - 190upx);
+						height: 170upx;
+						float: right;
+						.name{
+							width: 100%;
+							height: 70upx;
+							position: relative;
+							padding: 10upx 0 0;
+							.text{
+								width: 100%;
+								line-height: 30upx;
+								font-weight: 600;
+								display: -webkit-box;
+								-webkit-box-orient: vertical;
+								-webkit-line-clamp: 2;
+								overflow: hidden;
+							}
+							.state{
+								width: 106upx;
+								height: 40upx;
+								line-height: 40upx;
+								text-align: center;
+								font-size: 20upx;
+								border-radius: 8upx;
+								position: absolute;
+								top: 10upx;
+								right: 0;
+								&.green{
+									background-color: #e7f9ed;
+									color: #46906d;
+								}
+								&.gery{
+									background-color: #f4f4f4;
+									color: #999;
+								}
+							}
+						}
+						.dis{
+							font-size: 24upx;
+							color: #666;
+							margin-top: 10upx;
+							.one{
+								line-height: 40upx;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

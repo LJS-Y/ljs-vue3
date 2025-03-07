@@ -1,0 +1,100 @@
+.ljs-bottom-menu-vue3{
+	width: 100%;
+	height: calc(118upx + var(--window-bottom));
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 200;
+	background-color: #FFF;
+	.ljs-bottom-menu-vue3-one{
+		height: 100%;
+		float: left;
+		text-align: center;
+		padding-top: 18upx;
+		position: relative;
+		z-index: 2;
+		&.ljs-bottom-menu-vue3-specialButton{
+			padding-top: 0;
+			padding: 10upx;
+			box-sizing: border-box;
+			>.ljs-bottom-menu-vue3-specialButton-box{
+				width: 100%;
+				max-width: 100upx;
+				height: 100%;
+				max-height: 100upx;
+				background-color: #5c70fe;
+				border-radius: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin: -30upx auto 0;
+				box-shadow: 0 -3upx 6upx 6upx rgba(0, 0, 0, .2);
+				.ljs-bottom-menu-vue3-specialButton-icon{
+					width: 50upx;
+					height: 50upx;
+				}
+			}
+		}
+		>.ljs-bottom-menu-vue3-one-icon{
+			width: 40upx;
+			height: 40upx;
+			font-size: 36upx;
+			margin: 0 auto;
+			display: block;
+		}
+		.ljs-bottom-menu-vue3-one-text{
+			line-height: 22upx;
+			margin-top: 4upx;
+		}
+		.ljs-bottom-menu-vue3-oneChildren{
+			width: 100%;
+			background-color: #FFF;
+			box-sizing: border-box;
+			border-radius: 4upx;
+			padding: 10upx 0;
+			position: absolute;
+			left: 0;
+			&::before{
+				content: "";
+				width: 0px;
+				height: 0px;
+				border: 10upx solid #CCC;
+				border-color: #CCC transparent transparent transparent;
+				position: absolute;
+				bottom: -20upx;
+				left: 50%;
+				transform: translate(-50%, 0%);
+			}
+			&::after{
+				content: "";
+				width: 0px;
+				height: 0px;
+				border: 8upx solid #FFF;
+				border-color: #FFF transparent transparent transparent;
+				position: absolute;
+				bottom: -16upx;
+				left: 50%;
+				transform: translate(-50%, 0%);
+			}
+			.ljs-bottom-menu-vue3-oneChildren-one{
+				width: 100%;
+				line-height: 40upx;
+				font-size: 26upx;
+				padding: 10upx;
+				box-sizing: border-box;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+			}
+		}
+	}
+	.ljs-bottom-menu-vue3-shade{
+		width: 100%;
+		height: 100vh;
+		background-color: transparent;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 1;
+	}
+}

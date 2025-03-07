@@ -1,0 +1,51 @@
+{
+	"pages": [
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}, {
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		}, {
+			"path": "pages/mine/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}
+	],
+	// 分包设置
+	"subPackages": [
+		// {
+		// 	"root": "pages/warehouseOperations",
+		// 	"pages": [
+		// 		{
+		// 			"path": "index",
+		// 			"style": {
+		// 				"navigationBarTitleText": "仓库"
+		// 			}
+		// 		}
+		// 	]
+		// }
+	],
+	// "condition": { //模式配置，仅开发期间生效
+	// 	"current": 1, //当前激活的模式（list 的索引项）
+	// 	"list": [
+	// 		{
+	// 			"name": "test",
+	// 			"path": "/doctor/set/index"
+	// 		}
+	// 	]
+	// },
+	"globalStyle": {
+		// "navigationBarTextStyle": "#FFF", // 导航栏标题颜色及状态栏前景颜色
+		// "navigationBarTitleText": "myuniapp", // 导航栏标题文字内容
+		"navigationStyle": "custom", // custom即取消默认的原生导航栏
+		"navigationBarBackgroundColor": "#0f1118", // 导航栏背景颜色（同状态栏背景色）
+		"backgroundColor": "#0f1118", // 下拉显示出来的窗口的背景色
+		"app-plus": {"titleNView": false} // 隐藏导航栏
+	}
+}

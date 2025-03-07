@@ -1,0 +1,42 @@
+.ljs-big-image-vue3{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  background-color: rgba($color: #000000, $alpha: .6);
+  .ljs-big-image-vue3-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF;
+    overflow: hidden;
+    .ljs-big-image-vue3-title{
+      width: 100%;
+      height: 90upx;
+      line-height: 90upx;
+			text-align: center;
+      font-weight: 600;
+      padding: 0 30upx;
+			box-sizing: border-box;
+			position: relative;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+    }
+		.ljs-big-image-vue3-imgBox{
+      width: 100%;
+      height: 730upx;
+			overflow: auto;
+			overflow-y: auto;
+			.ljs-big-image-vue3-img{
+				width: 100%;
+				height: 100%;
+				display: block;
+				// transform: scale(3, 3);
+			}
+		}
+  }
+}

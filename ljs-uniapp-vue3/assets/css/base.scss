@@ -1,0 +1,382 @@
+@charset "utf-8";
+
+/* 公共样式 */
+page {
+  font-size: $font-size-base;
+  font-weight: 500;
+  font-family: SourceHanSansCN Regular, PingFang SC, Microsoft YaHei, Helvetica Neue, Helvetica, Tahoma, Arial, sans-serif;
+  color: $font-color-base;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+button{
+	border: 0;
+	&::after{
+	  border: none;
+	}
+}
+
+/***全局公共样式 - 开始***/
+.h_10 {
+  height: 10px;
+}
+
+.h_30 {
+  height: 30px;
+}
+
+.h_55 {
+  height: 55px;
+}
+
+.h_500 {
+  height: 500px !important;
+}
+
+.no_mr {
+  margin-right: 0px !important;
+}
+
+.no_mb {
+  margin-bottom: 0px !important;
+}
+
+.no_bb {
+  border-bottom: 0px !important;
+}
+
+.no_br {
+  border-right: 0px !important;
+}
+
+.no_bl {
+  border-left: 0px !important;
+}
+
+iframe {
+  display: block;
+  border: 0px;
+}
+
+img {
+  display: block;
+}
+
+/***框架样式 - 开始***/
+page{
+	background-color: #f2f3f5;
+}
+view, input, textarea{
+	box-sizing: border-box;
+}
+.logout{
+	width: 60upx;
+	height: 60upx;
+	box-sizing: border-box;
+	padding: 10upx;
+	position: absolute;
+	top: 15upx;
+	right: 20upx;
+	z-index: 2;
+	.iconfont{
+		width: 40upx;
+		height: 40upx;
+		line-height: 40upx;
+		text-align: center;
+		display: block;
+		color: #FFF;
+	}
+}
+.comFrame{
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	.comMain{
+		width: 100%;
+		padding-bottom: calc(118upx + var(--window-bottom));
+		.comPage{
+			box-sizing: border-box;
+			position: relative;
+			z-index: 1;
+			.green{
+				color: #67c23a;
+			}
+			.blue{
+				color: #409eff;
+			}
+			.orange{
+				color: #e6a23c;
+			}
+			.red{
+				color: #f56c6c;
+			}
+			.grey{
+				color: #909399;
+			}
+			.input::placeholder, .textarea::placeholder{
+				font-size: 24rpx;
+				color: #666;
+			}
+			.comSearch{
+				background-color: #FFF;
+				padding: 30upx;
+				box-shadow: 0 6upx 10upx 5upx rgba(#000, .1);
+				position: relative;
+				z-index: 2;
+				.inputSearch{
+					display: flex;
+					align-items: center;
+					.inputBox{
+						width: calc(100% - 115upx - 20upx);
+						height: 76upx;
+						position: relative;
+						.input{
+							width: 100%;
+							height: 100%;
+							padding: 18upx 20upx;
+							text-align: center;
+							background-color: #f3f3f3;
+							border-radius: 25upx;
+							font-size: 24upx;
+							position: relative;
+							z-index: 1;
+						}
+						.close{
+							width: 76upx;
+							height: 76upx;
+							line-height: 76upx;
+							text-align: center;
+							position: absolute;
+							top: 0;
+							right: 0;
+							z-index: 2;
+						}
+					}
+					.submitBut{
+						width: 115upx;
+						height: 76upx;
+						line-height: 76upx;
+						text-align: center;
+						background-color: #4aaff3;
+						color: #FFF;
+						border-radius: 25upx;
+						margin-left: 20upx;
+					}
+				}
+			}
+			.comAdd{
+			}
+		}
+	}
+	.operate{
+		margin-top: 20upx;
+		display: flex;
+		align-items: center;
+		&.fixed{
+			width: 100%;
+			height: 80upx;
+			padding: 10upx;
+			position: fixed;
+			left: 0;
+			z-index: 10;
+			bottom: calc(118upx + var(--window-bottom));
+			background-color: #f1f1f1;
+			margin-top: 0;
+		}
+		&.absolute{
+			width: 100%;
+			height: 80upx;
+			padding: 10upx;
+			position: absolute;
+			left: 0;
+			z-index: 10;
+			bottom: 0;
+			margin-top: 0;
+		}
+		.but{
+			flex: 1;
+			height: 56upx;
+			line-height: 56upx;
+			text-align: center;
+			border-radius: 10upx;
+			border: 2upx solid #084AA1;
+			background-color: #084AA1;
+			color: #FFF;
+			margin-right: 20upx;
+			&:last-child{
+				margin-right: 0;
+			}
+			&.blue{
+				border: 2upx solid #084AA1;
+				background-color: #084AA1;
+				color: #FFF;
+			}
+			&.green{
+				border: 2upx solid #67c23a;
+				background-color: #67c23a;
+				color: #FFF;
+			}
+			&.orange{
+				border: 2upx solid #e6a23c;
+				background-color: #e6a23c;
+				color: #FFF;
+			}
+			&.red{
+				border: 2upx solid #f56c6c;
+				background-color: #f56c6c;
+				color: #FFF;
+			}
+			&.grey{
+				border: 2upx solid #eee;
+				background-color: #FFF;
+				color: #666;
+			}
+			.svgIcon{
+				width: 40upx;
+				height: 40upx;
+				margin-top: 8upx;
+				color: #FFF;
+			}
+		}
+	}
+	.comForm{
+		background-color: #FFF;
+		border-radius: 20upx;
+		padding: 30upx;
+		.one{
+			width: 100%;
+			overflow: hidden;
+			margin-bottom: 30upx;
+			&:last-child{
+				margin-bottom: 0;
+			}
+			.label{
+				width: 130upx;
+				height: 100%;
+				line-height: 56upx;
+				text-align: right;
+				float: left;
+			}
+			.valueBox{
+				width: calc(100% - 130upx);
+				min-height: 56upx;
+				padding: 10upx 0;
+				line-height: 36upx;
+				float: left;
+				font-size: 24upx;
+				display: flex;
+				align-items: center;
+			}
+			.imgValue{
+				width: calc(100% - 130upx);
+				min-height: 56upx;
+				overflow: hidden;
+				.small{
+					width: 100upx;
+					height: 100upx;
+					border-radius: 10upx;
+					float: left;
+					margin: 4upx;
+				}
+				.big{
+					width: 690upx;
+					height: 690upx;
+					display: block;
+				}
+			}
+			.inputBox{
+				width: calc(100% - 130upx);
+				min-height: 56upx;
+				float: left;
+				font-size: 24upx;
+				display: flex;
+				align-items: center;
+				.picker{
+					width: 100%;
+					min-height: 56upx;
+					line-height: 52upx;
+					border: 2upx solid #BEBEBE;
+					border-radius: 10upx;
+					box-sizing: border-box;
+					padding: 0 10upx;
+				}
+				.input{
+					width: 100%;
+					height: 56upx;
+					line-height: 52upx;
+					font-size: 24upx;
+					border: 2upx solid #BEBEBE;
+					border-radius: 10upx;
+					padding: 0 10upx;
+					box-sizing: border-box;
+					&.center{
+						text-align: center;
+					}
+				}
+				.textarea{
+					width: 100%;
+					height: 100upx;
+					line-height: 36upx;
+					font-size: 24upx;
+					padding: 10upx;
+					border: 2upx solid #BEBEBE;
+					border-radius: 10upx;
+				}
+				.radio{
+					float: left;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					margin-right: 10upx;
+					&:last-child{
+						margin-right: 0;
+					}
+					radio{
+						transform:scale(0.7);
+					}
+				}
+			}
+		}
+		.butBox{
+			display: flex;
+			margin-top: 20upx;
+			.but{
+				flex: 1;
+				line-height: 54upx;
+				text-align: center;
+				border-radius: 10upx;
+				margin-right: 30upx;
+				&.submitBut{
+					border: 1upx solid #084AA1;
+					background-color: #084AA1;
+					color: #FFF;
+				}
+				&.resetBut{
+					border: 1upx solid #084AA1;
+					color: #084AA1;
+				}
+				&:last-child{
+					margin-right: 0;
+				}
+			}
+		}
+	}
+	.comPlaceholder{
+		font-size: 24rpx;
+		color: #999;
+	}
+	.comTc{
+		.comForm{
+			width: 100%;
+			height: calc(100% - 100upx);
+			overflow-y: auto;
+		}
+		.operate{
+			height: 100upx;
+			padding: 0 30upx;
+		}
+	}
+}
+
+/***框架样式 - 结束***/
