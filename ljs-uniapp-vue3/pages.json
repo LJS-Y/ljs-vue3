@@ -11,6 +11,11 @@
 				"navigationBarTitleText": "首页"
 			}
 		}, {
+			"path": "pages/index/info",
+			"style": {
+				"navigationBarTitleText": "测试内容页"
+			}
+		}, {
 			"path": "pages/mine/index",
 			"style": {
 				"navigationBarTitleText": "我的"

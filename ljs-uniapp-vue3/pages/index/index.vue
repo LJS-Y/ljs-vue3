@@ -33,7 +33,8 @@
 				<view class="list">
 					<view class="listBox">
 						<view class="item"
-							v-for="(item, i) in 10" :key="i">
+							v-for="(item, i) in 10" :key="i"
+							@click="$ljsPublic.run.gp_navigateTo('/pages/index/info')">
 							<image class="pic" src="../../static/images/logo.png"></image>
 							<view class="info">
 								<view class="name">
