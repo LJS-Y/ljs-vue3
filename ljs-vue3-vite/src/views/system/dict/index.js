@@ -1,4 +1,4 @@
-import { listType, getType, delType, addType, updateType, refreshCache } from "@/api/system/dict/type";
+import { listType, getType, delType, addType, updateType, refreshCache } from "@/api/system/dict/type.js";
 
 export default {
   name: "Dict",

@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { updateUserPwd } from "@/api/system/user";
+import { updateUserPwd } from "@/api/system/user.js";
 
 export default {
   data() {

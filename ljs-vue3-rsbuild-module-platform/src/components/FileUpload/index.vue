@@ -30,8 +30,9 @@
     <el-dialog
       v-model="dialogVisible"
       title="预览"
-      width="800"
+      top="5vh"
       append-to-body
+      draggable
     >
       <img
         :src="dialogImageUrl"

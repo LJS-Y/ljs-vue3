@@ -1,4 +1,4 @@
-import { listJob, getJob, delJob, addJob, updateJob, runJob, changeJobStatus } from "@/api/monitor/job";
+import { listJob, getJob, delJob, addJob, updateJob, runJob, changeJobStatus } from "@/api/monitor/job.js";
 import Crontab from '@/components/Crontab/index.vue'
 
 export default {

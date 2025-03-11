@@ -77,13 +77,13 @@
       <el-table class="comTable" v-loading="loading" :data="dataList" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column label="字典编码" align="center" prop="dictCode" />
-        <el-table-column label="字典标签" align="center" prop="dictLabel">
+        <el-table-column label="字典标签" align="center" prop="dictLabel" show-overflow-tooltip>
           <template #default="scope">
             <span v-if="$LJSbase.fieldCheck(scope.row.listClass)">{{scope.row.dictLabel}}</span>
             <el-tag v-else :type="scope.row.listClass">{{scope.row.dictLabel}}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="字典键值" align="center" prop="dictValue" />
+        <el-table-column label="字典键值" align="center" prop="dictValue" show-overflow-tooltip />
         <el-table-column label="字典排序" align="center" prop="dictSort" />
         <el-table-column label="状态" align="center" prop="status">
           <template #default="scope">
@@ -91,7 +91,7 @@
             <dict-tag :options="sys_normal_disable" :value="scope.row.status"/>
           </template>
         </el-table-column>
-        <el-table-column label="备注" align="center" prop="remark" :show-overflow-tooltip="true" />
+        <el-table-column label="备注" align="center" prop="remark" show-overflow-tooltip />
         <el-table-column label="创建时间" align="center" prop="createTime" width="180">
           <template #default="scope">
             <span>{{ $LJSdate.formatTime(scope.row.createTime) }}</span>
@@ -133,16 +133,16 @@
           <el-input v-model="form.dictType" :disabled="true" />
         </el-form-item>
         <el-form-item label="数据标签" prop="dictLabel">
-          <el-input v-model="form.dictLabel" placeholder="请输入数据标签" />
+          <el-input v-model="form.dictLabel" maxlength="100" placeholder="请输入数据标签" />
         </el-form-item>
         <el-form-item label="数据键值" prop="dictValue">
-          <el-input v-model="form.dictValue" placeholder="请输入数据键值" />
+          <el-input v-model="form.dictValue" maxlength="100" placeholder="请输入数据键值" />
         </el-form-item>
         <el-form-item label="样式属性" prop="cssClass">
-          <el-input v-model="form.cssClass" placeholder="请输入样式属性" />
+          <el-input v-model="form.cssClass" maxlength="100" placeholder="请输入样式属性" />
         </el-form-item>
         <el-form-item label="显示排序" prop="dictSort">
-          <el-input-number v-model="form.dictSort" controls-position="right" :min="0" />
+          <el-input v-model="form.dictSort" @input="$LJSfc.numCheck({form, key: 'dictSort'})" maxlength="9" placeholder="请输入显示排序" />
         </el-form-item>
         <el-form-item label="回显样式" prop="listClass">
           <el-select v-model="form.listClass">
@@ -164,7 +164,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="备注" prop="remark">
-          <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
+          <el-input v-model="form.remark" maxlength="250" type="textarea" placeholder="请输入内容"></el-input>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -181,3 +181,11 @@
 import data from "./data.js";
 export default data;
 </script>
+
+<style lang="scss" scoped>
+.comTable{
+  :deep(.el-popper) {
+    max-width: 30% !important;
+  }
+}
+</style>

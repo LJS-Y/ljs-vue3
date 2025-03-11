@@ -1,4 +1,4 @@
-import { list, delOperlog, cleanOperlog } from "@/api/monitor/operlog";
+import { list, delOperlog, cleanOperlog } from "@/api/monitor/operlog.js";
 
 export default {
   name: "Operlog",

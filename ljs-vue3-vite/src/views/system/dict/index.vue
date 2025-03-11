@@ -87,8 +87,8 @@
       <el-table class="comTable" v-loading="loading" :data="typeList" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column label="字典编号" align="center" prop="dictId" />
-        <el-table-column label="字典名称" align="center" prop="dictName" :show-overflow-tooltip="true" />
-        <el-table-column label="字典类型" align="center" :show-overflow-tooltip="true">
+        <el-table-column label="字典名称" align="center" prop="dictName" show-overflow-tooltip />
+        <el-table-column label="字典类型" align="center" show-overflow-tooltip>
           <template #default="scope">
             <!-- <router-link :to="'/system/dictData?dictId=' + " class="link-type">
             </router-link> -->
@@ -103,7 +103,7 @@
             <dict-tag :options="sys_normal_disable" :value="scope.row.status"/>
           </template>
         </el-table-column>
-        <el-table-column label="备注" align="center" prop="remark" :show-overflow-tooltip="true" />
+        <el-table-column label="备注" align="center" prop="remark" show-overflow-tooltip />
         <el-table-column label="创建时间" align="center" prop="createTime" width="180">
           <template #default="scope">
             <span>{{ $LJSdate.formatTime(scope.row.createTime) }}</span>
@@ -143,10 +143,10 @@
     <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
         <el-form-item label="字典名称" prop="dictName">
-          <el-input v-model="form.dictName" placeholder="请输入字典名称" />
+          <el-input v-model="form.dictName" maxlength="100" placeholder="请输入字典名称" />
         </el-form-item>
         <el-form-item label="字典类型" prop="dictType">
-          <el-input v-model="form.dictType" placeholder="请输入字典类型" />
+          <el-input v-model="form.dictType" maxlength="100" placeholder="请输入字典类型" />
         </el-form-item>
         <el-form-item label="状态" prop="status">
           <el-radio-group v-model="form.status">
@@ -158,7 +158,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="备注" prop="remark">
-          <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
+          <el-input v-model="form.remark" maxlength="250" type="textarea" placeholder="请输入内容"></el-input>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -172,7 +172,7 @@
 </template>
 
 <script>
-import index from "./index";
+import index from "./index.js";
 export default index;
 </script>
 

@@ -59,9 +59,9 @@ export default {
           this.fileList = list.map(item => {
             if (typeof item === 'string') {
               if (item.indexOf(this.baseUrl) === -1) {
-                item = { name: this.$LJSurl.getFileName(item), url: this.baseUrl + item };
+                item = { name: this.$LJSbase.getFileName(item), url: this.baseUrl + item };
               } else {
-                item = { name: this.$LJSurl.getFileName(item), url: item };
+                item = { name: this.$LJSbase.getFileName(item), url: item };
               }
             }
             return item;
@@ -164,9 +164,9 @@ export default {
     },
     // 预览
     handlePictureCardPreview(file) {
-      const type = this.$LJSurl.getFileType(file.url);
-      if (type === '.png' || type === '.jpg' || type === '.jpeg ') {
-        this.dialogImageUrl = file.url;
+      const type = this.$LJSbase.getFileType(file.url);
+      if (type === '.png' || type === '.jpg' || type === '.jpeg') {
+        this.dialogImageUrl = import.meta.env.PUBLIC_API_URL + file.url;
         this.dialogVisible = true;
       } else {
         this.$run.goExternalUrl(file.url)

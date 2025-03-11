@@ -117,12 +117,12 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="部门名称" prop="deptName">
-              <el-input v-model="form.deptName" maxlength="100" placeholder="请输入部门名称" />
+              <el-input v-model="form.deptName" maxlength="30" placeholder="请输入部门名称" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="显示排序" prop="orderNum">
-              <el-input-number v-model="form.orderNum" controls-position="right" :min="0" maxlength="10" style="width: 100%;" />
+              <el-input v-model="form.orderNum" @input="$LJSfc.numCheck({form, key: 'orderNum'})" maxlength="10" placeholder="请输入显示排序" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -134,7 +134,7 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="联系电话" prop="phone">
-              <el-input v-model="form.phone" placeholder="请输入联系电话" maxlength="11" />
+              <el-input v-model="form.phone" @input="$LJSfc.numCheck({form, key: 'phone'})" maxlength="11" placeholder="请输入联系电话" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -168,7 +168,7 @@
 </template>
 
 <script>
-import index from "./index";
+import index from "./index.js";
 export default index;
 </script>
 

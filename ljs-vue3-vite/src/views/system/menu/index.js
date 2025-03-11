@@ -1,4 +1,4 @@
-import { listMenu, getMenu, delMenu, addMenu, updateMenu } from "@/api/system/menu";
+import { listMenu, getMenu, delMenu, addMenu, updateMenu } from "@/api/system/menu.js";
 import IconSelect from "@/components/IconSelect/index.vue";
 
 export default {

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { updateUserProfile, getUserProfile } from "@/api/system/user";
+import { updateUserProfile, getUserProfile } from "@/api/system/user.js";
 
 export default {
   props: {

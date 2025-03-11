@@ -80,8 +80,8 @@
       <el-table class="comTable" v-loading="loading" :data="roleList" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column label="角色编号" prop="roleId" />
-        <el-table-column label="角色名称" prop="roleName" :show-overflow-tooltip="true" />
-        <el-table-column label="权限字符" prop="roleKey" :show-overflow-tooltip="true" />
+        <el-table-column label="角色名称" prop="roleName" show-overflow-tooltip />
+        <el-table-column label="权限字符" prop="roleKey" show-overflow-tooltip />
         <el-table-column label="显示顺序" prop="roleSort" width="100" />
         <el-table-column label="状态" align="center" width="100">
           <template #default="scope">
@@ -146,7 +146,7 @@
     <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="100px">
         <el-form-item label="角色名称" prop="roleName">
-          <el-input v-model="form.roleName" placeholder="请输入角色名称" />
+          <el-input v-model="form.roleName" maxlength="30" placeholder="请输入角色名称" />
         </el-form-item>
         <el-form-item prop="roleKey">
           <template #label>
@@ -164,11 +164,11 @@
             权限字符
           </template>
           <template #default>
-            <el-input v-model="form.roleKey" placeholder="请输入权限字符" />
+            <el-input v-model="form.roleKey" maxlength="100" placeholder="请输入权限字符" />
           </template>
         </el-form-item>
         <el-form-item label="角色顺序" prop="roleSort">
-          <el-input-number v-model="form.roleSort" controls-position="right" :min="0" />
+          <el-input v-model="form.roleSort" @input="$LJSfc.numCheck({form, key: 'roleSort'})" maxlength="10" placeholder="请输入角色顺序" />
         </el-form-item>
         <el-form-item label="状态">
           <el-radio-group v-model="form.status">
@@ -195,7 +195,7 @@
           ></el-tree>
         </el-form-item>
         <el-form-item label="备注">
-          <el-input v-model="form.remark" type="textarea" placeholder="请输入内容"></el-input>
+          <el-input v-model="form.remark" type="textarea" maxlength="250" placeholder="请输入内容"></el-input>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -303,10 +303,10 @@
 
       <el-table class="comTable" v-loading="allocationUser.loading" :data="allocationUser.userList" @selection-change="allocationUser_handleSelectionChange">
         <el-table-column type="selection" width="55" align="center" />
-        <el-table-column label="用户名称" prop="userName" :show-overflow-tooltip="true" />
-        <el-table-column label="用户昵称" prop="nickName" :show-overflow-tooltip="true" />
-        <el-table-column label="邮箱" prop="email" :show-overflow-tooltip="true" />
-        <el-table-column label="手机" prop="phonenumber" :show-overflow-tooltip="true" />
+        <el-table-column label="用户名称" prop="userName" show-overflow-tooltip />
+        <el-table-column label="用户昵称" prop="nickName" show-overflow-tooltip />
+        <el-table-column label="邮箱" prop="email" show-overflow-tooltip />
+        <el-table-column label="手机" prop="phonenumber" show-overflow-tooltip />
         <el-table-column label="状态" align="center" prop="status">
           <template #default="scope">
             <dict-tag :options="sys_normal_disable" :value="scope.row.status"/>
@@ -342,7 +342,7 @@
 </template>
 
 <script>
-import index from "./index";
+import index from "./index.js";
 export default index;
 </script>
 

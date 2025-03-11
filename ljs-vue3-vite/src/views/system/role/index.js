@@ -1,5 +1,5 @@
-import { listRole, getRole, delRole, addRole, updateRole, dataScope, changeRoleStatus, deptTreeSelect, allocatedUserList, authUserCancel, authUserCancelAll } from '@/api/system/role';
-import { treeselect as menuTreeselect, roleMenuTreeselect } from '@/api/system/menu';
+import { listRole, getRole, delRole, addRole, updateRole, dataScope, changeRoleStatus, deptTreeSelect, allocatedUserList, authUserCancel, authUserCancelAll } from '@/api/system/role.js';
+import { treeselect as menuTreeselect, roleMenuTreeselect } from '@/api/system/menu.js';
 import selectUser from './selectUser.vue';
 
 export default {
@@ -304,6 +304,7 @@ export default {
       const roleMenu = this.getRoleMenuTreeselect(roleId);
       getRole(roleId).then(res => {
         if (res.code === 200) {
+          res.data.roleSort = Number(res.data.roleSort); // 接口返回数据格式不符合组件需求
           this.form = res.data;
           this.open = true;
           this.$nextTick(() => {

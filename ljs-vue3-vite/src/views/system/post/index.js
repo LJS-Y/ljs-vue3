@@ -1,4 +1,4 @@
-import { listPost, getPost, delPost, addPost, updatePost } from "@/api/system/post";
+import { list, info, listDel, listAdd, listEdit } from "@/api/system/post.js";
 
 export default {
   name: "Post",
@@ -6,48 +6,66 @@ export default {
     return {
       // 字典
       sys_normal_disable: [],
-      // 遮罩层
-      loading: false,
-      // 选中数组
-      ids: [],
-      // 非单个禁用
-      single: true,
-      // 非多个禁用
-      multiple: true,
-      // 显示搜索条件
-      showSearch: true,
-      // 总条数
-      total: 0,
-      // 岗位表格数据
-      postList: [],
-      // 弹出层标题
-      title: "",
-      // 是否显示弹出层
-      open: false,
-      // 查询参数
-      queryParams: {
-        pageNum: 1,
-        pageSize: 10,
-        postCode: undefined,
-        postName: undefined,
-        status: undefined
+      // 基础数据
+      baseData: {
       },
-      // 表单参数
-      form: {},
-      // 表单校验
-      rules: {
-        postName: [
-          { required: true, message: "岗位名称不能为空", trigger: "blur" }
-        ],
-        postCode: [
-          { required: true, message: "岗位编码不能为空", trigger: "blur" }
-        ],
-        postSort: [
-          { required: true, message: "岗位顺序不能为空", trigger: "blur" }
-        ]
+      // 表格
+      table: {
+        // 遮罩层
+        loading: false,
+        // 总条数
+        total: 0,
+        // 数据
+        data: [],
       },
-      // 节流阀
-      butLoading: false,
+      // 表格搜索条件
+      tableSearch: {
+        query: {
+          pageNum: 1,
+          pageSize: 10,
+        },
+        queryReal: {}
+      },
+      // 操作
+      operate: {
+        // 选中数组 - 删除标识
+        ids: [],
+        // 选中数组 - 删除显示名
+        names: [],
+        // 非单个禁用
+        single: true,
+        // 非多个禁用
+        multiple: true,
+      },
+      // 弹窗
+      tc: {
+        // 弹出层标题
+        title: '',
+        // 是否显示弹出层
+        open: false,
+      },
+      // 表单
+      form: {
+        // 校验
+        rules: {
+          postName: [
+            { required: true, message: "岗位名称不能为空", trigger: "blur" }
+          ],
+          postCode: [
+            { required: true, message: "岗位编码不能为空", trigger: "blur" }
+          ],
+          postSort: [
+            { required: true, message: "岗位顺序不能为空", trigger: "blur" }
+          ],
+          status: [
+            { required: true, message: "请选择岗位状态", trigger: "change" }
+          ]
+        },
+        // 数据
+        data: {},
+        // 节流阀
+        butLoading: false,
+      },
     };
   },
   created() {
@@ -62,90 +80,98 @@ export default {
       }
       this.getList();
     },
-    /** 查询岗位列表 */
+
+    /** 查询客户列表 */
     getList() {
-      this.loading = true;
-      listPost(this.queryParams).then(res => {
+      this.table.loading = true;
+      list(this.tableSearch.queryReal).then(res => {
         if (res.code === 200) {
-          this.postList = res.rows;
-          this.total = res.total;
+          this.table.data = res.rows;
+          this.table.total = res.total;
         }
-        this.loading = false;
+        this.table.loading = false;
       });
-    },
-    // 取消按钮
-    cancel() {
-      this.open = false;
-      this.reset();
-    },
-    // 表单重置
-    reset() {
-      this.form = {
-        postId: undefined,
-        postCode: undefined,
-        postName: undefined,
-        postSort: 0,
-        status: "0",
-        remark: undefined
-      };
-      this.resetForm("form");
     },
     /** 搜索按钮操作 */
     handleQuery() {
-      this.queryParams.pageNum = 1;
+      this.tableSearch.query.pageNum = 1;
+      this.tableSearch.queryReal = this.$LJSbase.deepCopy(this.tableSearch.query);
       this.getList();
     },
     /** 重置按钮操作 */
     resetQuery() {
-      this.resetForm("queryForm");
+      this.tableSearch = {
+        query: {
+          pageNum: 1,
+          pageSize: 10,
+        },
+        queryReal: {}
+      };
       this.handleQuery();
     },
+
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.postId)
-      this.single = selection.length!=1
-      this.multiple = !selection.length
+      this.operate.names = [];
+      this.operate.ids = selection.map(item => {
+        this.operate.names.push(item.postName);
+        return item.postId;
+      })
+      this.operate.single = selection.length!=1
+      this.operate.multiple = !selection.length
+    },
+    // 表单重置
+    reset() {
+      this.form.data = {
+        postSort: 0,
+        status: "0",
+      };
+    },
+    // 取消按钮
+    cancel() {
+      this.tc.open = false;
+      this.reset();
     },
     /** 新增按钮操作 */
     handleAdd() {
       this.reset();
-      this.open = true;
-      this.title = "添加岗位";
+      this.tc.open = true;
+      this.tc.title = '添加岗位';
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const postId = row.postId || this.ids
-      getPost(postId).then(res => {
+      info(row.postId).then(async res => {
         if (res.code === 200) {
-          this.form = res.data;
-          this.open = true;
-          this.title = "修改岗位";
+          this.form.data = res.data;
+          this.tc.open = true;
+          this.tc.title = '修改岗位';
         }
       });
     },
     /** 提交按钮 */
     submitForm: function() {
-      this.$refs["form"].validate(valid => {
+      this.$refs['form'].validate(valid => {
         if (valid) {
-          this.butLoading = true;
-          if (this.form.postId != undefined) {
-            updatePost(this.form).then(res => {
+          const query = this.$LJSbase.deepCopy(this.form.data);
+          this.form.butLoading = true;
+          if (this.form.data.postId != undefined) {
+            listEdit(query).then(res => {
               if (res.code === 200) {
-                this.$modal.msgSuccess("修改成功");
-                this.open = false;
+                this.$modal.msgSuccess('修改成功');
+                this.tc.open = false;
                 this.getList();
               }
-              this.butLoading = false;
+              this.form.butLoading = false;
             });
           } else {
-            addPost(this.form).then(res => {
+            listAdd(query).then(res => {
               if (res.code === 200) {
-                this.$modal.msgSuccess("新增成功");
-                this.open = false;
+                this.$modal.msgSuccess('新增成功');
+                this.tc.open = false;
                 this.getList();
               }
-              this.butLoading = false;
+              this.form.butLoading = false;
             });
           }
         }
@@ -153,15 +179,17 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const postIds = row.postId || this.ids;
+      const ids = row.postId || this.operate.ids;
+      const names = row.postName || this.operate.names;
       this.$LJSEl.delMessageBox({
-        message: '是否确认删除岗位编号为"' + postIds + '"的数据项？',
+        title: '系统提示',
+        message: `是否确认删除“${names}”的数据项？`,
         doSomething: () => {
           this.$store.commit('loadingStore', {
             tag: true,
             text: '删除中....'
           });
-          delPost(postIds).then((res) => {
+          listDel(ids).then((res) => {
             if (res.code === 200) {
               this.getList();
               this.$modal.msgSuccess('删除成功');
@@ -182,8 +210,8 @@ export default {
     /** 导出按钮操作 */
     handleExport() {
       this.download('system/post/export', {
-        ...this.queryParams
-      }, `post_${new Date().getTime()}.xlsx`)
+        ...this.tableSearch.queryReal
+      }, `岗位.xlsx`)
     }
   }
 };

@@ -1,26 +1,26 @@
 import { get, put, post, del } from '@/api/axios.js';
 
-// 查询岗位列表
-export function listPost(query) {
+// 列表
+export function list(query) {
   return get('/system/post/list', query);
 }
 
-// 查询岗位详细
-export function getPost(postId) {
-  return get('/system/post/' + postId);
+// 详情
+export function info(id) {
+  return get('/system/post/' + id);
 }
 
-// 新增岗位
-export function addPost(data) {
-  return post('/system/post/', data);
+// 删除
+export function listDel(id) {
+  return del('/system/post/' + id);
 }
 
-// 修改岗位
-export function updatePost(data) {
-  return put('/system/post/', data);
+// 新增
+export function listAdd(query) {
+  return post('/system/post', query);
 }
 
-// 删除岗位
-export function delPost(postId) {
-  return del('/system/post/' + postId);
+// 修改
+export function listEdit(query) {
+  return put('/system/post', query);
 }

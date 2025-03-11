@@ -159,6 +159,7 @@ export default {
       this.getList();
       this.getDeptTree();
     },
+
     /** 查询用户列表 */
     getList() {
       this.loading = true;
@@ -200,6 +201,40 @@ export default {
         row.status = row.status === "0" ? "1" : "0";
       });
     },
+
+    /** 搜索按钮操作 */
+    handleQuery() {
+      this.queryParams.pageNum = 1;
+      this.getList();
+    },
+    /** 重置按钮操作 */
+    resetQuery() {
+      this.dateRange = [];
+      this.resetForm("queryForm");
+      this.queryParams.deptId = undefined;
+      this.$refs.tree.setCurrentKey(null);
+      this.handleQuery();
+    },
+
+    // 多选框选中数据
+    handleSelectionChange(selection) {
+      this.ids = selection.map(item => item.userId);
+      this.single = selection.length != 1;
+      this.multiple = !selection.length;
+    },
+    // 更多操作触发
+    handleCommand(command, row) {
+      switch (command) {
+        case "handleResetPwd":
+          this.handleResetPwd(row);
+          break;
+        case "handleAuthRole":
+          this.handleAuthRole(row);
+          break;
+        default:
+          break;
+      }
+    },
     // 取消按钮
     cancel() {
       this.open = false;
@@ -222,38 +257,6 @@ export default {
         roleIds: []
       };
       this.resetForm("form");
-    },
-    /** 搜索按钮操作 */
-    handleQuery() {
-      this.queryParams.pageNum = 1;
-      this.getList();
-    },
-    /** 重置按钮操作 */
-    resetQuery() {
-      this.dateRange = [];
-      this.resetForm("queryForm");
-      this.queryParams.deptId = undefined;
-      this.$refs.tree.setCurrentKey(null);
-      this.handleQuery();
-    },
-    // 多选框选中数据
-    handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.userId);
-      this.single = selection.length != 1;
-      this.multiple = !selection.length;
-    },
-    // 更多操作触发
-    handleCommand(command, row) {
-      switch (command) {
-        case "handleResetPwd":
-          this.handleResetPwd(row);
-          break;
-        case "handleAuthRole":
-          this.handleAuthRole(row);
-          break;
-        default:
-          break;
-      }
     },
     /** 新增按钮操作 */
     handleAdd() {
@@ -377,6 +380,7 @@ export default {
         ...this.queryParams
       }, `user_${new Date().getTime()}.xlsx`)
     },
+    
     /** 导入按钮操作 */
     handleImport() {
       this.upload.title = "用户导入";

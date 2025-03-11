@@ -102,9 +102,9 @@
           </template>
         </el-table-column>
         <el-table-column label="请求方式" align="center" prop="requestMethod" />
-        <el-table-column label="操作人员" align="center" prop="operName" width="100" :show-overflow-tooltip="true" sortable="custom" :sort-orders="['descending', 'ascending']" />
-        <el-table-column label="操作地址" align="center" prop="operIp" width="130" :show-overflow-tooltip="true" />
-        <el-table-column label="操作地点" align="center" prop="operLocation" :show-overflow-tooltip="true" />
+        <el-table-column label="操作人员" align="center" prop="operName" width="100" show-overflow-tooltip sortable="custom" :sort-orders="['descending', 'ascending']" />
+        <el-table-column label="操作地址" align="center" prop="operIp" width="130" show-overflow-tooltip />
+        <el-table-column label="操作地点" align="center" prop="operLocation" show-overflow-tooltip />
         <el-table-column label="操作状态" align="center" prop="status">
           <template #default="scope">
             <dict-tag :options="sys_common_status" :value="scope.row.status"/>

@@ -1,4 +1,4 @@
-import { list, delLogininfor, cleanLogininfor, unlockLogininfor } from "@/api/monitor/logininfor";
+import { list, delLogininfor, cleanLogininfor, unlockLogininfor } from "@/api/monitor/logininfor.js";
 
 export default {
   name: "Logininfor",

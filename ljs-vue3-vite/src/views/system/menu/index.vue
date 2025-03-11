@@ -10,7 +10,7 @@
         />
       </el-form-item>
       <el-form-item label="状态" prop="status">
-        <el-select v-model="queryParams.status" placeholder="菜单状态" clearable style="width: 200px">
+        <el-select v-model="queryParams.status" placeholder="菜单状态" clearable style="width: 240px">
           <el-option
             v-for="dict in sys_normal_disable"
             :key="dict.dictValue"
@@ -57,15 +57,15 @@
         :default-expand-all="isExpandAll"
         :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
       >
-        <el-table-column prop="menuName" label="菜单名称" :show-overflow-tooltip="true" width="160"></el-table-column>
+        <el-table-column prop="menuName" label="菜单名称" show-overflow-tooltip width="160"></el-table-column>
         <el-table-column prop="icon" label="图标" align="center" width="100">
           <template #default="scope">
             <svg-icon v-if="scope.row.icon !== null" :iconName="scope.row.icon" />
           </template>
         </el-table-column>
         <el-table-column prop="orderNum" label="排序" width="60" align="center"></el-table-column>
-        <el-table-column prop="perms" label="权限标识" :show-overflow-tooltip="true"></el-table-column>
-        <el-table-column prop="component" label="组件路径" :show-overflow-tooltip="true"></el-table-column>
+        <el-table-column prop="perms" label="权限标识" show-overflow-tooltip></el-table-column>
+        <el-table-column prop="component" label="组件路径" show-overflow-tooltip></el-table-column>
         <el-table-column prop="status" label="状态" width="80">
           <template #default="scope">
             <dict-tag :options="sys_normal_disable" :value="scope.row.status"/>
@@ -148,12 +148,12 @@
           </el-col>
           <el-col :span="12">
             <el-form-item label="菜单名称" prop="menuName">
-              <el-input v-model="form.menuName" placeholder="请输入菜单名称" />
+              <el-input v-model="form.menuName" maxlength="50" placeholder="请输入菜单名称" />
             </el-form-item>
           </el-col>
           <el-col :span="12">
             <el-form-item label="显示排序" prop="orderNum">
-              <el-input-number v-model="form.orderNum" controls-position="right" :min="0" />
+              <el-input v-model="form.orderNum" @input="$LJSfc.numCheck({form, key: 'orderNum'})" maxlength="10" placeholder="请输入显示排序" />
             </el-form-item>
           </el-col>
           <el-col :span="12" v-if="form.menuType != 'F'">
@@ -197,7 +197,7 @@
                 路由地址
               </template>
               <template #default>
-                <el-input v-model="form.path" placeholder="请输入路由地址" />
+                <el-input v-model="form.path" maxlength="200" placeholder="请输入路由地址" />
               </template>
             </el-form-item>
           </el-col>
@@ -218,7 +218,7 @@
                 组件路径
               </template>
               <template #default>
-                <el-input v-model="form.component" placeholder="请输入组件路径" />
+                <el-input v-model="form.component" maxlength="200" placeholder="请输入组件路径" />
               </template>
             </el-form-item>
           </el-col>
@@ -355,7 +355,7 @@
 </template>
 
 <script>
-import index from "./index";
+import index from "./index.js";
 export default index;
 </script>
 

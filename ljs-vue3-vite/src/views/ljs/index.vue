@@ -6,9 +6,9 @@
     <p>so，你看到了，有了它！</p>
     <p>若依原有的，它应该都有的哦。</p>
 
-    <h1 @click="$run.goExternalUrl('https://frame-project.gitlab.io/nv3-ljs-tools/')" style="font-size: 20px; font-weight: bold; cursor: pointer;">官方文档</h1>
+    <h1 @click="$run.goExternalUrl('https://ljs-y.github.io/ljs-vue3/')" style="font-size: 20px; font-weight: bold; cursor: pointer;">官方文档</h1>
 
-    <h1 @click="$run.goExternalUrl('https://frame-project.gitlab.io/nv3-ljs-tools/callMe.html')" style="font-size: 20px; font-weight: bold; cursor: pointer;">请作者喝杯卡布奇诺</h1>
+    <h1 @click="$run.goExternalUrl('https://ljs-y.github.io/ljs-vue3/callMe.html')" style="font-size: 20px; font-weight: bold; cursor: pointer;">请作者喝杯卡布奇诺</h1>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
-import { allocatedUserList, authUserCancel, authUserCancelAll } from "@/api/system/role";
-import selectUser from "./selectUser";
+import { allocatedUserList, authUserCancel, authUserCancelAll } from "@/api/system/role.js";
+import selectUser from "./selectUser.vue";
 
 export default {
   name: "AuthUser",

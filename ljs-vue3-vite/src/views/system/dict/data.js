@@ -1,5 +1,5 @@
-import { listData, getData, delData, addData, updateData } from "@/api/system/dict/data";
-import { optionselect as getDictOptionselect, getType } from "@/api/system/dict/type";
+import { listData, getData, delData, addData, updateData } from "@/api/system/dict/data.js";
+import { optionselect as getDictOptionselect, getType } from "@/api/system/dict/type.js";
 
 export default {
   name: "Data",

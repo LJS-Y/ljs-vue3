@@ -1,5 +1,5 @@
-import { getJob } from "@/api/monitor/job";
-import { listJobLog, delJobLog, cleanJobLog } from "@/api/monitor/jobLog";
+import { getJob } from "@/api/monitor/job.js";
+import { listJobLog, delJobLog, cleanJobLog } from "@/api/monitor/jobLog.js";
 
 export default {
   name: "JobLog",
