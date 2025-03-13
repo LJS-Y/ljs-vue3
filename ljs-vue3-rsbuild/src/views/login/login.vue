@@ -52,10 +52,7 @@
           </el-form-item>
         </el-form>
       </div>
-      <!--  底部  -->
-      <div class="el-login-footer">
-        <span>技术支持：{{ copyrightName }}</span>
-      </div>
+      <Footer></Footer>
     </div>
     <particles></particles>
   </div>

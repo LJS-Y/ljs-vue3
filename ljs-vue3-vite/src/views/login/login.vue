@@ -52,17 +52,14 @@
           </el-form-item>
         </el-form>
       </div>
-      <!--  底部  -->
-      <div class="el-login-footer">
-        <span>技术支持：{{ copyrightName }}</span>
-      </div>
+      <Footer></Footer>
     </div>
     <particles></particles>
   </div>
 </template>
 
 <script>
-import login from './login';
+import login from './login.js';
 export default login;
 </script>
 
