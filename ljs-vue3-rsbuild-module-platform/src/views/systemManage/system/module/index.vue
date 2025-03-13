@@ -86,12 +86,29 @@
         <el-form-item label="内部路径" prop="url" v-if="form.data.enable === '0'">
           <el-input v-model="form.data.url" maxlength="250" :disabled="form.data.id === 1" placeholder="请输入内部路径"></el-input>
         </el-form-item>
-        <el-form-item label="模块类型" prop="moduleType" v-if="form.data.enable === '0'">
-          <el-radio-group v-model="form.data.moduleType" :disabled="form.data.id === 1">
-            <el-radio-button
-              v-for="dict in module_type" :key="dict.dictValue"
-              :value="dict.dictValue">{{ dict.dictLabel }}</el-radio-button>
-          </el-radio-group>
+        
+        <el-form-item prop="moduleType" v-if="form.data.enable === '0'">
+          <template #label>
+            <el-popover
+              placement="top"
+              :width="200"
+              effect="dark"
+              trigger="click"
+              content="内嵌为常规模式；全局以全屏的形式展示，需手动配置至顶级路由，全局只获取权限不获取菜单。"
+            >
+              <template #reference>
+                <el-icon class="formItemIcon"><QuestionFilled /></el-icon>
+              </template>
+            </el-popover>
+            模块类型
+          </template>
+          <template #default>
+            <el-radio-group v-model="form.data.moduleType" :disabled="form.data.id === 1">
+              <el-radio-button
+                v-for="dict in module_type" :key="dict.dictValue"
+                :value="dict.dictValue">{{ dict.dictLabel }}</el-radio-button>
+            </el-radio-group>
+          </template>
         </el-form-item>
         <el-form-item label="外部链接" prop="webUrl" v-if="form.data.enable === '1'">
           <el-input v-model="form.data.webUrl" maxlength="250" placeholder="请输入外部链接"></el-input>

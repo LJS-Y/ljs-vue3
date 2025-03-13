@@ -97,19 +97,7 @@ export async function itemClick(obj) {
     RUN.goExternalUrl(obj.webUrl, openType);
     return;
   }
-  // 全局
-  if (obj.moduleType === '2') {
-    store.commit('SET_module', obj);
-    if (openType === '_self') {
-      RUN.replace({
-        path: obj.url
-      })
-    } else {
-      RUN.goExternalUrl(obj.url);
-    }
-    return;
-  }
-  // 内嵌
+  
   store.commit('loadingStore', {
     tag: true,
     text: '加载中....'
@@ -123,6 +111,23 @@ export async function itemClick(obj) {
     store.commit('SET_roles', res1.roles);
   }
   store.commit('SET_module', obj);
+  // 全局
+  if (obj.moduleType === '2') {
+    store.commit('SET_module', obj);
+    if (openType === '_self') {
+      RUN.replace({
+        path: obj.url
+      })
+    } else {
+      RUN.goExternalUrl(obj.url);
+    }
+    store.commit('loadingStore', {
+      tag: false,
+      text: '加载中....'
+    });
+    return;
+  }
+
   // 获取模块下菜单
   store.commit('SET_menuList', []);
   const res2 = await store.dispatch('GenerateRoutes', {
