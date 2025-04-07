@@ -1,0 +1,1 @@
+import{_ as e,c as a,o as t,aj as s}from"./chunks/framework.CKd5D8ET.js";const v=JSON.parse('{"title":"为什么有了它？","description":"","frontmatter":{},"headers":[],"relativePath":"vue3JS.md","filePath":"vue3JS.md"}'),i={name:"vue3JS.md"},n=s("",16),o=[n];function p(r,l,c,d,h,u){return t(),a("div",null,o)}const b=e(i,[["render",p]]);export{v as __pageData,b as default};
