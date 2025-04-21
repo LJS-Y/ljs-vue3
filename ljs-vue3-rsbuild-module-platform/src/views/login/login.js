@@ -42,7 +42,9 @@ export default {
     }
   },
   created() {
-    // this.getCode();
+    if (this.captchaOnOff) {
+      this.getCode();
+    }
     this.getSession();
   },
   methods: {

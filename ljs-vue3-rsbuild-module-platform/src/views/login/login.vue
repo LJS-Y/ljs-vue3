@@ -10,7 +10,7 @@
             <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号" :maxlength="30">
             </el-input>
           </el-form-item>
-          <el-form-item prop="password" style="margin-bottom: 0;">
+          <el-form-item prop="password">
             <el-input
               v-model="loginForm.password"
               type="password"
@@ -35,7 +35,7 @@
               <img :src="codeUrl" @click="getCode" class="login-code-img"/>
             </div>
           </el-form-item>
-          <el-checkbox v-model="loginForm.rememberMe" style="margin: 1rem auto 0.8125rem;">记住密码</el-checkbox>
+          <el-checkbox v-model="loginForm.rememberMe" style="margin: 0.1rem auto 0.8125rem;">记住密码</el-checkbox>
           <el-form-item style="margin: 0 auto;">
             <el-button
               size="default"
