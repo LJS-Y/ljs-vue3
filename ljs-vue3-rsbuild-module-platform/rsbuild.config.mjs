@@ -8,21 +8,7 @@ import AutoImport from 'unplugin-auto-import/rspack';
 import AutoComponents from 'unplugin-vue-components/rspack';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
-// 这个配置 为了在html中使用 环境变量
-const getRsbuildEnv = import.meta.env;
 export default defineConfig(() => {
-  const env = getRsbuildEnv;
-  console.log('Node环境: ' + env.npm_config_user_agent);
-  console.log(
-    '当前环境: ' +
-      (env.PUBLIC_CURRENTMODE === 'production'
-        ? '生产'
-        : env.PUBLIC_CURRENTMODE === 'test'
-          ? '测试服'
-          : '本地开发')
-  );
-  console.log('当前环境接口: ' + env.PUBLIC_API_URL);
-  console.log('base', env.NODE_ENV === 'development' ? '/' : env.BASE_URL);
   return {
     plugins: [
       pluginVue(),
@@ -98,3 +84,17 @@ export default defineConfig(() => {
     },
   }
 });
+
+// 这个配置 为了在html中使用 环境变量
+const env = import.meta.env;
+console.log('Node环境: ' + env.npm_config_user_agent);
+console.log(
+  '当前环境: ' +
+    (env.PUBLIC_CURRENTMODE === 'production'
+      ? '生产'
+      : env.PUBLIC_CURRENTMODE === 'test'
+        ? '测试服'
+        : '本地开发')
+);
+console.log('当前环境接口: ' + env.PUBLIC_API_URL);
+console.log('base', env.NODE_ENV === 'development' ? '/' : env.BASE_URL);
