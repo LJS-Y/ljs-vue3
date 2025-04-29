@@ -59,9 +59,9 @@ export default {
           this.fileList = list.map(item => {
             if (typeof item === 'string') {
               if (item.indexOf(this.baseUrl) === -1) {
-                item = { name: this.$LJSbase.getFileName(item), url: this.baseUrl + item };
+                item = { name: this.$LJSurl.getFileName(item), url: this.baseUrl + item };
               } else {
-                item = { name: this.$LJSbase.getFileName(item), url: item };
+                item = { name: this.$LJSurl.getFileName(item), url: item };
               }
             }
             return item;

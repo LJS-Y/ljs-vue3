@@ -1,0 +1,31 @@
+.fileShow{
+  overflow: hidden;
+  padding-top: 3px;
+  .item{
+    float: left;
+    margin: 0 3px 3px 0;
+    cursor: pointer;
+    &:hover{
+      .tag{
+        background-color: #1890FF;
+        color: #FFF;
+      }
+    }
+  }
+}
+.filesTc{
+  .image-preview{
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .video-preview{
+    display: block;
+    margin: 0 auto;
+  }
+  .other-preview{
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+  }
+}
