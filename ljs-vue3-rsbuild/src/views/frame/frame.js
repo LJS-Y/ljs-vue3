@@ -462,6 +462,8 @@ export default {
     // 模块级菜单
     // 浏览器大小变化需重新计算
     getModuleMenu() {
+      // 如果需要模块功能可放行
+      return;
       this.$nextTick(() => {
         // 模块级菜单 - 模拟数据
         this.moduleMenu = {
