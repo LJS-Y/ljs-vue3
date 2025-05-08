@@ -1,7 +1,7 @@
 import { LJSbase } from 'ljs-tools';
 export default {
   props: {
-    modelValue: [String, Object, Array],
+    modelValue: [String, Array],
     // 图片数量限制
     limit: {
       type: Number,
@@ -17,7 +17,7 @@ export default {
       type: Array,
       default: () => ["png", "jpg", "jpeg"],
     },
-    // 是否显示提示
+    // 是否显示提示（未使用）
     isShowTip: {
       type: Boolean,
       default: true

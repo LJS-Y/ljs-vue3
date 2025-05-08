@@ -26,6 +26,12 @@
   .other-preview{
     padding: 40px 0;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    .promptInformain{
+      margin: 20px 0;
+      color: #999;
+    }
   }
 }

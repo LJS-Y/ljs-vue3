@@ -59,6 +59,7 @@ export default {
       type: Boolean,
       default: true
     },
+    // (未使用)
     autoScroll: {
       type: Boolean,
       default: true

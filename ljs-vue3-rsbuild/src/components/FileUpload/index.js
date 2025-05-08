@@ -1,7 +1,7 @@
 
 export default {
   props: {
-    modelValue: [String, Object, Array],
+    modelValue: [String, Array],
     // 文件数量限制
     limit: {
       type: Number,
@@ -22,7 +22,7 @@ export default {
       type: Boolean,
       default: true
     },
-    // api接口
+    // 上传调用的接口
     uploadUrl: {
       type: String,
       default: import.meta.env.PUBLIC_API_URL + '/common/upload'
@@ -188,7 +188,11 @@ export default {
       if (!this.dataType) {
         const fileList = [];
         this.fileList.forEach((item) => {
-          fileList.push({ name: item.name.replace(this.baseUrl, ''), url: item.url.replace(this.baseUrl, '') });
+          fileList.push({
+            name: item.name.replace(this.baseUrl, ''),
+            url: item.url.replace(this.baseUrl, ''),
+            fullUrl: item.fullUrl
+          });
         });
         this.$emit('getFileList', fileList);
       }

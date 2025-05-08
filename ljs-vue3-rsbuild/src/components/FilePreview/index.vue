@@ -54,6 +54,7 @@
     </template> -->
     <template v-else>
       <div class="other-preview">
+        <div class="promptInformain">暂不支持预览，请点击下载</div>
         <el-button type="success"
           @click="$run.goExternalUrl(tc.row.url)"
         ><el-icon class="el-icon--left"><Download /></el-icon>下载文件</el-button>

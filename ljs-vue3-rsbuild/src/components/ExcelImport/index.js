@@ -1,4 +1,3 @@
-import { LJSbase } from 'ljs-tools';
 export default {
   props: {
     modelValue: [Boolean],
@@ -21,7 +20,7 @@ export default {
       type: String,
     },
 
-    // 上传的地址
+    // 文件上传成功后调用
     doSomething: {
       type: Function,
       default: () => {

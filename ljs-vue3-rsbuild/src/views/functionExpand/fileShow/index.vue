@@ -4,6 +4,7 @@
       <file-upload
         :limit="10"
         :fileSize="50"
+        :dataType="false"
         v-model="profileUploadList"
       />
     </div>
