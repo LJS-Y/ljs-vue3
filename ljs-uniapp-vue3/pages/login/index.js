@@ -1,3 +1,4 @@
+import loginAPI from "@/request/login.js"
 import {
 	getMenu
 } from "@/tools/menu.js"
@@ -12,10 +13,15 @@ export default {
 			loginForm: {
 				username: '',
 				password: '',
+				code: '',
 				type: 'account'
 			},
 			// 记住密码
 			rememberPassword: false,
+			// 是否开启验证码
+			captchaEnabled: true,
+			// 验证码显示的图片地址
+			codeUrl: '',
 		}
 	},
 	onLoad() {
@@ -75,6 +81,7 @@ export default {
 		},
 
 		init() {
+			this.getCode();
 			// #ifdef MP-WEIXIN
 			this.$base.initShare('/pages/login/index');
 			// #endif
@@ -89,6 +96,16 @@ export default {
 		},
 		rememberPasswordF() {
 			this.rememberPassword = !this.rememberPassword;
+		},
+		// 获取图形验证码
+		getCode() {
+			loginAPI.getCodeImg().then(res => {
+				this.captchaEnabled = res.captchaEnabled === undefined ? true : res.captchaEnabled
+				if (this.captchaEnabled) {
+					this.codeUrl = 'data:image/gif;base64,' + res.img
+					this.loginForm.uuid = res.uuid
+				}
+			})
 		},
 	},
 }

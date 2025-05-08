@@ -20,6 +20,13 @@
 						v-if="!$ljsPublic.base.fieldCheck(loginForm.password)"></text>
 				</view>
 			</view>
+			<view class="one" v-if="captchaEnabled">
+				<view class="name">验证码：</view>
+				<view class="codeinput">
+					<input v-model="loginForm.code" type="text" />
+					<image :src="codeUrl" @click="getCode" class="login-code-img"></image>
+				</view>
+			</view>
 			<view class="rememberPassword" @click="rememberPasswordF">
 				<checkbox :checked="rememberPassword" style="transform:scale(0.6)" />记住密码
 			</view>

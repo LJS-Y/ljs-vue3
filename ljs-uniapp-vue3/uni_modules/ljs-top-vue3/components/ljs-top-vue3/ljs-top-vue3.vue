@@ -4,15 +4,29 @@
 			<view class="comStatus" :style="'height: '+statusBarHeight+'px'"></view>
 			<view class="topMain" :style="'height: '+topHeight+'rpx'"></view>
 		</view>
-		<!-- #ifdef MP-WEIXIN -->
-		<view class="top" :style="{
-			'background': !backgroundImageShow?backgroundColor:('url('+backgroundImage+') no-repeat;'),
-			backgroundSize: '100% 100%'
-		}">
-		<!-- #endif -->
-		<!-- #ifndef MP-WEIXIN -->
-		<view class="top" :style="topStyle">
-		<!-- #endif -->
+		
+		<view class="top">
+			<view class="topBgColor" :style="{
+				'background': backgroundColor,
+				opacity: backgroundImageShow ? 1 - backgroundImageOpacity : 1
+			}">
+				<view class="comStatus" :style="'height: '+statusBarHeight+'px'"></view>
+				<view class="topMain" :style="'height: '+topHeight+'rpx'"></view>
+			</view>
+
+			<!-- #ifdef MP-WEIXIN -->
+			<view class="topBgImage" v-if="backgroundImageShow" :style="{
+				backgroundSize: '100% 100%',
+				opacity: backgroundImageOpacity
+			}">
+			<!-- #endif -->
+			<!-- #ifndef MP-WEIXIN -->
+			<view class="topBgImage" v-if="backgroundImageShow" :style="topStyle">
+			<!-- #endif -->
+				<view class="comStatus" :style="'height: '+statusBarHeight+'px'"></view>
+				<view class="topMain" :style="'height: '+topHeight+'rpx'"></view>
+			</view>
+			
 			<!-- 这里是状态栏 占据高度 -->
 			<view class="comStatus" :style="'height: '+statusBarHeight+'px'"></view>
 			<view class="topMain" :style="'height: '+topHeight+'rpx'">
@@ -27,7 +41,9 @@
 				<text class="title" :style="{
 					'color': titleColor,
 					height: titleHeight + 'rpx',
-					'line-height': titleHeight + 'rpx'
+					'line-height': titleHeight + 'rpx',
+					'font-weight': titleWeight,
+					opacity: titleOpacity
 				}">{{title}}</text>
 			</view>
 		</view>

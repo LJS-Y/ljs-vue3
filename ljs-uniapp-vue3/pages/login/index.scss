@@ -67,6 +67,33 @@ uni-page-body{
 					color: #999;
 				}
 			}
+			.codeinput{
+				width: calc(100% - 112upx);
+				height: 68upx;
+				float: left;
+				border: 2upx solid #BEBEBE;
+				border-radius: 10upx;
+				position: relative;
+				input{
+					width: calc(100% - 180upx);
+					height: 100%;
+					line-height: 38upx;
+					padding: 15upx 20upx;
+					color: #000;
+					font-size: 28upx;
+					position: relative;
+					z-index: 1;
+				}
+				.login-code-img{
+					width: 180upx;
+					height: 68upx;
+					position: absolute;
+					top: 0upx;
+					right: 0upx;
+					z-index: 2;
+					border-radius: 0 10upx 10upx 0;
+				}
+			}
 		}
 		.rememberPassword{
 			display: flex;

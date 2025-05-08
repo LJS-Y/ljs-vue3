@@ -14,7 +14,7 @@ let tokenGq = false; // token是否过期
  * 基础请求方法
  * @param {string} url 接口地址
  * @param {Object} params 参数的对象
- * @param {Object} headerParams headerParams
+ * @param {Object} headerParams headerParams，额外的header参数。
  * @param {string} methodTag 标记，用来区分不同需要的请求处理；LOGIN：登录请求，需要增加header头内容；
  * @param {Boolean} submitDD 防抖动，是否需要开启
  * @param {Number} timeout 超时时间，默认6秒

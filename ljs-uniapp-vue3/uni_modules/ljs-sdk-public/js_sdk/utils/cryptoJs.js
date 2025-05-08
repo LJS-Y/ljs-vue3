@@ -9,7 +9,7 @@ import CryptoJS from 'crypto-js';
  * @param {String} word 需要加密的串
  * @param {String} keyStr key
  * @return {String} 加密结果
- * @example this.$LJScryptoJs.setDES('需要加密的串', key)
+ * @example this.$ljsCryptoJs.setDES('需要加密的串', key)
  */
 export function setDES(word, keyStr) {
   word = word.toString();
@@ -29,7 +29,7 @@ export function setDES(word, keyStr) {
  * @param {String} word 需要解密的内容
  * @param {String} keyStr key
  * @return {String} 解密结果
- * @example this.$LJScryptoJs.getDES('需要解密的串', key)
+ * @example this.$ljsCryptoJs.getDES('需要解密的串', key)
  */
 export function getDES(word, keyStr) {
   var keyHex = CryptoJS.enc.Utf8.parse(keyStr);
@@ -49,7 +49,7 @@ export function getDES(word, keyStr) {
  * sha256 - 加密
  * @param {String} word 需要加密的串
  * @return {String} 加密结果
- * @example this.$LJScryptoJs.setSha256('需要加密的串')
+ * @example this.$ljsCryptoJs.setSha256('需要加密的串')
  */
 export function setSha256(word) {
   return CryptoJS.SHA256(word).toString();
@@ -59,7 +59,7 @@ export function setSha256(word) {
  * MD5 - 加密
  * @param {String} word 需要加密的内容
  * @return {String} 加密结果
- * @example this.$LJScryptoJs.setMD5('需要加密的内容')
+ * @example this.$ljsCryptoJs.setMD5('需要加密的内容')
  */
 export function setMD5(word) {
   return CryptoJS.MD5(word).toString();

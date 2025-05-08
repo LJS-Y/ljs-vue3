@@ -1,4 +1,4 @@
-import ico_back from '../static/images/ico_back.png';
+import ico_back from '../static/images/ico_back.png'
 export default {
 	data() {
 		return {
@@ -18,78 +18,94 @@ export default {
 				backFunName: 'ljs_top_backF',
 			},
 			// top样式
-			topStyle: {}
+			topStyle: {},
 		}
 	},
 	props: {
 		// 标题内容
 		title: String,
+		// title层透明度
+		titleOpacity: {
+			type: Number,
+			default: 1,
+		},
 		// 标题颜色
 		titleColor: {
 			type: String,
-			default: '#FFFFFF'
+			default: '#FFFFFF',
 		},
+		// 标题字重
+		titleWeight: {
+			type: Number,
+			default: 400,
+		},
+
 		// 返回按钮相关配置
 		back: {
 			type: Object,
 			default: function() {
 				return {}
-			}
+			},
 		},
 		// 背景颜色，支持渐变色，如：linear-gradient(to top right, #CDDC39, #8BC34A, #FFEB3B);
 		backgroundColor: {
 			type: String,
-			default: '#004799'
+			default: '#004799',
 		},
 		// 开启背景图片，未开启，使用背景颜色，开启backgroundImage为必填项
 		backgroundImageShow: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		// 背景图片地址，使用前需配置backgroundImageShow为true。
 		backgroundImage: String,
+		// 背景图片透明度，使用前需配置backgroundImageShow为true。
+		backgroundImageOpacity: {
+			type: Number,
+			default: 1,
+		},
 		// 组件高度（除状态栏）
 		topHeight: {
 			type: Number,
-			default: 80
+			default: 80,
 		},
 		// 标题高度
 		titleHeight: {
 			type: Number,
-			default: 80
+			default: 80,
 		},
 	},
 	mounted() {
-		this.init();
+		this.init()
 	},
 	methods: {
-		backF () {
+		backF() {
 			if (this.myback.backFTag) {
 				uni.navigateBack({
-					delta: this.myback.backNum
-				});
+					delta: this.myback.backNum,
+				})
 			} else {
-				let pages = null; // 获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面。
-				let prevPage = null; //上一页页面实例
-				const parms = this.myback.msg;
-				const num = this.myback.backNum;
+				let pages = null // 获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面。
+				let prevPage = null //上一页页面实例
+				const parms = this.myback.msg
+				const num = this.myback.backNum
 				if (parms !== null) {
-					pages = getCurrentPages();
-					prevPage = pages[pages.length - (num + 1)];
+					pages = getCurrentPages()
+					prevPage = pages[pages.length - (num + 1)]
 				}
 				uni.navigateBack({
 					delta: num,
-					success:() => {
+					success: () => {
 						if (parms !== null) {
 							prevPage.$vm[this.myback.backFunName](parms) // 给上一页绑定方法gp_navigateBackF,传参数
 						}
-					}
-				});
+					},
+				})
 			}
-					// $ljsPublic.run.gp_navigateBack(1, {
-					// 	code: 200,
-					// 	msg: '保存成功'
-					// })
+			// $ljsPublic.run.gp_navigateBack(1, {
+			// 	code: 200,
+			// 	msg: '保存成功'
+			// })
 		},
 		init() {
 			// #ifdef MP-WEIXIN
@@ -97,23 +113,25 @@ export default {
 			// #ifndef MP-WEIXIN
 			if (this.backgroundImageShow) {
 				this.topStyle = {
-					'background-image': 'url('+this.backgroundImage+')',
+					'background-image': 'url(' + this.backgroundImage + ')',
 					'background-repeat': 'no-repeat',
-					backgroundSize: '100% 100%'
+					backgroundSize: '100% 100%',
+					opacity: this.backgroundImageOpacity,
 				}
 			} else {
 				this.topStyle = {
-					'background': this.backgroundColor
+					background: this.backgroundColor,
+					opacity: this.backgroundImageOpacity,
 				}
 			}
 			// #endif
-			this.statusBarHeight = this.getWindowInfo().statusBarHeight;
+			this.statusBarHeight = this.getWindowInfo().statusBarHeight
 			for (let key in this.back) {
-				this.myback[key] = this.back[key];
+				this.myback[key] = this.back[key]
 			}
 		},
 		getWindowInfo() {
-			return uni.getWindowInfo();
-		}
-	}
+			return uni.getWindowInfo()
+		},
+	},
 }

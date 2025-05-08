@@ -13,11 +13,14 @@ pages.json文件需开启"navigationStyle": "custom"。
  参数  | 类型| 必填项 | 默认值 | 说明
  ---- | ----- | ------ | ------  | ------ 
  title | String | √ |  | 标题内容
+ titleOpacity | Number | × | 1 | title层透明度
  titleColor | String | × | #FFFFFF | 标题颜色
+ titleWeight | Number | × | 400 | 标题字重
  back | Object | × |  | 返回按钮相关配置
  backgroundColor | String | × | #004799 | 背景颜色，支持渐变色，如：linear-gradient(to top right, #CDDC39, #8BC34A, #FFEB3B)
  backgroundImageShow | Boolean | × | false | 开启背景图片，未开启，使用背景颜色，开启backgroundImage为必填项
- backgroundImage | String | √ |  | 背景图片地址，使用前需配置backgroundImageShow为true。
+ backgroundImage | String | × |  | 背景图片地址，使用前需配置backgroundImageShow为true。
+ backgroundImageOpacity | Number | × | 1 | 背景图片透明度，使用前需配置backgroundImageShow为true。
  topHeight | Number | × | 80 | 组件高度（除状态栏），单位：upx。
  titleHeight | Number | × | 80 | 标题高度，单位：upx。
 ### back参数

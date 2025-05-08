@@ -9,7 +9,8 @@
 ```js
 // 全局注入公共JS-SDK
 import ljsPublic from './uni_modules/ljs-sdk-public/js_sdk/index.js'
-Vue.prototype.$ljsPublic = ljsPublic;
+Vue.prototype.$ljsPublic = ljsPublic; // vue2
+app.config.globalProperties.$ljsPublic = ljsPublic; // vue3
 ```
 ### 2.使用
 ```js
@@ -18,7 +19,7 @@ this.$ljsPublic.base.urlCheck('userId')
 ```
 
 # API
-[API文档](https://frame-project.gitlab.io/nv3-ljs-tools/ljs-vue3/buildTools/uniapp/)
+[API文档 开发中...]()
 
 ## 基础开发库：
 ### 1.公共封装（base）
@@ -30,8 +31,13 @@ this.$ljsPublic.base.urlCheck('userId')
 ### 7.动画封装（animation）
 ### 8.加密解密（cryptoJs）
 1.安装插件crypto-js
-```js
+```npm
 npm i crypto-js -S
+```
+```js
+import ljsCryptoJs from './uni_modules/ljs-sdk-public/js_sdk/utils/cryptoJs.js'
+Vue.prototype.$ljsCryptoJs = ljsCryptoJs; // vue2
+app.config.globalProperties.$ljsCryptoJs = ljsCryptoJs; // vue3
 ```
 ### 9.请求封装（request）
 1.main.js配置全局变量$API;
@@ -98,11 +104,11 @@ this.$store.commit('SET_token', res1.token);
 参数  | 类型| 解释
 ---- | ----- | :------ 
 login(url, params = {}) | Function | 独立，只在登录使用，绕过header["Authorization"] 
-get(url, params = {}) | Function | GET
-post(url, params = {}, submitDD, timeout) | Function | POST
-put(url, params = {}, submitDD, timeout) | Function  | PUT
-del(url, params = {}, submitDD) | Function | DELETE
-uploadFile(url, filePath, timeout) | Function | 
+get(url, params = {}, timeout, isInternalRequest, responseInterceptor, headerParams) | Function | GET
+post(url, params = {}, submitDD, timeout, isInternalRequest, responseInterceptor) | Function | POST
+put(url, params = {}, submitDD, timeout, isInternalRequest, responseInterceptor) | Function  | PUT
+del(url, params = {}, submitDD, isInternalRequest, responseInterceptor) | Function | DELETE
+uploadFile(url, name, filePath, timeout) | Function | 
 
 ### request方法参数
 参数  | 类型| 必填项 | 默认值 | 说明
@@ -111,6 +117,9 @@ url | string | √ |  | 接口地址
 params | Object | × | {} | 参数的对象 
 submitDD | Boolean | × | false | 防抖动，是否需要开启 
 timeout | Number | × | 10000 | 超时时间，默认6000毫秒 
+headerParams | Object | × | | headerParams，额外的header参数。
+isInternalRequest | Boolean | × | true | 是否为内部请求。外部请求通常为http://****\/接口名称
+responseInterceptor | Boolean | × | true | 是否进入公共response拦截器处理数据，默认为true。
  
 
 # 贡献代码
