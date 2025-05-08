@@ -16,6 +16,7 @@
 
 			<!-- #ifdef MP-WEIXIN -->
 			<view class="topBgImage" v-if="backgroundImageShow" :style="{
+				'background': !backgroundImageShow ? backgroundColor : ('url('+backgroundImage+') no-repeat;'),
 				backgroundSize: '100% 100%',
 				opacity: backgroundImageOpacity
 			}">
