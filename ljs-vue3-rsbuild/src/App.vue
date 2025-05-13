@@ -22,7 +22,6 @@
 
 <script>
 import skinSdk from '@/tools/skin/index.js';
-import log from './views/monitor/job/log';
 export default {
   data() {
     return {
