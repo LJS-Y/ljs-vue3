@@ -1,7 +1,7 @@
 {
   "id": "ljs-sdk-public",
   "displayName": "提供一套常用的实战性JS-JDK，提高开发效率。",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "提供一套常用的实战性JS-JDK，提高开发效率。",
   "keywords": [
     "基础库",

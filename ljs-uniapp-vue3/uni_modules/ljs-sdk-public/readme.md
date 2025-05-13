@@ -13,9 +13,16 @@ Vue.prototype.$ljsPublic = ljsPublic; // vue2
 app.config.globalProperties.$ljsPublic = ljsPublic; // vue3
 ```
 ### 2.使用
+#### 组合式
 ```js
 // base库
 this.$ljsPublic.base.urlCheck('userId')
+```
+#### 选项式
+```js
+const { proxy } = getCurrentInstance()
+// base库
+proxy.$ljsPublic.base.urlCheck('userId')
 ```
 
 # API
@@ -28,6 +35,15 @@ this.$ljsPublic.base.urlCheck('userId')
 ### 4.表单检查（formCheck）
 ### 5.消息封装（msg）
 ### 6.跳转封装（run）
+#### 前置守卫
+```js
+// 全局前置守卫
+uni.$on('beforeEach', (to, from, next) => {
+	console.log(to, from, next);
+	next()
+	// next('/pages/login/index')
+});
+```
 ### 7.动画封装（animation）
 ### 8.加密解密（cryptoJs）
 1.安装插件crypto-js

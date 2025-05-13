@@ -1,8 +1,8 @@
 {
   "id": "ljs-bottom-menu-vue3",
   "displayName": "ljs-bottom-menu-vue3，通用底部菜单",
-  "version": "1.0.0",
-  "description": "通用底部菜单",
+  "version": "1.0.2",
+  "description": "ljs-bottom-menu-vue3，通用底部菜单",
   "keywords": [
     "菜单",
     "底部菜单",
@@ -11,7 +11,8 @@
     "menu"
 ],
   "repository": "",
-"engines": {
+  "engines": {
+    "HBuilderX": "^3.1.0"
   },
   "dcloudext": {
     "type": "component-vue",

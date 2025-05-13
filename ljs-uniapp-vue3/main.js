@@ -1,5 +1,6 @@
 import App from './App'
 import store from './store'
+import '@/router/callback.js'; // permission control
 
 /*每个页面公共css */
 import "@/assets/css/base.scss"; 

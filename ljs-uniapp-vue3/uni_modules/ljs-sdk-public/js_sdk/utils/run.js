@@ -26,6 +26,40 @@ ljs_gp_navigateTo_backF(res) {
 },
  */
 export function gp_navigateTo(url, parms, res) {
+	// 前置路由守卫 - 开始
+	const _pages = getCurrentPages();
+	if (_pages.length > 0) {
+		const _page = _pages[_pages.length - 1];
+		const to = {
+			route: _page.route,
+			options: _page.options,
+		};
+		const from = {
+			route: url,
+			options: parms,
+		};
+		let beforeEachTag = false;
+		uni.$emit('beforeEach', to, from, (nextUrl, nextParameter) => {
+			let next_url = null;
+			if (nextUrl !== undefined) {
+				next_url = getUrl(nextUrl, nextParameter);
+			} else {
+				next_url = getUrl(url, parms);
+			}
+			uni.navigateTo({
+				url: next_url,
+				success:() => {
+					if (!BASE.fieldCheck(res)) {
+						const pages = getCurrentPages();
+						pages[pages.length - 1].$vm.ljs_gp_navigateTo_backF(res) // 给上一页绑定方法gp_navigateBackF,传参数
+					}
+				}
+			});
+			beforeEachTag = true;
+		})
+		if (beforeEachTag) return;
+	}
+	// 前置路由守卫 - 结束
 	uni.navigateTo({
 		url: getUrl(url, parms),
 		success:() => {
@@ -59,6 +93,40 @@ ljs_gp_redirectTo_backF(res) {
 },
  */
 export function gp_redirectTo(url, parms, res) {
+	// 前置路由守卫 - 开始
+	const _pages = getCurrentPages();
+	if (_pages.length > 0) {
+		const _page = _pages[_pages.length - 1];
+		const to = {
+			route: _page.route,
+			options: _page.options,
+		};
+		const from = {
+			route: url,
+			options: parms,
+		};
+		let beforeEachTag = false;
+		uni.$emit('beforeEach', to, from, (nextUrl, nextParameter) => {
+			let next_url = null;
+			if (nextUrl !== undefined) {
+				next_url = getUrl(nextUrl, nextParameter);
+			} else {
+				next_url = getUrl(url, parms);
+			}
+			uni.redirectTo({
+				url: next_url,
+				success:() => {
+					if (!BASE.fieldCheck(res)) {
+						const pages = getCurrentPages();
+						pages[pages.length - 1].$vm.ljs_gp_redirectTo_backF(res) // 给上一页绑定方法gp_navigateBackF,传参数
+					}
+				}
+			});
+			beforeEachTag = true;
+		})
+		if (beforeEachTag) return;
+	}
+	// 前置路由守卫 - 结束
 	uni.redirectTo({
 		url: getUrl(url, parms),
 		success:() => {
@@ -92,6 +160,41 @@ ljs_gp_reLaunch_backF(res) {
 },
  */
 export function gp_reLaunch(url, parms, res) {
+	// 前置路由守卫 - 开始
+	const _pages = getCurrentPages();
+	if (_pages.length > 0) {
+		const _page = _pages[_pages.length - 1];
+		const to = {
+			route: _page.route,
+			options: _page.options,
+		};
+		const from = {
+			route: url,
+			options: parms,
+		};
+		let beforeEachTag = false;
+		uni.$emit('beforeEach', to, from, (nextUrl, nextParameter) => {
+			let next_url = null;
+			if (nextUrl !== undefined) {
+				next_url = getUrl(nextUrl, nextParameter);
+			} else {
+				next_url = getUrl(url, parms);
+			}
+			uni.reLaunch({
+				url: next_url,
+				success:() => {
+					if (!BASE.fieldCheck(res)) {
+						const pages = getCurrentPages();
+						pages[0].$vm.ljs_gp_reLaunch_backF(res) // 给上一页绑定方法gp_navigateBackF,传参数
+					}
+				}
+			});
+			beforeEachTag = true;
+		})
+		if (beforeEachTag) return;
+	}
+	// 前置路由守卫 - 结束
+	
 	uni.reLaunch({
 		url: getUrl(url, parms),
 		success:() => {

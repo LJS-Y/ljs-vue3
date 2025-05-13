@@ -5,7 +5,8 @@
 			backgroundColor="linear-gradient(to right, #0968e3, #084AA1)"
 			titleColor="#FFF">
 		</ljs-top-vue3>
-		测试内容页
+		
+		<view @click="$ljsPublic.run.gp_navigateTo('/pages/mine/index')">测试内容页</view>
 	</view>
 </template>
 

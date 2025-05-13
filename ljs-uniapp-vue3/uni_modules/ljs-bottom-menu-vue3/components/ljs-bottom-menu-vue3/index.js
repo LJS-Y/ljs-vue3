@@ -1,5 +1,5 @@
 export default {
-  name: 'LjsBottomMenu',
+	name: 'LjsBottomMenu',
 	data() {
 		return {
 			menuList: [],
@@ -17,49 +17,77 @@ export default {
 	},
 	props: {
 		// 菜单数据
-    data: Array,
-    // 默认选中菜单的索引值。如当前路由非菜单中的路由，传-1。
-    defaultIndex: {
-      type: Number,
-      default: 0
-    },
-    // 菜单样式参数
-    opts: {
-      type: Object,
-      default: () => {
+		data: Array,
+		// 默认选中菜单的索引值。如当前路由非菜单中的路由，传-1。
+		defaultIndex: {
+			type: Number,
+			default: 0
+		},
+		// 菜单样式参数
+		opts: {
+			type: Object,
+			default: () => {
 				return {};
 			}
-    },
-    // 特殊按钮的处理函数
+		},
+		// 特殊按钮的处理函数
 		specialButtonF: {
-      type: Function,
-      default: () => {
+			type: Function,
+			default: () => {
 				return () => {};
 			}
-    },
+		},
 	},
-  watch: {
-    data: {
-      handler(val) {
+	watch: {
+		data: {
+			handler(val) {
 				if (this.data.length > 0) {
 					this.init();
 				}
-      },
-      deep: true,
-      immediate: true
-    },
-  },
-	created() {
+			},
+			deep: true,
+			immediate: true
+		},
 	},
+	created() {},
 	methods: {
 		// 跳转
-		goPage(index, row1, row2){
+		goPage(index, row1, row2) {
 			if (!this.fieldCheck(row2)) {
 				// 标记菜单选中
 				this.butTag = index;
 				uni.setStorageSync('ljs-bottom-menu-vue3', index);
 				const url = row2.url;
 				const parameter = row2.parameter;
+				
+				// 前置路由守卫 - 开始
+				const _pages = getCurrentPages();
+				if (_pages.length > 0) {
+					const _page = [_pages.length - 1];
+					const to = {
+						route: _page[0].route,
+						options: _page[0].options,
+					};
+					const from = {
+						route: url,
+						options: parameter,
+					};
+					let beforeEachTag = false;
+					uni.$emit('beforeEach', to, from, (nextUrl, nextParameter) => {
+						let next_url = null;
+						if (nextUrl !== undefined) {
+							next_url = this.getUrl(nextUrl, nextParameter);
+						} else {
+							next_url = this.getUrl(url, parameter);
+						}
+						uni.redirectTo({
+							url: next_url
+						});
+						beforeEachTag = true;
+					})
+					if (beforeEachTag) return;
+				}
+				// 前置路由守卫 - 结束
 				uni.redirectTo({
 					url: this.getUrl(url, parameter)
 				});
@@ -84,9 +112,34 @@ export default {
 			// 标记菜单选中
 			this.butTag = index;
 			uni.setStorageSync('ljs-bottom-menu-vue3', index);
-			
+
 			const url = this.menuList[index].url;
 			const parameter = this.menuList[index].parameter;
+			
+			// 前置路由守卫 - 开始
+			const to = {
+				route: pages[0].route,
+				options: pages[0].options,
+			};
+			const from = {
+				route: url,
+				options: parameter,
+			};
+			let beforeEachTag = false;
+			uni.$emit('beforeEach', to, from, (nextUrl, nextParameter) => {
+				let next_url = null;
+				if (nextUrl !== undefined) {
+					next_url = this.getUrl(nextUrl, nextParameter);
+				} else {
+					next_url = this.getUrl(url, parameter);
+				}
+				uni.redirectTo({
+					url: next_url
+				});
+				beforeEachTag = true;
+			})
+			if (beforeEachTag) return;
+			// 前置路由守卫 - 结束
 			uni.redirectTo({
 				url: this.getUrl(url, parameter)
 			});
@@ -105,32 +158,32 @@ export default {
 			this.setLevel2Show();
 			this.level2Show = false;
 		},
-		
+
 		getUrl(url, parms) {
 			// 合并链接的参数到参数体里
 			let list = this.analysisUrl(url);
-			
-			if(parms === undefined){
+
+			if (parms === undefined) {
 				parms = {}
 			}
-			for(let key in list[1]){
+			for (let key in list[1]) {
 				parms[key] = list[1][key];
 			}
-			
+
 			let parmsStr = "";
 			parmsStr += "?"
-			for(let key in parms){
+			for (let key in parms) {
 				parmsStr += key + "=" + parms[key] + "&"
 			}
 			parmsStr = parmsStr.substring(0, parmsStr.length - 1);
 			return list[0] + parmsStr;
 		},
 		analysisUrl(url) {
-			if(url.indexOf("?") > -1){
+			if (url.indexOf("?") > -1) {
 				let urls = url.split("?");
 				let parms = urls[1].split("&");
 				let obj = {};
-				parms.forEach((item)=>{
+				parms.forEach((item) => {
 					let p = item.split("=");
 					obj[p[0]] = p[1];
 				});
@@ -138,18 +191,18 @@ export default {
 			}
 			return [url, {}];
 		},
-		
-		init(){
+
+		init() {
 			// 处理参数
 			for (let key in this.opts) {
 				this.useOpts[key] = this.opts[key];
 			}
 			// 查看缓存
 			let menuIndex = uni.getStorageSync('ljs-bottom-menu-vue3');
-			if(menuIndex === undefined || menuIndex === null || menuIndex === ''){
+			if (menuIndex === undefined || menuIndex === null || menuIndex === '') {
 				this.butTag = this.defaultIndex;
 				uni.setStorageSync('ljs-bottom-menu-vue3', this.butTag);
-			}else{
+			} else {
 				this.butTag = menuIndex;
 			}
 			// 处理原始数据
@@ -174,10 +227,10 @@ export default {
 			// #endif
 		},
 		fieldCheck(field) {
-		  if (field === undefined || field === null || field === '') {
-		    return true;
-		  }
-		  return false;
+			if (field === undefined || field === null || field === '') {
+				return true;
+			}
+			return false;
 		},
 	}
 }
