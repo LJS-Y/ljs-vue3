@@ -42,6 +42,27 @@ ljs-bottom-menu-vue3，通用底部菜单组件。提供传统、通用的功能
 
 插槽名 | 说明
 ---- | :------ 
+
+### 前置守卫
+```js
+// 全局前置守卫
+uni.$on('routerBeforeEach', (to, from, next) => {
+	console.log(to, from, next);
+	next()
+	// next('/pages/login/index')
+});
+```
+
+##### 参数to/from
+| 参数  | 类型 | 说明 |
+| ----- | :----: | --- |
+| route | String | 路由地址。 |
+| options | Object | 携带参数。 |
+##### 参数next，next为函数(path, parameter)
+| 参数  | 类型 | 说明 |
+| ----- | :----: | --- |
+| path | String | 重定向路由地址。 |
+| parameter | Object | 携带参数。 |
  
 ### 快速应用
 

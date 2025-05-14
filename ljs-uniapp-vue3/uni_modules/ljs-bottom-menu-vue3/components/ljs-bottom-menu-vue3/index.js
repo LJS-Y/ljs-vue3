@@ -72,8 +72,8 @@ export default {
 						route: url,
 						options: parameter,
 					};
-					let beforeEachTag = false;
-					uni.$emit('beforeEach', to, from, (nextUrl, nextParameter) => {
+					let routerBeforeEachTag = false;
+					uni.$emit('routerBeforeEach', to, from, (nextUrl, nextParameter) => {
 						let next_url = null;
 						if (nextUrl !== undefined) {
 							next_url = this.getUrl(nextUrl, nextParameter);
@@ -83,9 +83,9 @@ export default {
 						uni.redirectTo({
 							url: next_url
 						});
-						beforeEachTag = true;
+						routerBeforeEachTag = true;
 					})
-					if (beforeEachTag) return;
+					if (routerBeforeEachTag) return;
 				}
 				// 前置路由守卫 - 结束
 				uni.redirectTo({
@@ -125,8 +125,8 @@ export default {
 				route: url,
 				options: parameter,
 			};
-			let beforeEachTag = false;
-			uni.$emit('beforeEach', to, from, (nextUrl, nextParameter) => {
+			let routerBeforeEachTag = false;
+			uni.$emit('routerBeforeEach', to, from, (nextUrl, nextParameter) => {
 				let next_url = null;
 				if (nextUrl !== undefined) {
 					next_url = this.getUrl(nextUrl, nextParameter);
@@ -136,9 +136,9 @@ export default {
 				uni.redirectTo({
 					url: next_url
 				});
-				beforeEachTag = true;
+				routerBeforeEachTag = true;
 			})
-			if (beforeEachTag) return;
+			if (routerBeforeEachTag) return;
 			// 前置路由守卫 - 结束
 			uni.redirectTo({
 				url: this.getUrl(url, parameter)

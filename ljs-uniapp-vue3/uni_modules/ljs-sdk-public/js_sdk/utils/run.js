@@ -38,8 +38,8 @@ export function gp_navigateTo(url, parms, res) {
 			route: url,
 			options: parms,
 		};
-		let beforeEachTag = false;
-		uni.$emit('beforeEach', to, from, (nextUrl, nextParameter) => {
+		let routerBeforeEachTag = false;
+		uni.$emit('routerBeforeEach', to, from, (nextUrl, nextParameter) => {
 			let next_url = null;
 			if (nextUrl !== undefined) {
 				next_url = getUrl(nextUrl, nextParameter);
@@ -55,9 +55,9 @@ export function gp_navigateTo(url, parms, res) {
 					}
 				}
 			});
-			beforeEachTag = true;
+			routerBeforeEachTag = true;
 		})
-		if (beforeEachTag) return;
+		if (routerBeforeEachTag) return;
 	}
 	// 前置路由守卫 - 结束
 	uni.navigateTo({
@@ -105,8 +105,8 @@ export function gp_redirectTo(url, parms, res) {
 			route: url,
 			options: parms,
 		};
-		let beforeEachTag = false;
-		uni.$emit('beforeEach', to, from, (nextUrl, nextParameter) => {
+		let routerBeforeEachTag = false;
+		uni.$emit('routerBeforeEach', to, from, (nextUrl, nextParameter) => {
 			let next_url = null;
 			if (nextUrl !== undefined) {
 				next_url = getUrl(nextUrl, nextParameter);
@@ -122,9 +122,9 @@ export function gp_redirectTo(url, parms, res) {
 					}
 				}
 			});
-			beforeEachTag = true;
+			routerBeforeEachTag = true;
 		})
-		if (beforeEachTag) return;
+		if (routerBeforeEachTag) return;
 	}
 	// 前置路由守卫 - 结束
 	uni.redirectTo({
@@ -172,8 +172,8 @@ export function gp_reLaunch(url, parms, res) {
 			route: url,
 			options: parms,
 		};
-		let beforeEachTag = false;
-		uni.$emit('beforeEach', to, from, (nextUrl, nextParameter) => {
+		let routerBeforeEachTag = false;
+		uni.$emit('routerBeforeEach', to, from, (nextUrl, nextParameter) => {
 			let next_url = null;
 			if (nextUrl !== undefined) {
 				next_url = getUrl(nextUrl, nextParameter);
@@ -189,9 +189,9 @@ export function gp_reLaunch(url, parms, res) {
 					}
 				}
 			});
-			beforeEachTag = true;
+			routerBeforeEachTag = true;
 		})
-		if (beforeEachTag) return;
+		if (routerBeforeEachTag) return;
 	}
 	// 前置路由守卫 - 结束
 	
