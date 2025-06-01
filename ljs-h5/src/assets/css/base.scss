@@ -1,0 +1,386 @@
+/* 公共样式 */
+html, body {
+  font-size: 14px;
+  font-weight: 400;
+  // font-family: "PingFang SC", "Arial", "Microsoft YaHei", "sans-serif";
+  font-family: 苹方-简, PingFangSC-Light, "Dream Han Serif CN", Helvetica, 微软雅黑, Arial, "Microsoft Yahei", "Hiragino Sans GB", tahoma, SimSun, sans-serif;
+  color: #000;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+};
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+blockquote,
+th,
+td,
+hr,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  margin: 0;
+  padding: 0
+}
+
+input,
+select,
+textarea {
+  font-size: 100%
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+
+fieldset,
+img {
+  border: 0
+}
+
+abbr,
+acronym {
+  border: 0;
+  font-variant: normal
+}
+
+del {
+  text-decoration: line-through
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+th,
+var {
+  font-style: normal;
+  font-weight: normal
+}
+
+ol,
+ul {
+  list-style: none
+}
+
+caption,
+th {
+  text-align: left
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal
+}
+
+q:before,
+q:after {
+  content: ''
+}
+
+button {
+  outline: 0;
+  border: none;
+}
+
+a:hover {
+  text-decoration: none
+}
+
+ins,
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}
+
+iframe,
+img {
+  border: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: #273756;
+  text-decoration: none;
+}
+
+input[type="text"],
+[type="password"],
+[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  -webkit-appearance: none;
+  outline: none;
+}
+textarea{
+  outline: none;
+}
+
+// input  type="number" 去除上下箭头
+// 谷歌
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// 火狐
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+// 禁止左键选中页面内容
+// * {
+//   -webkit-touch-callout: none;
+//   /*系统默认菜单被禁用*/
+//   -webkit-user-select: none;
+//   /*webkit浏览器*/
+//   -khtml-user-select: none;
+//   /*早期浏览器*/
+//   -moz-user-select: none;
+//   /*火狐*/
+//   -ms-user-select: none;
+//   /*IE10*/
+//   user-select: none;
+// }
+
+input {
+  -webkit-user-select: auto;
+  /*webkit浏览器*/
+}
+
+textarea {
+  -webkit-user-select: auto;
+  /*webkit浏览器*/
+  font-family: "PingFangSC-Regular", "Microsoft YaHei", "微软雅黑";
+}
+
+select {
+  /*-webkit-appearance: none;去掉select的下箭头*/
+  outline: none;
+}
+
+textarea {
+  -webkit-appearance: none;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #9E9E9E !important;
+}
+
+input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #9E9E9E !important;
+}
+
+input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #9E9E9E !important;
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #9E9E9E !important;
+}
+
+textarea::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #9E9E9E !important;
+}
+
+textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #9E9E9E !important;
+}
+
+textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #9E9E9E !important;
+}
+
+textarea:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #9E9E9E !important;
+}
+
+/***滚动条 - 谷歌 - 开始***/
+*{
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+  width: 0px;
+  /*对垂直流动条有效*/
+  height: 0px;
+  /*对水平流动条有效*/
+}
+
+// 滚动条的轨道（里面装有Thumb）
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 7px rgba(0, 0, 0, .3);
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 3px;
+}
+
+// 滚动条里面的小方块，能向上向下移动（或往左往右移动，取决于是垂直滚动条还是水平滚动条）
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, .1);
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+// 滚动条的轨道的两端按钮，允许通过点击微调小方块的位置。
+*::-webkit-scrollbar-button {
+  background-color: rgba(255, 255, 255, 0.75);
+  height: 0px;
+}
+
+// 内层轨道，滚动条中间部分
+*::-webkit-scrollbar-track-piece {
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 3px;
+}
+
+/***滚动条 - 谷歌 - 结束***/
+
+/***全局公共样式 - 开始***/
+.h_10 {
+  height: 10px;
+}
+
+.h_30 {
+  height: 30px;
+}
+
+.h_55 {
+  height: 55px;
+}
+
+.h_500 {
+  height: 500px !important;
+}
+
+.no_mr {
+  margin-right: 0px !important;
+}
+
+.no_mb {
+  margin-bottom: 0px !important;
+}
+
+.no_bb {
+  border-bottom: 0px !important;
+}
+
+.no_br {
+  border-right: 0px !important;
+}
+
+.no_bl {
+  border-left: 0px !important;
+}
+
+iframe {
+  display: block;
+  border: 0px;
+}
+
+img {
+  display: block;
+}
+
+/***框架样式 - 开始***/
+.grayStyle{
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);
+}
+html,
+body,
+#app {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.text-center{
+  text-align: center;
+}
+
+.comFrame{
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  .comPage{
+    width: 100%;
+    .comPlaceholder{
+      font-size: 14px;
+      color: #C2C2C2;
+    }
+  }
+}
+
+/***框架样式 - 结束***/
+
+/***UI - 公共调整 - 开始***/
+
+/***UI - 公共调整 - 结束***/

@@ -1,0 +1,38 @@
+.comPage{
+  // background-image: url('@/assets/images/common/404Bg.jpg');
+  background-size: cover;
+  position: relative;
+  .box{
+    width: 300px;
+    height: 155px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .title{
+      line-height: 33px;
+      text-align: center;
+      font-size: 24px;
+      color: #001433;
+    }
+    .dis{
+      line-height: 22px;
+      text-align: center;
+      font-size: 16px;
+      color: #001433;
+    }
+    .but{
+      width: 170px;
+      height: 46px;
+      display: block;
+      margin: 0 auto;
+      margin-top: 54px;
+      line-height: 46px;
+      text-align: center;
+      background-color: #5586FF;
+      color: #FFF;
+      font-size: 16px;
+      border-radius: 23px;
+    }
+  }
+}

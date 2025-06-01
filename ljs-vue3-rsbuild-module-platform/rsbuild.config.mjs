@@ -55,7 +55,7 @@ export default defineConfig(() => {
               }),
             ],
             dts: false,
-            imports: ['vue', 'vue-router', 'pinia'],
+            imports: ['vue', 'vue-router'],
             biomelintrc: {
               // 已存在文件设置默认 false，需要更新时再打开，防止每次更新都重新生成
               enabled: false,

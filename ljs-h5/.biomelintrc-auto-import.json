@@ -6,7 +6,6 @@
       "ComputedRef",
       "DirectiveBinding",
       "EffectScope",
-      "ElNotification",
       "ExtractDefaultPropTypes",
       "ExtractPropTypes",
       "ExtractPublicPropTypes",
