@@ -22,14 +22,17 @@ pages.json文件需开启"navigationStyle": "custom"。
  backgroundImage | String | × |  | 背景图片地址，使用前需配置backgroundImageShow为true。
  backgroundImageOpacity | Number | × | 1 | 背景图片透明度，使用前需配置backgroundImageShow为true。
  topHeight | Number | × | 80 | 组件高度（除状态栏），单位：upx。
+ bgColorOrImageHeight | Number, Boolean | × | false | 背景颜色或背景图片的高度，默认等于topHeight。false时禁用该功能。当IOS设备下拉时出现空白区域，我们希望背景同步衍生，达到较好的视觉效果，可使用该参数。
  titleHeight | Number | × | 80 | 标题高度，单位：upx。
 ### back参数
 
  参数  | 类型| 必填项 | 默认值 | 说明
  ---- | ----- | ------ | ------  | ------ 
- show | Boolean | × | true | 是否显示返回按钮，默认显示
- imgUrl | String | × | 默认图片 | 返回按钮的图片地址
+ show | Boolean | × | false | 是否显示返回按钮。
+ imgTag | String | × | '' | imgUrl类型值。''（白色）/'000'（黑色）。
+ imgUrl | String | × | ico_back | 返回按钮的图片地址。可传base64或自定义图片（import ico_back from '../static/images/ico_back.png'）。imgUrl优先级高于imgTag。
  backNum | Number | × | 1 | 回退的步数。
+ homePath | String | × | /pages/index/index | home图标指向。用于getCurrentPages().length === 1 时的处理地址。通常用于二级页面分享后快速回到首页。
  backFTag | Boolean | × | true | 回退方式，true为默认方法，false为消息传递方法
  msg | Any | × | null | 回退所传递的消息。backFTag: false时可自定义
  backFunName | String | × | ljs_top_backF | 回退回调函数的函数名，用于接收msg内容。backFTag: false时可用

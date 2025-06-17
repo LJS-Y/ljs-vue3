@@ -294,4 +294,5 @@ export default {
 	gp_redirectTo,
 	gp_reLaunch,
 	gp_navigateBack,
+	getUrl,
 };

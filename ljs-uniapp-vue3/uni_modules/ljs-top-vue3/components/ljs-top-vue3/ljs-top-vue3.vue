@@ -7,6 +7,7 @@
 		
 		<view class="top">
 			<view class="topBgColor" :style="{
+				height: 'calc('+statusBarHeight+'px + '+bgColorOrImage.height+'rpx)',
 				'background': backgroundColor,
 				opacity: backgroundImageShow ? 1 - backgroundImageOpacity : 1
 			}">
@@ -14,15 +15,21 @@
 				<view class="topMain" :style="'height: '+topHeight+'rpx'"></view>
 			</view>
 
-			<!-- #ifdef MP-WEIXIN -->
+			<!-- #ifdef MP -->
 			<view class="topBgImage" v-if="backgroundImageShow" :style="{
+				width: bgColorOrImage.width,
+				height: 'calc('+statusBarHeight+'px + '+bgColorOrImage.height+'rpx)',
 				'background': !backgroundImageShow ? backgroundColor : ('url('+backgroundImage+') no-repeat;'),
 				backgroundSize: '100% 100%',
 				opacity: backgroundImageOpacity
 			}">
 			<!-- #endif -->
-			<!-- #ifndef MP-WEIXIN -->
-			<view class="topBgImage" v-if="backgroundImageShow" :style="topStyle">
+			<!-- #ifndef MP -->
+			<view class="topBgImage" v-if="backgroundImageShow" :style="{
+				width: bgColorOrImage.width,
+				height: 'calc('+statusBarHeight+'px + '+bgColorOrImage.height+'rpx)',
+				...topStyle
+			}">
 			<!-- #endif -->
 				<view class="comStatus" :style="'height: '+statusBarHeight+'px'"></view>
 				<view class="topMain" :style="'height: '+topHeight+'rpx'"></view>

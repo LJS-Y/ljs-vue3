@@ -8,7 +8,8 @@ import "@/assets/fonts/iconfont.css";
 
 // 全局注入公共JS-SDK
 import ljsPublic from './uni_modules/ljs-sdk-public/js_sdk/index.js'
-import base from '@/tools/base.js'
+import toolsBase from '@/tools/base.js'
+import toolsCommon from '@/tools/common.js'
 import ljsAPI from '@/request/index.js' // API
 import CONFIG from "@/request/config.js" // 全局配置
 
@@ -19,7 +20,8 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 
 Vue.prototype.$ljsPublic = ljsPublic;
-Vue.prototype.$base = base;
+Vue.prototype.$base = toolsBase;
+Vue.prototype.$com = toolsCommon;
 Vue.prototype.$API = ljsAPI;
 Vue.prototype.$CONFIG = CONFIG;
 
@@ -34,7 +36,8 @@ import { createSSRApp } from 'vue'
 export function createApp() {
 	const app = createSSRApp(App)
 	app.config.globalProperties.$ljsPublic = ljsPublic;
-	app.config.globalProperties.$base = base;
+	app.config.globalProperties.$base = toolsBase;
+	app.config.globalProperties.$com = toolsCommon;
 	app.config.globalProperties.$API = ljsAPI;
 	app.config.globalProperties.$CONFIG = CONFIG;
 	app.use(store);

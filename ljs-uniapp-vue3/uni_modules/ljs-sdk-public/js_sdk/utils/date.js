@@ -1,9 +1,23 @@
-/** 
+/**
  * @module date
  * @description 日期常用处理方法
  *  */
-import LJSnum from './num';
+import LJSbase from './base'
+import LJSnum from './num'
 
+export function timeChange(time, replaceKey = ['-', '/']) {
+  if (LJSbase.fieldCheck(time) || time.toString().indexOf(replaceKey[0]) === -1) return time
+  time = time.replaceAll(replaceKey[0], replaceKey[1])
+	// 2025/06/09 09:30:00.000，IOS设备不支持，去除.000
+	if (time.indexOf('.') > -1) {
+			time = time.split('.')[0]
+	}
+  // 处理只有年月的格式，IOS报错，自动补入默认/01日值
+  if (time.lastIndexOf(replaceKey[1]) === 4) {
+    time = time + '/01'
+  }
+  return time
+}
 /**
  * 通过传入的时间戳获取固定格式日期
  * @param {Date} time 时间戳
@@ -12,8 +26,10 @@ import LJSnum from './num';
  * @example this.$ljsPublic.date.formatTime(new Date().getTime(), '{y}-{m}-{d} {h}:{i}:{s}')，返回2021-12-22 09:56:58
  */
 export function formatTime(time, pattern) {
-  const date = new Date(time);
-  const format = pattern || '{y}-{m}-{d} {h}:{i}:{s}';
+  if (LJSbase.fieldCheck(time)) return time
+  time = timeChange(time)
+  const date = new Date(time)
+  const format = pattern || '{y}-{m}-{d} {h}:{i}:{s}'
   const formatObj = {
     y: date.getFullYear(),
     m: LJSnum.numberB0(date.getMonth() + 1),
@@ -21,12 +37,12 @@ export function formatTime(time, pattern) {
     h: LJSnum.numberB0(date.getHours()),
     i: LJSnum.numberB0(date.getMinutes()),
     s: LJSnum.numberB0(date.getSeconds()),
-    MS: date.getMilliseconds()
-  };
+    MS: date.getMilliseconds(),
+  }
   return format.replace(/{(y|m|d|h|i|s|MS)+}/g, (result, key) => {
-    const value = formatObj[key];
-    return value;
-  });
+    const value = formatObj[key]
+    return value
+  })
 }
 
 /**
@@ -39,52 +55,51 @@ export function formatTime(time, pattern) {
  * @example this.$ljsPublic.date.customizedDate(new Date().getTime(), '{y}-{m}-{d}', -1); // 当前日期：2024-03-28，返回：2024-03-27
  */
 export function customizedDate(time, pattern, span = 0) {
+  if (LJSbase.fieldCheck(time)) return time
+  time = timeChange(time)
   if (span === 0) {
-    let t = new Date(time).getTime();
-    return formatTime(t, pattern);
+    let t = new Date(time).getTime()
+    return formatTime(t, pattern)
   }
   if (pattern === '{y}-{m}-{d}') {
-    let t = new Date(time).getTime();
-    t = t + 3600 * 1000 * 24 * span;
-    return formatTime(t, pattern);
-  }
-  else if (pattern === '{y}-{m}') {
+    let t = new Date(time).getTime()
+    t = t + 3600 * 1000 * 24 * span
+    return formatTime(t, pattern)
+  } else if (pattern === '{y}-{m}') {
     // time = '2024-01'
-    const direction = span / Math.abs(span);
-    let t = new Date(time);
-    let str = '';
-    const month = t.getMonth() + 1;
-    let y = 0;
-    let m = 0;
+    const direction = span / Math.abs(span)
+    let t = new Date(time)
+    let str = ''
+    const month = t.getMonth() + 1
+    let y = 0
+    let m = 0
     if (direction === -1) {
-      y = t.getFullYear() + Math.floor((month + span) / 12);
-      m = (12 * Math.abs(y - t.getFullYear()) + month + span);
+      y = t.getFullYear() + Math.floor((month + span) / 12)
+      m = 12 * Math.abs(y - t.getFullYear()) + month + span
       if ((month + span) % 12 === 0) {
-        y += direction;
-        m = 12;
+        y += direction
+        m = 12
       }
-    }
-    else if (direction === 1) {
+    } else if (direction === 1) {
       if (month + span <= 12) {
-        y = t.getFullYear();
-        m = month + span;
+        y = t.getFullYear()
+        m = month + span
       } else {
         if ((month + span) % 12 !== 0) {
-          y = t.getFullYear() + Math.floor((month + span) / 12);
-          m = month + span - Math.abs(y - t.getFullYear()) * 12;
+          y = t.getFullYear() + Math.floor((month + span) / 12)
+          m = month + span - Math.abs(y - t.getFullYear()) * 12
         } else {
-          const addY = (month + span) / 12;
-          y = t.getFullYear() + (addY > 1 ? addY - 1 : addY);
-          m = month + span - Math.abs(y - t.getFullYear()) * 12;
+          const addY = (month + span) / 12
+          y = t.getFullYear() + (addY > 1 ? addY - 1 : addY)
+          m = month + span - Math.abs(y - t.getFullYear()) * 12
         }
       }
     }
-    str = y + '-' + LJSnum.numberB0(m);
-    return str;
-  }
-  else if (pattern === '{y}') {
-    let t = new Date(time);
-    return (t.getFullYear() + span).toString();
+    str = y + '-' + LJSnum.numberB0(m)
+    return str
+  } else if (pattern === '{y}') {
+    let t = new Date(time)
+    return (t.getFullYear() + span).toString()
   }
 }
 
@@ -97,29 +112,21 @@ export function customizedDate(time, pattern, span = 0) {
  * */
 export function dateQjChange(dates, tag = 1) {
   if (dates[0] === '' || dates[0] === null) {
-    return dates;
+    return dates
   }
-  const d1 = new Date(dates[0]);
-  const d2 = new Date(dates[1]);
+  dates[0] = timeChange(dates[0])
+  dates[1] = timeChange(dates[1])
+  const d1 = new Date(dates[0])
+  const d2 = new Date(dates[1])
   if (tag === undefined) {
-    tag = 1;
+    tag = 1
   }
   switch (tag) {
     case 1:
       return [
-        d1.getFullYear() +
-          '-' +
-          LJSnum.numberB0(d1.getMonth() + 1) +
-          '-' +
-          LJSnum.numberB0(d1.getDate()) +
-          ' 00:00:00',
-        d2.getFullYear() +
-          '-' +
-          LJSnum.numberB0(d2.getMonth() + 1) +
-          '-' +
-          LJSnum.numberB0(d2.getDate()) +
-          ' 23:59:59'
-      ];
+        d1.getFullYear() + '-' + LJSnum.numberB0(d1.getMonth() + 1) + '-' + LJSnum.numberB0(d1.getDate()) + ' 00:00:00',
+        d2.getFullYear() + '-' + LJSnum.numberB0(d2.getMonth() + 1) + '-' + LJSnum.numberB0(d2.getDate()) + ' 23:59:59',
+      ]
     case 2:
       return [
         d1.getFullYear() +
@@ -137,8 +144,8 @@ export function dateQjChange(dates, tag = 1) {
           LJSnum.numberB0(d2.getDate()) +
           ' ' +
           LJSnum.numberB0(d2.getHours()) +
-          ':59:59'
-      ];
+          ':59:59',
+      ]
     case 3:
       return [
         d1.getFullYear() +
@@ -160,10 +167,10 @@ export function dateQjChange(dates, tag = 1) {
           LJSnum.numberB0(d2.getHours()) +
           ':' +
           LJSnum.numberB0(d2.getMinutes()) +
-          ':59'
-      ];
+          ':59',
+      ]
   }
-  return dates;
+  return dates
 }
 
 /**
@@ -179,52 +186,52 @@ const runTime = this.$ljsPublic.date.timeRunDistance({
 })
 console.log(runTime);
  * */
-export function timeRunDistance({time = 0, showTag = ['天', '小时', '分钟', '秒', '毫秒'], showAll = true}) {
+export function timeRunDistance({ time = 0, showTag = ['天', '小时', '分钟', '秒', '毫秒'], showAll = true }) {
   if (time < 0) {
-    console.warn('时间距离需大于0。');
-    return;
+    console.warn('时间距离需大于0。')
+    return
   }
-  const hm = 1000; // 1秒
-  const m = 60 * hm; // 1分钟
-  const h = 60 * m; // 1小时
-  const d = 24 * h; // 1天
-  const times = [0, 0, 0, 0, 0];
+  const hm = 1000 // 1秒
+  const m = 60 * hm // 1分钟
+  const h = 60 * m // 1小时
+  const d = 24 * h // 1天
+  const times = [0, 0, 0, 0, 0]
   if (time >= d) {
-    const num = Math.floor(time / d);
-    times[0] = num;
-    time -= d * num;
+    const num = Math.floor(time / d)
+    times[0] = num
+    time -= d * num
   }
   if (time >= h) {
-    const num = Math.floor(time / h);
-    times[1] = num;
-    time -= h * num;
+    const num = Math.floor(time / h)
+    times[1] = num
+    time -= h * num
   }
   if (time >= m) {
-    const num = Math.floor(time / m);
-    times[2] = num;
-    time -= m * num;
+    const num = Math.floor(time / m)
+    times[2] = num
+    time -= m * num
   }
   if (time >= hm) {
-    const num = Math.floor(time / hm);
-    times[3] = num;
-    time -= hm * num;
+    const num = Math.floor(time / hm)
+    times[3] = num
+    time -= hm * num
   }
-  times[4] = time;
-  
-  let tag = false;
+  times[4] = time
+
+  let tag = false
   if (showAll) {
-    tag = true;
+    tag = true
   }
-  let str = '';
+  let str = ''
   times.forEach((t, i) => {
     if (!tag && t !== 0) {
-      tag = true;
+      tag = true
     }
     if (tag) {
-      str += t + showTag[i];
+      str += t + showTag[i]
     }
-  });
-  return str;
+  })
+  return str
 }
 
 /**
@@ -236,15 +243,15 @@ export function timeRunDistance({time = 0, showTag = ['天', '小时', '分钟',
  * @example this.$ljsPublic.date.initSearchDate()，返回["2020-10-01", "2020-10-10"]
  * */
 export function initSearchDate(day = 10, time = false) {
-  let start = '';
-  let end = '';
-  let formatValue = '{y}-{m}-{d}';
+  let start = ''
+  let end = ''
+  let formatValue = '{y}-{m}-{d}'
   if (time) {
     formatValue = '{y}-{m}-{d} {h}:{i}:{s}'
   }
-  start = formatTime(new Date().getTime() - 3600*1000*24*(day - 1), formatValue);
-  end = formatTime(new Date(), formatValue);
-  return [start, end];
+  start = formatTime(new Date().getTime() - 3600 * 1000 * 24 * (day - 1), formatValue)
+  end = formatTime(new Date(), formatValue)
+  return [start, end]
 }
 
 /**
@@ -255,28 +262,28 @@ export function initSearchDate(day = 10, time = false) {
  * @example this.$ljsPublic.date.initSearchDateQj()，返回["2020-10-01", "2020-10-10"]
  * */
 export function initSearchDateQj(type = 'date', n = 0) {
-  const date = new Date();
-  let start = '';
-  let end = '';
-  switch(type) {
+  const date = new Date()
+  let start = ''
+  let end = ''
+  switch (type) {
     case 'datetime':
-      start = formatTime(date, '{y}-{m}-{d} 00:00:00');
-      end = formatTime(date, '{y}-{m}-{d} {h}:{i}:{s}');
-      break;
+      start = formatTime(date, '{y}-{m}-{d} 00:00:00')
+      end = formatTime(date, '{y}-{m}-{d} {h}:{i}:{s}')
+      break
     case 'date':
-      start = formatTime(date, '{y}-{m}-01');
-      end = formatTime(date, '{y}-{m}-{d}');
-      break;
+      start = formatTime(date, '{y}-{m}-01')
+      end = formatTime(date, '{y}-{m}-{d}')
+      break
     case 'month':
-      start = formatTime(date, '{y}-01');
-      end = formatTime(date, '{y}-{m}');
-      break;
+      start = formatTime(date, '{y}-01')
+      end = formatTime(date, '{y}-{m}')
+      break
     case 'year':
-      start = date.getFullYear() - (n + 1) * 5;
-      end = date.getFullYear();
-      break;
+      start = date.getFullYear() - (n + 1) * 5
+      end = date.getFullYear()
+      break
   }
-  return [start, end];
+  return [start, end]
 }
 
 export default {
@@ -285,5 +292,5 @@ export default {
   dateQjChange,
   timeRunDistance,
   initSearchDate,
-  initSearchDateQj
-};
+  initSearchDateQj,
+}

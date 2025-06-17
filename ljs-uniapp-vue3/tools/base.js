@@ -3,37 +3,17 @@ import APIcommon from '@/request/common/common';
 import CONFIG from "@/request/config.js";
 import store from '@/store/index';
 import { getMenu } from "@/tools/menu.js"
-export function logout(obj) {
-	uni.showModal({
-		title: '系统提示',
-		content: '您确定要退出当前账号吗？',
-		success: function (res) {
-			if (res.confirm) {
-				store.commit('RESET_STORE');
-				$ljsPublic.run.gp_reLaunch('/pages/login/index');
-			}
-		}
-	});
-}
-
-export function initShare(path = '/pages/login/index') {
-	uni.showShareMenu({
-		title: CONFIG.projectName,
-		content: '超赞的小程序，我们LJS社区人都喜欢的小程序。',
-		path
-	})
-}
 
 /**
-  *  检查版本 - 小程序可用
-	*  @return {Boolean} 是否有新版本更新
-  *  @example this.$base.wxCheckForUpdate()
-  * */
+ *  检查版本 - 小程序可用
+ *  @return {Boolean} 是否有新版本更新
+ *  @example this.$base.wxCheckForUpdate()
+ * */
 export function wxCheckForUpdate() {
 	return new Promise((resolve, reject) => {
 		const updateManager = uni.getUpdateManager();
-		
-		updateManager.onCheckForUpdate(function (res) {
+
+		updateManager.onCheckForUpdate(function(res) {
 			// 请求完新版本信息的回调
 			resolve(res.hasUpdate);
 		});
@@ -41,13 +21,13 @@ export function wxCheckForUpdate() {
 }
 
 /**
-  *  发起版本更新 - 小程序可用
-  *  @example this.$base.wxUpdate()
-  * */
+ *  发起版本更新 - 小程序可用
+ *  @example this.$base.wxUpdate()
+ * */
 export function wxUpdate() {
 	const updateManager = uni.getUpdateManager();
-	
-	updateManager.onUpdateReady(function (res) {
+
+	updateManager.onUpdateReady(function(res) {
 		uni.showModal({
 			title: '更新提示',
 			content: '新版本已经准备好，是否重启应用？',
@@ -62,9 +42,9 @@ export function wxUpdate() {
 }
 
 /**
-  *  检查app版本 - 安卓
-  *  @example this.$base.androidCheckApp()
-  * */
+ *  检查app版本 - 安卓
+ *  @example this.$base.androidCheckApp()
+ * */
 export function androidCheckApp() {
 	// this.$ljsPublic.base.getAppBaseInfo().appVersion
 	const edition = uni.getStorageSync('ljs-app-edition');
@@ -83,9 +63,9 @@ export function androidCheckApp() {
 }
 
 /**
-  *  刷新监听
-  *  @example this.$base.androidCheckApp()
-  * */
+ *  刷新监听
+ *  @example this.$base.listenRefresh()
+ * */
 export function listenRefresh(_this) {
 	// 取vuex
 	let token = store.getters.token;
@@ -99,10 +79,10 @@ export function listenRefresh(_this) {
 			store.commit('SET_token', token);
 		}
 	}
-		
+
 	token = store.getters.token;
 	const userinfo = store.getters.userinfo;
-	
+
 	if (
 		!$ljsPublic.base.fieldCheck(token) && $ljsPublic.base.fieldCheck(userinfo)
 	) {
@@ -121,8 +101,8 @@ async function getUserInfo() {
 		res2.user.avatar = avatar;
 		// 存储用户、模块
 		store.commit('SET_userinfo', res2.user);
-		
-		
+
+
 		const menus = getMenu();
 		store.commit('SET_menuList', menus);
 		return;
@@ -138,8 +118,6 @@ async function getUserInfo() {
 }
 
 export default {
-	logout,
-	initShare,
 	wxCheckForUpdate,
 	wxUpdate,
 	androidCheckApp,

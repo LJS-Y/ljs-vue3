@@ -1,17 +1,14 @@
 <template>
 	<view class="comFrame">
-		<ljs-top-vue3
-			title="首页"
-			backgroundColor="linear-gradient(to right, #0968e3, #084AA1)"
-			titleColor="#FFF"
+		<ljs-top-vue3 title="首页" backgroundColor="linear-gradient(to right, #0968e3, #084AA1)" titleColor="#FFF"
 			:back="{ show: false }">
 			<!-- #ifndef MP-WEIXIN -->
-			<view @click="$base.logout" class="logout">
+			<view @click="$com.logout()" class="logout">
 				<text class="iconfont icon-farenzhuxiao"></text>
 			</view>
 			<!-- #endif -->
 		</ljs-top-vue3>
-		
+
 		<!-- 为兼容小程序, 减去top, 减去状态栏 -->
 		<view class="comMain" :style="{
 			height: 'calc(100% - 80rpx - '+ $ljsPublic.base.getTopStateHeight() +'px)',
@@ -20,21 +17,19 @@
 				<view class="comSearch">
 					<view class="inputSearch">
 						<view class="inputBox">
-							<input class="input" v-model="tableSearch.query.powerhouseName" type="text" placeholder="请输入电站名称">
-							<view
-								v-if="!$ljsPublic.base.fieldCheck(tableSearch.query.powerhouseName)"
+							<input class="input" v-model="tableSearch.query.powerhouseName" type="text"
+								placeholder="请输入电站名称">
+							<view v-if="!$ljsPublic.base.fieldCheck(tableSearch.query.powerhouseName)"
 								@click="!$ljsPublic.base.fieldClean(tableSearch.query, 'powerhouseName')"
 								class="close iconfont icon-guanbi1"></view>
 						</view>
 						<view class="submitBut" @click="handleQuery">搜索</view>
 					</view>
 				</view>
-				
+
 				<view class="list">
 					<view class="listBox">
-						<view class="item"
-							v-for="(item, i) in 10" :key="i"
-							@click="$ljsPublic.run.gp_navigateTo('/pages/index/info')">
+						<view class="item" v-for="(item, i) in 10" :key="i">
 							<image class="pic" src="../../static/images/logo.png"></image>
 							<view class="info">
 								<view class="name">
@@ -52,25 +47,18 @@
 								</view>
 							</view>
 						</view>
-										
+
 						<view class="operate">
-							<view
-								v-if="tableSearch.queryReal.pageNum * tableSearch.queryReal.pageSize < table.total"
-								class="but red"
-								@click="getListMore"
-								>加载更多....</view>
-							<view
-								v-else
-								class="but grey"
-								>没有更多数据啦~~</view>
+							<view v-if="tableSearch.queryReal.pageNum * tableSearch.queryReal.pageSize < table.total"
+								class="but red" @click="getListMore">加载更多....</view>
+							<view v-else class="but grey">没有更多数据啦~~</view>
 						</view>
 					</view>
 				</view>
 			</view>
 		</view>
-		
-		<ljs-bottom-menu-vue3
-			:data="menuList">
+
+		<ljs-bottom-menu-vue3 :data="menuList">
 		</ljs-bottom-menu-vue3>
 	</view>
 </template>
@@ -81,5 +69,5 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "./index.scss"; 
+	@import "./index.scss";
 </style>

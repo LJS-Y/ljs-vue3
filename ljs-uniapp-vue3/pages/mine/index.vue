@@ -6,7 +6,7 @@
 			titleColor="#FFF"
 			:back="{ show: false }">
 			<!-- #ifndef MP-WEIXIN -->
-			<view @click="$base.logout" class="logout">
+			<view @click="$com.logout()" class="logout">
 				<text class="iconfont icon-farenzhuxiao"></text>
 			</view>
 			<!-- #endif -->
@@ -51,7 +51,7 @@
 				
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="menuList">
-					<view class="one" @click="$base.logout">
+					<view class="one" @click="$com.logout()">
 						<text class="ico iconfont icon-logout"></text>
 						<view class="text">退出登录</view>
 						<text class="jt iconfont icon-jiantouyou"></text>

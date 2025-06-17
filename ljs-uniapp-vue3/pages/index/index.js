@@ -30,7 +30,15 @@ export default {
 		console.log('下拉');
 		this.handleQuery();
 	},
-	onLoad() {
+	onLoad(options) {
+		// 来自于web-view的分享
+		if (options.source === 'wxWebviewShare') {
+			this.$ljsPublic.run.gp_navigateTo('/pages-other/WebView/WebView', {
+				share: '1',
+				url: options.url,
+				queryStr: this.$ljsPublic.base.fieldCheck(options.queryStr) ? {} : options.queryStr,
+			})
+		}
 		this.initData();
 	},
 	methods: {

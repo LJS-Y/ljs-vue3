@@ -83,7 +83,7 @@ export default {
 		init() {
 			this.getCode();
 			// #ifdef MP-WEIXIN
-			this.$base.initShare('/pages/login/index');
+			this.$com.initShare() 
 			// #endif
 			const rememberPassword = uni.getStorageSync('ljs_uniapp_rememberPassword');
 			if (rememberPassword === true) {

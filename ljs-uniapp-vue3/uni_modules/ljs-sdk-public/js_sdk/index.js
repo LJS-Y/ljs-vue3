@@ -5,6 +5,7 @@ import formCheck from './utils/formCheck';
 import msg from './utils/msg';
 import run from './utils/run';
 import animation from './utils/animation';
+import url from './utils/url';
 
 export default {
   base, // 公共封装
@@ -14,4 +15,5 @@ export default {
   msg, // 消息封装
   run, // 跳转封装
   animation, // 动画封装
+  url, // url封装
 };

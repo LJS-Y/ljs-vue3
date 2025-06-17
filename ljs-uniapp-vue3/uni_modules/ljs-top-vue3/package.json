@@ -1,7 +1,7 @@
 {
   "id": "ljs-top-vue3",
   "displayName": "ljs-top-vue3 banner 状态栏 导航",
-  "version": "1.0.8",
+  "version": "1.2.2",
   "description": "ljs-top-vue3 banner 状态栏 导航",
   "keywords": [
     "头",
@@ -69,9 +69,9 @@
         },
         "小程序": {
           "微信": "y",
-          "阿里": "u",
+          "阿里": "y",
           "百度": "u",
-          "字节跳动": "u",
+          "字节跳动": "y",
           "QQ": "u",
           "钉钉": "u",
           "快手": "u",
