@@ -106,7 +106,7 @@ export function webView(options) {
 /pages/shop/home?shopId=XXXXXX
 /pages/item/detail/detail?sku=
  */
-export function goJdApp(appId, id, source = 1) {
+export function goJdApp(id, source = 1) {
 	let path = ''
 	if (source === 1) {
 		path = '/pages/item/detail/detail?sku='
@@ -114,7 +114,7 @@ export function goJdApp(appId, id, source = 1) {
 		path = '/pages/shop/index/index?shopId='
 	}
 	uni.navigateToMiniProgram({
-		appId,
+		appId: 'wx91d27dbf599dff74',
 		path: path + id,
 		success(res) {
 			// 打开成功
