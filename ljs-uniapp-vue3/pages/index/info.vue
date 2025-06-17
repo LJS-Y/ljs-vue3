@@ -3,7 +3,8 @@
 		<ljs-top-vue3
 			title="首页"
 			backgroundColor="linear-gradient(to right, #0968e3, #084AA1)"
-			titleColor="#FFF">
+			titleColor="#FFF"
+			:back="{ show: true }">
 		</ljs-top-vue3>
 		
 		<view @click="$ljsPublic.run.gp_navigateTo('/pages/mine/index')">测试内容页</view>

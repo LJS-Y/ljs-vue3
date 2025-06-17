@@ -3,8 +3,7 @@
 		<ljs-top-vue3
 			title="设置"
 			backgroundColor="linear-gradient(to right, #0968e3, #084AA1)"
-			titleColor="#FFF"
-			:back="{ show: false }">
+			titleColor="#FFF">
 			<!-- #ifndef MP-WEIXIN -->
 			<view @click="$com.logout()" class="logout">
 				<text class="iconfont icon-farenzhuxiao"></text>

@@ -1,7 +1,6 @@
 <template>
 	<view class="comFrame">
-		<ljs-top-vue3 title="首页" backgroundColor="linear-gradient(to right, #0968e3, #084AA1)" titleColor="#FFF"
-			:back="{ show: false }">
+		<ljs-top-vue3 title="首页" backgroundColor="linear-gradient(to right, #0968e3, #084AA1)" titleColor="#FFF">
 			<!-- #ifndef MP-WEIXIN -->
 			<view @click="$com.logout()" class="logout">
 				<text class="iconfont icon-farenzhuxiao"></text>
@@ -18,7 +17,7 @@
 					<view class="inputSearch">
 						<view class="inputBox">
 							<input class="input" v-model="tableSearch.query.powerhouseName" type="text"
-								placeholder="请输入电站名称">
+								placeholder="请输入名称">
 							<view v-if="!$ljsPublic.base.fieldCheck(tableSearch.query.powerhouseName)"
 								@click="!$ljsPublic.base.fieldClean(tableSearch.query, 'powerhouseName')"
 								class="close iconfont icon-guanbi1"></view>
@@ -29,7 +28,7 @@
 
 				<view class="list">
 					<view class="listBox">
-						<view class="item" v-for="(item, i) in 10" :key="i">
+						<view class="item" v-for="(item, i) in 10" :key="i" @click="$ljsPublic.run.gp_navigateTo('/pages/index/info')">
 							<image class="pic" src="../../static/images/logo.png"></image>
 							<view class="info">
 								<view class="name">
@@ -37,11 +36,11 @@
 								</view>
 								<view class="dis">
 									<view class="one">
-										<text>装机容量：</text>
+										<text>数据1：</text>
 										<text>30 MWp</text>
 									</view>
 									<view class="one">
-										<text>并网电压：</text>
+										<text>数据2：</text>
 										<text>1000 kV</text>
 									</view>
 								</view>
