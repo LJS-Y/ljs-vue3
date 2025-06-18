@@ -13,6 +13,7 @@ ljs-dialog-vue3，dialog弹框，灵活好用的弹框。可以设置最大高�
 ---- | ----- | ------ | ------  | ------ 
 v-model | Boolean | √ |  | 是否开启
 title | String | × |  | 弹窗标题。headerShow为true时有效且必填。
+headerShow | Boolean | × | true | 是否显示头部区域。
 setTitleHeight | Number | × | 90 | 弹窗标题栏高度，单位upx。默认90，最小为90。headerShow为true时有效。
 width | String | × | 90% | 弹窗宽度。
 borderRadius | Number | × | 20 | 裸露圆角值。
@@ -21,7 +22,6 @@ shadeBackground | String | × | rgba(0, 0, 0, .6) | 遮罩背景。
 tcMaxHeightTag | Boolean | × | true | 是否限制弹窗最大高度。
 tcMaxHeightUseTag | Boolean | × | false | 是否直接按照tcMaxHeightProportion的值设置高度占比。tcMaxHeightTag为true有效。
 tcMaxHeightProportion | Number | × | 0.8 | 限制弹窗最大高度占比，建议不大于1。1为100%。tcMaxHeightTag为true有效。
-headerShow | Boolean | × | true | 是否显示头部区域。
 closeButShow | Boolean | × | true | 是否显示关闭按钮。headerShow为true时有效。
 closeImg | String | × |  | 关闭按钮图片。
 zIndex | Number | × | 100 | z-index值。

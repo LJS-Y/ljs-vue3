@@ -12,7 +12,7 @@ ljs-dragImages-vue3，可拖动排序的图片上传组件。
 
  参数  | 类型| 必填项 | 默认值 | 说明
  ---- | ----- | ------ | ------  | ------ 
- value | Array | √ |  | 图片列表数据
+ v-model | Array | √ |  | 图片列表数据
  touchTarg | Boolean | × | true | 是否开启拖拽排序，默认开启。如果关闭，则次插件将是一个普通的图片上传组件
  count | Number | × | 5 | 图片上传数量限制
  colCount | Number | × | 3 | 列数量，默认3列
