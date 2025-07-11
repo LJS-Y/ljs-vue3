@@ -15,6 +15,7 @@ ljs-bottom-menu-vue3，通用底部菜单组件。提供传统、通用的功能
  defaultIndex | Number | × | 0 | 默认选中菜单的索引值。如当前路由非菜单中的路由，传-1。
  opts | Object | × |  | 菜单样式参数
  specialButtonF | Function | × |  | 特殊按钮的处理函数
+ zIndex | Number, String | × | 200 | z-index值。
  
 ### data 对象数据结构
 

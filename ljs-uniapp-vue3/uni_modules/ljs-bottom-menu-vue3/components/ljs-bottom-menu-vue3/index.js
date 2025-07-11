@@ -2,6 +2,7 @@ export default {
 	name: 'LjsBottomMenu',
 	data() {
 		return {
+			bottomHeight: 0,
 			menuList: [],
 			// 当前选中第几个菜单
 			butTag: 0,
@@ -37,6 +38,11 @@ export default {
 				return () => {};
 			}
 		},
+		// z-index
+		zIndex: {
+			type: [Number, String],
+			default: 200,
+		},
 	},
 	watch: {
 		data: {
@@ -49,7 +55,11 @@ export default {
 			immediate: true
 		},
 	},
-	created() {},
+	created() {
+		const winInfo = uni.getWindowInfo();
+		console.log(winInfo);
+		this.bottomHeight = winInfo.screenHeight - winInfo.windowHeight - winInfo.statusBarHeight;
+	},
 	methods: {
 		// 跳转
 		goPage(index, row1, row2) {
@@ -72,7 +82,6 @@ export default {
 						route: url,
 						options: parameter,
 					};
-					let routerBeforeEachTag = false;
 					uni.$emit('routerBeforeEach', to, from, (nextUrl, nextParameter) => {
 						let next_url = null;
 						if (nextUrl !== undefined) {
@@ -83,9 +92,8 @@ export default {
 						uni.redirectTo({
 							url: next_url
 						});
-						routerBeforeEachTag = true;
 					})
-					if (routerBeforeEachTag) return;
+					return;
 				}
 				// 前置路由守卫 - 结束
 				uni.redirectTo({
@@ -125,7 +133,6 @@ export default {
 				route: url,
 				options: parameter,
 			};
-			let routerBeforeEachTag = false;
 			uni.$emit('routerBeforeEach', to, from, (nextUrl, nextParameter) => {
 				let next_url = null;
 				if (nextUrl !== undefined) {
@@ -136,9 +143,8 @@ export default {
 				uni.redirectTo({
 					url: next_url
 				});
-				routerBeforeEachTag = true;
 			})
-			if (routerBeforeEachTag) return;
+			return;
 			// 前置路由守卫 - 结束
 			uni.redirectTo({
 				url: this.getUrl(url, parameter)

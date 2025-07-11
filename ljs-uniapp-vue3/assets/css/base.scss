@@ -94,7 +94,7 @@ view, input, textarea{
 	overflow: hidden;
 	.comMain{
 		width: 100%;
-		padding-bottom: calc(118upx + var(--window-bottom));
+		padding-bottom: calc(138upx + var(--window-bottom));
 		.comPage{
 			box-sizing: border-box;
 			position: relative;
@@ -180,7 +180,7 @@ view, input, textarea{
 			position: fixed;
 			left: 0;
 			z-index: 10;
-			bottom: calc(118upx + var(--window-bottom));
+			bottom: calc(138upx + var(--window-bottom));
 			background-color: #f1f1f1;
 			margin-top: 0;
 		}

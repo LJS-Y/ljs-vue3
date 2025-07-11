@@ -4,7 +4,7 @@ import APIcommon from '@/request/common/common';
 import CONFIG from "@/request/config.js";
 import { getMenu } from "@/tools/menu.js"
 
-uni.$on('beforeEach', (to, from, next) => {
+uni.$on('routerBeforeEach', (to, from, next) => {
 	// 取vuex
 	let token = store.getters.token;
 	if ($ljsPublic.base.fieldCheck(token)) {

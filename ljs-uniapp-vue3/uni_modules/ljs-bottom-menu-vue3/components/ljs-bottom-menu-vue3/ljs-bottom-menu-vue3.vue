@@ -2,7 +2,8 @@
 	<view class="ljs-bottom-menu-vue3" v-show="menuList.length > 0"
 		:style="{
 			'background-color': useOpts.menuBgColor,
-			'box-shadow': '0 0 6rpx 6rpx ' + useOpts.menuShadowColor
+			'box-shadow': '0 0 6rpx 6rpx ' + useOpts.menuShadowColor,
+			'z-index': zIndex,
 		}">
 		<template v-for="(item, i) in menuList" :key="i">
 			<!-- 放大凸显的菜单 -->
