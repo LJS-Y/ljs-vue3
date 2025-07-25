@@ -1,4 +1,4 @@
-import $ljsPublic from '../uni_modules/ljs-sdk-public/js_sdk/index.js'
+import LJS from '../uni_modules/ljs-sdk-public/js_sdk/index.js'
 import APIcommon from '@/request/common/common';
 import CONFIG from "@/request/config.js";
 import store from '@/store/index';
@@ -46,13 +46,13 @@ export function wxUpdate() {
  *  @example this.$base.androidCheckApp()
  * */
 export function androidCheckApp() {
-	// this.$ljsPublic.base.getAppBaseInfo().appVersion
+	// this.LJS.LJSbase.getAppBaseInfo().appVersion
 	const edition = uni.getStorageSync('ljs-app-edition');
-	if ($ljsPublic.base.fieldCheck(edition)) {
-		uni.setStorageSync('ljs-app-edition', $ljsPublic.base.getAppBaseInfo().appVersion);
+	if (LJS.LJSbase.fieldCheck(edition)) {
+		uni.setStorageSync('ljs-app-edition', LJS.LJSbase.getAppBaseInfo().appVersion);
 	} else {
 		// 检查是否需要重启应用的条件
-		if (edition !== $ljsPublic.base.getAppBaseInfo().appVersion) {
+		if (edition !== LJS.LJSbase.getAppBaseInfo().appVersion) {
 			// 通过plus对象重启应用
 			if (uni.getSystemInfoSync().platform === 'android') {
 				uni.removeStorageSync('ljs-app-edition');
@@ -69,11 +69,11 @@ export function androidCheckApp() {
 export function listenRefresh(_this) {
 	// 取vuex
 	let token = store.getters.token;
-	if ($ljsPublic.base.fieldCheck(token)) {
+	if (LJS.LJSbase.fieldCheck(token)) {
 		// 取缓存
 		token = uni.getStorageSync('ljs_uniapp_token');
-		if ($ljsPublic.base.fieldCheck(token)) {
-			$ljsPublic.run.gp_reLaunch('/pages/login/index');
+		if (LJS.LJSbase.fieldCheck(token)) {
+			LJS.LJSrun.gp_reLaunch('/pages/login/index');
 			return;
 		} else {
 			store.commit('SET_token', token);
@@ -84,7 +84,7 @@ export function listenRefresh(_this) {
 	const userinfo = store.getters.userinfo;
 
 	if (
-		!$ljsPublic.base.fieldCheck(token) && $ljsPublic.base.fieldCheck(userinfo)
+		!LJS.LJSbase.fieldCheck(token) && LJS.LJSbase.fieldCheck(userinfo)
 	) {
 		getUserInfo();
 	}
@@ -109,11 +109,11 @@ async function getUserInfo() {
 	}
 	uni.clearStorageSync();
 	store.commit('RESET_STORE');
-	$ljsPublic.msg.msg_error('登录失败！');
+	$LJSmsg.msg_error('登录失败！');
 	setTimeout(() => {
-		$ljsPublic.msg.msg('当前用户无权限访问，请联系管理员！');
+		$LJSmsg.msg('当前用户无权限访问，请联系管理员！');
 	}, 2000);
-	$ljsPublic.run.gp_reLaunch('/pages/login/index');
+	LJS.LJSrun.gp_reLaunch('/pages/login/index');
 	return;
 }
 

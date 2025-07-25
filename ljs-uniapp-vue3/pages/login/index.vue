@@ -8,16 +8,16 @@
 				<view class="name">用户名：</view>
 				<view class="input">
 					<input v-model="loginForm.username" type="text" />
-					<text @click="!$ljsPublic.base.fieldClean(loginForm, 'username')" class="iconfont icon-guanbi1"
-						v-if="!$ljsPublic.base.fieldCheck(loginForm.username)"></text>
+					<text @click="!$LJSbase.fieldClean(loginForm, 'username')" class="iconfont icon-guanbi1"
+						v-if="!$LJSbase.fieldCheck(loginForm.username)"></text>
 				</view>
 			</view>
 			<view class="one">
 				<view class="name">密&#12288;码：</view>
 				<view class="input">
 					<input v-model="loginForm.password" type="password" password />
-					<text @click="!$ljsPublic.base.fieldClean(loginForm, 'password')" class="iconfont icon-guanbi1"
-						v-if="!$ljsPublic.base.fieldCheck(loginForm.password)"></text>
+					<text @click="!$LJSbase.fieldClean(loginForm, 'password')" class="iconfont icon-guanbi1"
+						v-if="!$LJSbase.fieldCheck(loginForm.password)"></text>
 				</view>
 			</view>
 			<view class="one" v-if="captchaEnabled">

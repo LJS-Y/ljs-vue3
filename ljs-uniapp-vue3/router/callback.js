@@ -1,4 +1,4 @@
-import $ljsPublic from '../uni_modules/ljs-sdk-public/js_sdk/index.js'
+import LJS from '../uni_modules/ljs-sdk-public/js_sdk/index.js'
 import store from '@/store/index';
 import APIcommon from '@/request/common/common';
 import CONFIG from "@/request/config.js";
@@ -7,10 +7,10 @@ import { getMenu } from "@/tools/menu.js"
 uni.$on('routerBeforeEach', (to, from, next) => {
 	// 取vuex
 	let token = store.getters.token;
-	if ($ljsPublic.base.fieldCheck(token)) {
+	if (LJS.LJSbase.fieldCheck(token)) {
 		// 取缓存
 		token = uni.getStorageSync('ljs_uniapp_token');
-		if ($ljsPublic.base.fieldCheck(token)) {
+		if (LJS.LJSbase.fieldCheck(token)) {
 			// token不存在
 			if (to.route !== '/pages/login/index') {
 				next('/pages/login/index');
@@ -24,7 +24,7 @@ uni.$on('routerBeforeEach', (to, from, next) => {
 	const userinfo = store.getters.userinfo;
 	
 	if (
-		!$ljsPublic.base.fieldCheck(token) && $ljsPublic.base.fieldCheck(userinfo)
+		!LJS.LJSbase.fieldCheck(token) && LJS.LJSbase.fieldCheck(userinfo)
 	) {
 		return getUserInfo(next);
 	}
@@ -57,9 +57,9 @@ async function getUserInfo(next) {
 	}
 	uni.clearStorageSync();
 	store.commit('RESET_STORE');
-	$ljsPublic.msg.msg_error('登录失败！');
+	$LJSmsg.msg_error('登录失败！');
 	setTimeout(() => {
-		$ljsPublic.msg.msg('当前用户无权限访问，请联系管理员！');
+		$LJSmsg.msg('当前用户无权限访问，请联系管理员！');
 	}, 2000);
 	return next({
 		path:'/pages/login/index',

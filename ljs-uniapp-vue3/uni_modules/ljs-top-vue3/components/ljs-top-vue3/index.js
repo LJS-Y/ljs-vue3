@@ -118,6 +118,12 @@ export default {
 			},
 			immediate: true,
 		},
+		back: {
+			handler(val) {
+				this.initBack();
+			},
+			deep: true,
+		},
 	},
 	mounted() {
 		this.init()
@@ -165,6 +171,8 @@ export default {
 						success:() => {
 							if (parms !== null) {
 								let pages = getCurrentPages();
+								// $vm适用于选项式
+								// 组合式 小程序可以使用 defineExpose，进行backFunName的使用。H5暂不支持，请使用选项式。
 								pages[pages.length - 1].$vm[this.myback.backFunName](parms) // 给上一页绑定方法gp_navigateBackF,传参数
 							}
 						}
@@ -181,6 +189,8 @@ export default {
 						delta: num,
 						success: () => {
 							if (parms !== null) {
+								// $vm适用于选项式
+								// 组合式 小程序可以使用 defineExpose，进行backFunName的使用。H5暂不支持，请使用选项式。
 								prevPage.$vm[this.myback.backFunName](parms) // 给上一页绑定方法gp_navigateBackF,传参数
 							}
 						},
@@ -205,7 +215,10 @@ export default {
 				}
 			}
 			// #endif
-			this.statusBarHeight = this.getWindowInfo().statusBarHeight
+			this.statusBarHeight = this.getWindowInfo().statusBarHeight;
+			this.initBack();
+		},
+		initBack() {
 			for (let key in this.back) {
 				this.myback[key] = this.back[key];
 			}
@@ -217,6 +230,7 @@ export default {
 				this.myback.imgUrl = this.myback.imgTag !== '000' ? ico_back : ico_back_000;
 			}
 		},
+		
 		getWindowInfo() {
 			return uni.getWindowInfo()
 		},

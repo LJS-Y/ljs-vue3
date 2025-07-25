@@ -8,10 +8,10 @@ import LJSnum from './num'
 export function timeChange(time, replaceKey = ['-', '/']) {
   if (LJSbase.fieldCheck(time) || time.toString().indexOf(replaceKey[0]) === -1) return time
   time = time.replaceAll(replaceKey[0], replaceKey[1])
-	// 2025/06/09 09:30:00.000，IOS设备不支持，去除.000
-	if (time.indexOf('.') > -1) {
-			time = time.split('.')[0]
-	}
+  // 2025/06/09 09:30:00.000，IOS设备不支持，去除.000
+  if (time.indexOf('.') > -1) {
+    time = time.split('.')[0]
+  }
   // 处理只有年月的格式，IOS报错，自动补入默认/01日值
   if (time.lastIndexOf(replaceKey[1]) === 4) {
     time = time + '/01'
@@ -23,7 +23,7 @@ export function timeChange(time, replaceKey = ['-', '/']) {
  * @param {Date} time 时间戳
  * @param {String} pattern 输出格式，{y}-{m}-{d} {h}:{i}:{s}.{MS}
  * @return {String} 返回指定格式的日期。
- * @example this.$ljsPublic.date.formatTime(new Date().getTime(), '{y}-{m}-{d} {h}:{i}:{s}')，返回2021-12-22 09:56:58
+ * @example this.$LJSdate.formatTime(new Date().getTime(), '{y}-{m}-{d} {h}:{i}:{s}')，返回2021-12-22 09:56:58
  */
 export function formatTime(time, pattern) {
   if (LJSbase.fieldCheck(time)) return time
@@ -52,7 +52,7 @@ export function formatTime(time, pattern) {
  * @param {String} pattern 输出格式，{y}-{m}-{d}，只处理年、月、日数据。
  * @param {Number} span 步幅，正数为未来日期，负数为过去日期。默认为0。
  * @return {String} 返回指定格式的指定日期。
- * @example this.$ljsPublic.date.customizedDate(new Date().getTime(), '{y}-{m}-{d}', -1); // 当前日期：2024-03-28，返回：2024-03-27
+ * @example this.$LJSdate.customizedDate(new Date().getTime(), '{y}-{m}-{d}', -1); // 当前日期：2024-03-28，返回：2024-03-27
  */
 export function customizedDate(time, pattern, span = 0) {
   if (LJSbase.fieldCheck(time)) return time
@@ -108,7 +108,7 @@ export function customizedDate(time, pattern, span = 0) {
  * @param {Array} dates [开始日期, 结束日期]
  * @param {Number} tag 1，补时分秒；2，补分秒；3，补秒
  * @returns {Array} 返回一个所需规格的[开始日期, 结束日期]
- * @example this.$ljsPublic.date.dateQjChange(["2020-10-01", "2020-10-07"], 1)，返回["2020-10-01 00:00:00", "2020-10-07 23:59:59"]
+ * @example this.$LJSdate.dateQjChange(["2020-10-01", "2020-10-07"], 1)，返回["2020-10-01 00:00:00", "2020-10-07 23:59:59"]
  * */
 export function dateQjChange(dates, tag = 1) {
   if (dates[0] === '' || dates[0] === null) {
@@ -180,7 +180,7 @@ export function dateQjChange(dates, tag = 1) {
  * @param {Boolean} showAll 默认完整展示
  * @returns {String} 返回3小时15分23秒
  * @example
-const runTime = this.$ljsPublic.date.timeRunDistance({
+const runTime = this.$LJSdate.timeRunDistance({
   time: 3600*1000*24 + 3600*1000*2 + 60*1000*4 + 1000* 21 + 876,
   showAll: false
 })
@@ -240,7 +240,7 @@ export function timeRunDistance({ time = 0, showTag = ['天', '小时', '分钟'
  * @param {number} day 跨度
  * @param {Boolean} time 是否开启时分秒
  * @returns {Array} 返回默认起止日期
- * @example this.$ljsPublic.date.initSearchDate()，返回["2020-10-01", "2020-10-10"]
+ * @example this.$LJSdate.initSearchDate()，返回["2020-10-01", "2020-10-10"]
  * */
 export function initSearchDate(day = 10, time = false) {
   let start = ''
@@ -259,7 +259,7 @@ export function initSearchDate(day = 10, time = false) {
  * @param {String} type 类型：datetime,date,month,year
  * @param {Number} n 年类型的跨度
  * @returns {Array} 返回默认起止日期
- * @example this.$ljsPublic.date.initSearchDateQj()，返回["2020-10-01", "2020-10-10"]
+ * @example this.$LJSdate.initSearchDateQj()，返回["2020-10-01", "2020-10-10"]
  * */
 export function initSearchDateQj(type = 'date', n = 0) {
   const date = new Date()

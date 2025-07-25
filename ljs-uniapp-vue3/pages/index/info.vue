@@ -7,7 +7,7 @@
 			:back="{ show: true }">
 		</ljs-top-vue3>
 		
-		<view @click="$ljsPublic.run.gp_navigateTo('/pages/mine/index')">测试内容页</view>
+		<view @click="$LJSrun.gp_navigateTo('/pages/mine/index')">测试内容页</view>
 	</view>
 </template>
 

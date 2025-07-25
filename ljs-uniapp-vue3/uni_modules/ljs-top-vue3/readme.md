@@ -111,7 +111,7 @@ export default {
 ```js
 // 执行页面的回传数据
 ljs_top_backF(res) {
-	if (!this.$ljsPublic.base.fieldCheck(res) && res.code === 200) {
+	if (!this.$LJSbase.fieldCheck(res) && res.code === 200) {
 		// ....
 	}
 },

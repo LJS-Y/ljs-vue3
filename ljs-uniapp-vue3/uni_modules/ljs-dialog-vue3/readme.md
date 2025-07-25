@@ -19,12 +19,13 @@ width | String | × | 90% | 弹窗宽度。
 borderRadius | Number | × | 20 | 裸露圆角值。
 background | String | × | #FFF | 弹框背景。
 shadeBackground | String | × | rgba(0, 0, 0, .6) | 遮罩背景。
+shadeClose | Boolean | × | true | 点击遮罩是否关闭弹窗。
 tcMaxHeightTag | Boolean | × | true | 是否限制弹窗最大高度。
 tcMaxHeightUseTag | Boolean | × | false | 是否直接按照tcMaxHeightProportion的值设置高度占比。tcMaxHeightTag为true有效。
 tcMaxHeightProportion | Number | × | 0.8 | 限制弹窗最大高度占比，建议不大于1。1为100%。tcMaxHeightTag为true有效。
 closeButShow | Boolean | × | true | 是否显示关闭按钮。headerShow为true时有效。
 closeImg | String | × |  | 关闭按钮图片。
-zIndex | Number | × | 100 | z-index值。
+zIndex | Number, String | × | 100 | z-index值。
  
 ### 方法
 

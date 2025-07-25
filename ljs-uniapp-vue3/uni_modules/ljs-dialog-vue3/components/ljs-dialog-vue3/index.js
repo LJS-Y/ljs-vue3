@@ -30,9 +30,14 @@ export default {
 			type: String,
 			default: 'rgba(0, 0, 0, .6)',
 		},
+		// 点击遮罩是否关闭弹窗
+		shadeClose: {
+			type: Boolean,
+			default: true,
+		},
 		// z-index
 		zIndex: {
-			type: [Number],
+			type: [Number, String],
 			default: 100,
 		},
 		// 是否显示头部区域

@@ -12,7 +12,7 @@
 		</ljs-top-vue3>
 		
 		<view class="comMain" :style="{
-			height: 'calc(100% - 80rpx - '+ $ljsPublic.base.getTopStateHeight() +'px)',
+			height: 'calc(100% - 80rpx - '+ $LJSbase.getTopStateHeight() +'px)',
 		}">
 			<view class="comPage">
 				<view class="menuList">
@@ -71,21 +71,21 @@
 					<view class="label">旧密码：</view>
 					<view class="inputBox">
 						<input v-model="editPassword_form.data.oldPassword" class="input" type="password" placeholder="旧密码">
-						<text @click="!$ljsPublic.base.fieldClean(editPassword_form.data, 'oldPassword')" class="iconfont icon-guanbi1" v-if="!$ljsPublic.base.fieldCheck(editPassword_form.data.oldPassword)"></text>
+						<text @click="!$LJSbase.fieldClean(editPassword_form.data, 'oldPassword')" class="iconfont icon-guanbi1" v-if="!$LJSbase.fieldCheck(editPassword_form.data.oldPassword)"></text>
 					</view>
 				</view>
 				<view class="one">
 					<view class="label">新密码：</view>
 					<view class="inputBox">
 						<input v-model="editPassword_form.data.newPassword" class="input" type="password" placeholder="新密码">
-						<text @click="!$ljsPublic.base.fieldClean(editPassword_form.data, 'newPassword')" class="iconfont icon-guanbi1" v-if="!$ljsPublic.base.fieldCheck(editPassword_form.data.newPassword)"></text>
+						<text @click="!$LJSbase.fieldClean(editPassword_form.data, 'newPassword')" class="iconfont icon-guanbi1" v-if="!$LJSbase.fieldCheck(editPassword_form.data.newPassword)"></text>
 					</view>
 				</view>
 				<view class="one">
 					<view class="label">确认密码：</view>
 					<view class="inputBox">
 						<input v-model="editPassword_form.data.confirmPassword" class="input" type="password" placeholder="确认密码">
-						<text @click="!$ljsPublic.base.fieldClean(editPassword_form.data, 'confirmPassword')" class="iconfont icon-guanbi1" v-if="!$ljsPublic.base.fieldCheck(editPassword_form.data.confirmPassword)"></text>
+						<text @click="!$LJSbase.fieldClean(editPassword_form.data, 'confirmPassword')" class="iconfont icon-guanbi1" v-if="!$LJSbase.fieldCheck(editPassword_form.data.confirmPassword)"></text>
 					</view>
 				</view>
 			</view>

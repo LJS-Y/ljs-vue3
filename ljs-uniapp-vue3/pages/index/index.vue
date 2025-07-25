@@ -10,7 +10,7 @@
 
 		<!-- 为兼容小程序, 减去top, 减去状态栏 -->
 		<view class="comMain" :style="{
-			height: 'calc(100% - 80rpx - '+ $ljsPublic.base.getTopStateHeight() +'px)',
+			height: 'calc(100% - 80rpx - '+ $LJSbase.getTopStateHeight() +'px)',
 		}">
 			<view class="comPage">
 				<view class="comSearch">
@@ -18,8 +18,8 @@
 						<view class="inputBox">
 							<input class="input" v-model="tableSearch.query.powerhouseName" type="text"
 								placeholder="请输入名称">
-							<view v-if="!$ljsPublic.base.fieldCheck(tableSearch.query.powerhouseName)"
-								@click="!$ljsPublic.base.fieldClean(tableSearch.query, 'powerhouseName')"
+							<view v-if="!$LJSbase.fieldCheck(tableSearch.query.powerhouseName)"
+								@click="!$LJSbase.fieldClean(tableSearch.query, 'powerhouseName')"
 								class="close iconfont icon-guanbi1"></view>
 						</view>
 						<view class="submitBut" @click="handleQuery">搜索</view>
@@ -28,7 +28,7 @@
 
 				<view class="list">
 					<view class="listBox">
-						<view class="item" v-for="(item, i) in 10" :key="i" @click="$ljsPublic.run.gp_navigateTo('/pages/index/info')">
+						<view class="item" v-for="(item, i) in 10" :key="i" @click="$LJSrun.gp_navigateTo('/pages/index/info')">
 							<image class="pic" src="../../static/images/logo.png"></image>
 							<view class="info">
 								<view class="name">

@@ -30,15 +30,15 @@ export default {
 	methods: {
 		// 登录接口
 		async login() {
-			if (this.$ljsPublic.base.fieldCheck(this.loginForm.username)) {
-				this.$ljsPublic.msg.msg('请输入用户名');
+			if (this.$LJSbase.fieldCheck(this.loginForm.username)) {
+				this.$LJSmsg.msg('请输入用户名');
 				return;
 			}
-			if (this.$ljsPublic.base.fieldCheck(this.loginForm.password)) {
-				this.$ljsPublic.msg.msg('请输入密码');
+			if (this.$LJSbase.fieldCheck(this.loginForm.password)) {
+				this.$LJSmsg.msg('请输入密码');
 				return;
 			}
-			this.$ljsPublic.msg.loading();
+			this.$LJSmsg.loading();
 			// 记住用户名和密码
 			if (this.rememberPassword) {
 				uni.setStorageSync('ljs_uniapp_rememberPassword', this.rememberPassword);
@@ -60,7 +60,7 @@ export default {
 					// 处理用户头像
 					let avatar = res2.user.avatar;
 					const defaultSrc = '/static/images/common/head.png';
-					avatar = this.$ljsPublic.base.fieldCheck(avatar) ? defaultSrc : this.$CONFIG.base_url + avatar;
+					avatar = this.$LJSbase.fieldCheck(avatar) ? defaultSrc : this.$CONFIG.base_url + avatar;
 					res2.user.avatar = avatar;
 					// 存储用户、模块
 					this.$store.commit('SET_userinfo', res2.user);
@@ -70,14 +70,14 @@ export default {
 					// 默认显示第一个菜单
 					uni.setStorageSync('ljs-bottom-menu-vue3', 0);
 					const url = menus[0].url;
-					this.$ljsPublic.run.gp_reLaunch(url);
-					this.$ljsPublic.msg.loading_close();
+					this.$LJSrun.gp_reLaunch(url);
+					this.$LJSmsg.loading_close();
 					return;
 				}
 			}
 			uni.clearStorageSync();
 			this.$store.commit('RESET_STORE');
-			this.$ljsPublic.msg.loading_close();
+			this.$LJSmsg.loading_close();
 		},
 
 		init() {

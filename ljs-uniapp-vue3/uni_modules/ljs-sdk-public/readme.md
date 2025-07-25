@@ -9,20 +9,25 @@
 ```js
 // 全局注入公共JS-SDK
 import ljsPublic from './uni_modules/ljs-sdk-public/js_sdk/index.js'
-Vue.prototype.$ljsPublic = ljsPublic; // vue2
-app.config.globalProperties.$ljsPublic = ljsPublic; // vue3
+app.use(ljsPublic, options)
 ```
+
+##### options参数
+| 参数  | 类型 | 说明 | 说明 |
+| ----- | :----: | --- | --- |
+| beforeEachTag | Boolean | true | 路由前置守卫是否打开。 |
+
 ### 2.使用
 #### 组合式
 ```js
 // base库
-this.$ljsPublic.base.urlCheck('userId')
+this.$LJSbase.urlCheck('userId')
 ```
 #### 选项式
 ```js
 const { proxy } = getCurrentInstance()
 // base库
-proxy.$ljsPublic.base.urlCheck('userId')
+proxy.$LJSbase.urlCheck('userId')
 ```
 
 # API
@@ -63,9 +68,8 @@ uni.$on('routerBeforeEach', (to, from, next) => {
 npm i crypto-js -S
 ```
 ```js
-import ljsCryptoJs from './uni_modules/ljs-sdk-public/js_sdk/utils/cryptoJs.js'
-Vue.prototype.$ljsCryptoJs = ljsCryptoJs; // vue2
-app.config.globalProperties.$ljsCryptoJs = ljsCryptoJs; // vue3
+import LJSCryptoJs from './uni_modules/ljs-sdk-public/js_sdk/utils/cryptoJs.js'
+app.config.globalProperties.$LJSCryptoJs = LJSCryptoJs; // vue3
 ```
 ### 9.请求封装（request）
 1.main.js配置全局变量$API;
@@ -83,7 +87,8 @@ request/config.js;
 const technical_support = "龙九山"; // 技术支持
 //测试 - 
 export default {
-  base_url: 'http://192.168.1.100:8080', // 接口地址
+	base_url: 'http://192.168.1.100:8080', // 接口地址
+	tokenExpireUrl: '/pages/index/index', // token失效跳转。不配置默认跳转地址为：/pages/login/index
 	technical_support,
 }
 

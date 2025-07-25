@@ -33,10 +33,10 @@ export default {
 	onLoad(options) {
 		// 来自于web-view的分享
 		if (options.source === 'wxWebviewShare') {
-			this.$ljsPublic.run.gp_navigateTo('/pages-other/WebView/WebView', {
+			this.$LJSrun.gp_navigateTo('/pages-other/WebView/WebView', {
 				share: '1',
 				url: options.url,
-				queryStr: this.$ljsPublic.base.fieldCheck(options.queryStr) ? {} : options.queryStr,
+				queryStr: this.$LJSbase.fieldCheck(options.queryStr) ? {} : options.queryStr,
 			})
 		}
 		this.initData();
@@ -51,7 +51,7 @@ export default {
 		// 列表获取更多
 		getListMore() {
 			if (this.tableSearch.queryReal.pageNum * this.tableSearch.queryReal.pageSize < this.table.total) {
-				this.$ljsPublic.msg.loading();
+				this.$LJSmsg.loading();
 				this.tableSearch.queryReal.pageNum++;
 				this.getList();
 			}
@@ -65,7 +65,7 @@ export default {
 			// 	this.table.total = res.total;
 			// }
 			// this.table.loading = false;
-			this.$ljsPublic.msg.loading_close();
+			this.$LJSmsg.loading_close();
 			setTimeout(() => {
 				// 停止下拉刷新动画
 				uni.stopPullDownRefresh();
@@ -73,9 +73,9 @@ export default {
 		},
 		/** 搜索按钮操作 */
 		handleQuery() {
-			this.$ljsPublic.msg.loading();
+			this.$LJSmsg.loading();
 			this.tableSearch.query.pageNum = 1;
-			this.tableSearch.queryReal = this.$ljsPublic.base.deepCopy(this.tableSearch.query);
+			this.tableSearch.queryReal = this.$LJSbase.deepCopy(this.tableSearch.query);
 			delete this.tableSearch.queryReal.defectStatusIndex;
 			this.table.data = [];
 			this.getList();
@@ -94,7 +94,7 @@ export default {
 		},
 		/** 刷新当前所有数据 */
 		async refreshList() {
-			this.$ljsPublic.msg.loading();
+			this.$LJSmsg.loading();
 			this.table.data = [];
 			const nums = this.tableSearch.queryReal.pageNum;
 			for (let i = 1; i <= nums; i++) {

@@ -12,10 +12,10 @@ export default {
 	},
 	onShareAppMessage() {
 		const title = this.$CONFIG.base_url;
-		const urlAndQuery = this.$ljsPublic.url.getUrlAllParameter(this.url)
+		const urlAndQuery = this.$LJSurl.getUrlAllParameter(this.url)
 		let path = `pages/index/index`
-		if (!this.$ljsPublic.base.fieldCheck(urlAndQuery)) {
-			path = `pages/index/index?source=wxWebviewShare&share=${this.$ljsPublic.base.fieldCheck(this.optionsTemp.share) ? 0 : this.optionsTemp.share}&url=${urlAndQuery[0]}&queryStr=${JSON.stringify(urlAndQuery[1])}`
+		if (!this.$LJSbase.fieldCheck(urlAndQuery)) {
+			path = `pages/index/index?source=wxWebviewShare&share=${this.$LJSbase.fieldCheck(this.optionsTemp.share) ? 0 : this.optionsTemp.share}&url=${urlAndQuery[0]}&queryStr=${JSON.stringify(urlAndQuery[1])}`
 		}
 		return {
 			title,

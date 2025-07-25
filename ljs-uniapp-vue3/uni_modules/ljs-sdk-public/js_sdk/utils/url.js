@@ -10,7 +10,7 @@ import BASE from './base'
  * 解析地址中所有的参数值，并返回一个对象
  * @param {String} key key
  * @returns {String} 返回指定key的参数值，如不存在返回null。
- * @example this.$ljsPublic.url.getUrlAllParameter(url)
+ * @example this.$LJSurl.getUrlAllParameter(url)
  */
 export function getUrlAllParameter(url) {
   if (BASE.fieldCheck(url)) {
@@ -36,7 +36,7 @@ export function getUrlAllParameter(url) {
  * @param {String} key key
  * @param {String} url 请求地址
  * @returns {String} 返回指定key的参数值，如不存在返回null。
- * @example this.$ljsPublic.url.getUrlParameter('moduleName');
+ * @example this.$LJSurl.getUrlParameter('moduleName');
  */
 export function getUrlParameter(key, url = location.search) {
   const urlAllParameter = getUrlAllParameter(url)
@@ -55,7 +55,7 @@ export function getUrlParameter(key, url = location.search) {
  * @param {String} str 含有文件类型的名称串
  * @param {Boolean} showDot 是否包含点（如 .pdf）
  * @returns {String} 返回文件类型的字符串。
- * @example this.$ljsPublic.url.getFileType(url);
+ * @example this.$LJSurl.getFileType(url);
  */
 export function getFileType(str, showDot = true) {
   if (BASE.fieldCheck(str)) {
@@ -76,7 +76,7 @@ export function getFileType(str, showDot = true) {
  * @param {String} str 含有文件名称的地址字符串
  * @param {Boolean} showSuffix 是否包含后缀（如 .pdf），默认不包含
  * @returns {String} 返回文件类型的字符串。
- * @example this.$ljsPublic.url.getFileName(url);
+ * @example this.$LJSurl.getFileName(url);
  */
 export function getFileName(str, showSuffix = false) {
   if (BASE.fieldCheck(str)) {
@@ -106,7 +106,7 @@ export function getFileName(str, showSuffix = false) {
  * ipv4校验
  * @param {String} ip document.domain，当前网站的地址
  * @returns {Boolean} 是否为IPV4
- * @example this.$ljsPublic.url.isIPV4ValidIP(document.domain)
+ * @example this.$LJSurl.isIPV4ValidIP(document.domain)
  * */
 export function isIPV4ValidIP(ip) {
   var v4reg =
@@ -118,7 +118,7 @@ export function isIPV4ValidIP(ip) {
  * ipv6校验
  * @param {String} ip document.domain，当前网站的地址
  * @returns {Boolean} 是否为IPV6
- * @example this.$ljsPublic.url.isIPV6ValidIP(document.domain)
+ * @example this.$LJSurl.isIPV6ValidIP(document.domain)
  * */
 export function isIPV6ValidIP(ip) {
   var v6reg =
@@ -130,7 +130,7 @@ export function isIPV6ValidIP(ip) {
  * ip校验
  * @param {String} ip document.domain，当前网站的地址
  * @returns {Boolean} 是否为IP地址
- * @example this.$ljsPublic.url.isIPValid(document.domain);
+ * @example this.$LJSurl.isIPValid(document.domain);
  * */
 export function isIPValid(ip) {
   return isIPV6ValidIP(ip) || isIPV4ValidIP(ip)

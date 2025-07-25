@@ -57,7 +57,6 @@ export default {
 	},
 	created() {
 		const winInfo = uni.getWindowInfo();
-		console.log(winInfo);
 		this.bottomHeight = winInfo.screenHeight - winInfo.windowHeight - winInfo.statusBarHeight;
 	},
 	methods: {
@@ -72,7 +71,7 @@ export default {
 				
 				// 前置路由守卫 - 开始
 				const _pages = getCurrentPages();
-				if (_pages.length > 0) {
+				if (this.$ljsBottomMenuRouter === true && _pages.length > 0) {
 					const _page = [_pages.length - 1];
 					const to = {
 						route: _page[0].route,
@@ -133,22 +132,26 @@ export default {
 				route: url,
 				options: parameter,
 			};
-			uni.$emit('routerBeforeEach', to, from, (nextUrl, nextParameter) => {
-				let next_url = null;
-				if (nextUrl !== undefined) {
-					next_url = this.getUrl(nextUrl, nextParameter);
-				} else {
-					next_url = this.getUrl(url, parameter);
-				}
+			
+			if (this.$ljsBottomMenuRouter === true) {
+				uni.$emit('routerBeforeEach', to, from, (nextUrl, nextParameter) => {
+					let next_url = null;
+					if (nextUrl !== undefined) {
+						next_url = this.getUrl(nextUrl, nextParameter);
+					} else {
+						next_url = this.getUrl(url, parameter);
+					}
+					uni.redirectTo({
+						url: next_url
+					});
+				})
+				return;
+			} else {
+				// 前置路由守卫 - 结束
 				uni.redirectTo({
-					url: next_url
+					url: this.getUrl(url, parameter)
 				});
-			})
-			return;
-			// 前置路由守卫 - 结束
-			uni.redirectTo({
-				url: this.getUrl(url, parameter)
-			});
+			}
 		},
 		setLevel2Show(ljsId, level2Show = false) {
 			this.menuList.forEach((item) => {

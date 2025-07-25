@@ -3,7 +3,7 @@ export default {
 	data() {
 		return {
 			menuList: this.$store.getters.menuList,
-			edition: 'v' + this.$ljsPublic.base.getAppBaseInfo().appVersion,
+			edition: 'v' + this.$LJSbase.getAppBaseInfo().appVersion,
 			email: this.$CONFIG.email,
 			currentSize: 0, // 缓存
 
@@ -57,7 +57,7 @@ export default {
 			uni.setClipboardData({
 				data: val,
 				success: () => {
-					this.$ljsPublic.msg.msg_success("复制成功！");
+					this.$LJSmsg.msg_success("复制成功！");
 				}
 			});
 		},
@@ -69,8 +69,8 @@ export default {
 					if (res.confirm) {
 						uni.clearStorageSync();
 						this.$store.commit('RESET_STORE');
-						this.$ljsPublic.msg.msg("缓存已清除！");
-						this.$ljsPublic.run.gp_reLaunch('/pages/login/index');
+						this.$LJSmsg.msg("缓存已清除！");
+						this.$LJSrun.gp_reLaunch('/pages/login/index');
 					}
 				}
 			});
@@ -116,17 +116,17 @@ export default {
 		},
 		/** 修改密码 - 提交按钮 */
 		editPasswordSubmitForm: function() {
-			if (this.$ljsPublic.base.fieldCheck(this.editPassword_form.data.oldPassword)) {
-				this.$ljsPublic.msg.msg(`请输入旧密码`);
+			if (this.$LJSbase.fieldCheck(this.editPassword_form.data.oldPassword)) {
+				this.$LJSmsg.msg(`请输入旧密码`);
 				return;
 			}
-			if (this.$ljsPublic.base.fieldCheck(this.editPassword_form.data.newPassword)) {
-				this.$ljsPublic.msg.msg(`请输入新密码`);
+			if (this.$LJSbase.fieldCheck(this.editPassword_form.data.newPassword)) {
+				this.$LJSmsg.msg(`请输入新密码`);
 				return;
 			}
-			if (this.$ljsPublic.base.fieldCheck(this.editPassword_form.data.confirmPassword) || this
+			if (this.$LJSbase.fieldCheck(this.editPassword_form.data.confirmPassword) || this
 				.editPassword_form.data.newPassword !== this.editPassword_form.data.confirmPassword) {
-				this.$ljsPublic.msg.msg(`确认密码与新密码不一致，请重新输入`);
+				this.$LJSmsg.msg(`确认密码与新密码不一致，请重新输入`);
 				this.editPassword_form.data.newPassword = '';
 				this.editPassword_form.data.confirmPassword = '';
 				return;
@@ -135,7 +135,7 @@ export default {
 			API.updateUserPwd(this.editPassword_form.data.oldPassword, this.editPassword_form.data.newPassword)
 				.then(res => {
 					if (res.code === 200) {
-						this.$ljsPublic.msg.msg_success(`修改成功`);
+						this.$LJSmsg.msg_success(`修改成功`);
 						this.editPasswordCancel();
 					} else {
 						this.editPasswordReset();
@@ -168,7 +168,7 @@ export default {
 				if (res.code === 200) {
 					this.editHeadpic_tc.title = '修改头像';
 					this.editHeadpic_tc.open = true;
-					if (!this.$ljsPublic.base.fieldCheck(res.data.avatar)) {
+					if (!this.$LJSbase.fieldCheck(res.data.avatar)) {
 						this.editHeadpic_form.data.imgList = [{
 							url: this.$CONFIG.base_url + res.data.avatar
 						}];
@@ -179,22 +179,22 @@ export default {
 		/** 修改头像 - 提交按钮 */
 		editHeadpicSubmitForm: function() {
 			this.editHeadpic_form.butLoading = true;
-			this.$ljsPublic.msg.loading();
+			this.$LJSmsg.loading();
 			API.uploadAvatar(this.editHeadpic_form.data.imgList[0].url).then((res) => {
 				if (res.code === 200) {
 					let avatar = res.imgUrl;
 					const defaultSrc = '/static/images/common/head.png';
-					avatar = this.$ljsPublic.base.fieldCheck(avatar) ? defaultSrc : this.$CONFIG.base_url +
+					avatar = this.$LJSbase.fieldCheck(avatar) ? defaultSrc : this.$CONFIG.base_url +
 						avatar;
 					const userinfo = this.$store.getters.userinfo;
 					userinfo.avatar = avatar;
 					this.$store.commit('SET_userinfo', userinfo);
 
-					this.$ljsPublic.msg.msg_success(`已修改`);
+					this.$LJSmsg.msg_success(`已修改`);
 					this.editHeadpicCancel();
 				}
 				this.editHeadpic_form.butLoading = false;
-				this.$ljsPublic.msg.loading_close();
+				this.$LJSmsg.loading_close();
 			});
 		},
 	},

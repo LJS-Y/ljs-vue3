@@ -1,4 +1,4 @@
-/** 
+/**
  * @module animation
  * @description 动画封装，根据自己的需求自行修改该文件
  *  */
@@ -12,12 +12,14 @@
  * @returns {String} 返回createAnimation
  * @example init()
  * */
-export function init(option = {
-	duration: 500, // 动画持续时间，单位ms
-	timingFunction: 'ease', // 定义动画的效果
-	delay: 0, // 动画延迟时间，单位 ms
-}) {
-	return uni.createAnimation(option)
+export function init(
+  option = {
+    duration: 500, // 动画持续时间，单位ms
+    timingFunction: 'ease', // 定义动画的效果
+    delay: 0, // 动画延迟时间，单位 ms
+  },
+) {
+  return uni.createAnimation(option)
 }
 
 /**
@@ -40,18 +42,17 @@ export default {
 		}
 	},
 	onLoad() {
-		this.animationData = this.$ljsPublic.animation.dh_xzfd(this.animationData);
+		this.animationData = this.$LJSanimation.dh_xzfd(this.animationData);
 	}
 }
  * */
 export function animation1(option) {
-	let animation = init(option);
-	animation.opacity(1).scale(1.5,1.5).rotate(360).step()
-	animation.opacity(0.8).scale(0.8,0.8).rotate(0).step()
-	return animation.export();
+  let animation = init(option)
+  animation.opacity(1).scale(1.5, 1.5).rotate(360).step()
+  animation.opacity(0.8).scale(0.8, 0.8).rotate(0).step()
+  return animation.export()
 }
 
-
 export default {
-	animation1
-};
+  animation1,
+}

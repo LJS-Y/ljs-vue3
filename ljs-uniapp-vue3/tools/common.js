@@ -1,4 +1,4 @@
-import $ljsPublic from '../uni_modules/ljs-sdk-public/js_sdk/index.js'
+import LJS from '../uni_modules/ljs-sdk-public/js_sdk/index.js'
 import APIcommon from '@/request/common/common';
 import CONFIG from "@/request/config.js";
 import store from '@/store/index';
@@ -17,7 +17,7 @@ export function logout() {
 		success: function(res) {
 			if (res.confirm) {
 				store.commit('RESET_STORE');
-				$ljsPublic.run.gp_reLaunch('/pages/login/index');
+				LJS.LJSrun.gp_reLaunch('/pages/login/index');
 			}
 		}
 	});
@@ -65,7 +65,7 @@ export function initShare() {
  * @example this.$com.getFileForId() 
  */
 export function getFileForId(id) {
-	if (!ljsPublic.base.fieldCheck(id)) {
+	if (!LJS.LJSbase.fieldCheck(id)) {
 		return `${CONFIG.base_url}/file/download/${id}?Authorization=${store.getters.token}`
 	}
 	return null
@@ -82,18 +82,18 @@ export function getFileForId(id) {
  */
 export function webView(options) {
 	let url = null
-	if (!$ljsPublic.base.fieldCheck(options.url)) {
+	if (!LJS.LJSbase.fieldCheck(options.url)) {
 		const newUrl = decodeURIComponent(options.url)
-		const queryStr = JSON.parse(decodeURIComponent(!$ljsPublic.base.fieldCheck(options.queryStr) ? options.queryStr : JSON.stringify({})))
+		const queryStr = JSON.parse(decodeURIComponent(!LJS.LJSbase.fieldCheck(options.queryStr) ? options.queryStr : JSON.stringify({})))
 		queryStr.token = store.getters.token
-		const result = $ljsPublic.run.getUrl(newUrl, queryStr)
+		const result = LJS.LJSrun.getUrl(newUrl, queryStr)
 		url = result
-		if (!$ljsPublic.base.fieldCheck(options.share) && options.share === '1') {
+		if (!LJS.LJSbase.fieldCheck(options.share) && options.share === '1') {
 			this.initShare('/pages-other/WebView/WebView?url=' + url)
 		}
 		return url
 	} else {
-		$ljsPublic.run.gp_navigateBack()
+		LJS.LJSrun.gp_navigateBack()
 	}
 	return null
 }
@@ -133,12 +133,12 @@ export function comBannerClick({
 	jumpType,
 	jumpUrl
 }) {
-	if (ljsPublic.base.fieldCheck(jumpType) || ljsPublic.base.fieldCheck(jumpUrl)) {
+	if (LJS.LJSbase.fieldCheck(jumpType) || LJS.LJSbase.fieldCheck(jumpUrl)) {
 		return
 	}
 	// 类型:inner:内部跳转,outer:外部跳转
 	if (jumpType === 'inner') {
-		ljsPublic.run.gp_navigateTo(jumpUrl)
+		LJS.LJSrun.gp_navigateTo(jumpUrl)
 	} else if (jumpType === 'outer') {
 		const obj = {
 			page: '/pages-other/WebView/WebView',
@@ -151,7 +151,7 @@ export function comBannerClick({
 				// }),
 			},
 		}
-		ljsPublic.run.gp_navigateTo(obj.page, !ljsPublic.base.fieldCheck(obj.query) ? obj.query : {})
+		LJS.LJSrun.gp_navigateTo(obj.page, !LJS.LJSbase.fieldCheck(obj.query) ? obj.query : {})
 	}
 }
 

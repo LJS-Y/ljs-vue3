@@ -13,33 +13,18 @@ import toolsCommon from '@/tools/common.js'
 import ljsAPI from '@/request/index.js' // API
 import CONFIG from "@/request/config.js" // 全局配置
 
-// #ifndef VUE3
-import Vue from 'vue'
-import './uni.promisify.adaptor'
-Vue.config.productionTip = false
-App.mpType = 'app'
-
-Vue.prototype.$ljsPublic = ljsPublic;
-Vue.prototype.$base = toolsBase;
-Vue.prototype.$com = toolsCommon;
-Vue.prototype.$API = ljsAPI;
-Vue.prototype.$CONFIG = CONFIG;
-
-const app = new Vue({
-  ...App
-})
-app.use(store);
-// #endif
-
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
 export function createApp() {
 	const app = createSSRApp(App)
-	app.config.globalProperties.$ljsPublic = ljsPublic;
 	app.config.globalProperties.$base = toolsBase;
 	app.config.globalProperties.$com = toolsCommon;
 	app.config.globalProperties.$API = ljsAPI;
 	app.config.globalProperties.$CONFIG = CONFIG;
+	app.config.globalProperties.$ljsBottomMenuRouter = true;
+	app.use(ljsPublic, {
+		beforeEachTag: false
+	});
 	app.use(store);
 	return {
 		app

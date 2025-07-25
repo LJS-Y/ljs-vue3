@@ -53,6 +53,11 @@ uni.$on('routerBeforeEach', (to, from, next) => {
 	// next('/pages/login/index')
 });
 ```
+#### 默认前置守卫不开启
+如需开启，请在main.js配置全局变量，并设置为true
+```
+app.config.globalProperties.$ljsBottomMenuRouter = true;
+```
 
 ##### 参数to/from
 | 参数  | 类型 | 说明 |

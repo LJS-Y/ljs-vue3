@@ -1,6 +1,6 @@
 <template>
   <web-view
-	v-if="!$ljsPublic.base.fieldCheck(url)"
+	v-if="!$LJSbase.fieldCheck(url)"
     :src="url"
     :webview-styles="{
       height: '100vh',
@@ -31,5 +31,5 @@ obj: {
   },
 }
 
-proxy.$ljsPublic.run.gp_navigateTo(obj.page, !proxy.$ljsPublic.base.fieldCheck(obj.query) ? obj.query : {})
+proxy.$LJSrun.gp_navigateTo(obj.page, !proxy.$LJSbase.fieldCheck(obj.query) ? obj.query : {})
 -->

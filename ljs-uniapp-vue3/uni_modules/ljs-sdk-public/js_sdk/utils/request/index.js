@@ -81,11 +81,11 @@ export function ax({url, params = {}, headerParams = {}, methodTag, submitDD = f
 							if (!tokenGq) {
 								MSG.msg("您的访问权限已过期，请重新登录！", 3000);
 								tokenGq = true;
+								store.commit('RESET_STORE');
+								setTimeout(() => {
+									RUN.gp_reLaunch(!BASE.fieldCheck(config.tokenExpireUrl) ? config.tokenExpireUrl : '/pages/login/index');
+								}, 3000)
 							}
-							store.commit('RESET_STORE');
-							setTimeout(() => {
-								RUN.gp_reLaunch('/pages/login/index');
-							}, 3000)
 							return false; // 流数据
 						} else {
 							MSG.msg(!BASE.fieldCheck(msg) ? msg : '未知错误！', 3000);

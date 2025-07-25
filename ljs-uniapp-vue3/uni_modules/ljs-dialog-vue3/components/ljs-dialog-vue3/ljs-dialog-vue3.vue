@@ -2,11 +2,9 @@
 	<view class="ljs-dialog-vue3" v-if="modelValue" :style="{
 			'background-color': shadeBackground,
 			'z-index': zIndex,
-		}" <!-- #ifndef MP-WEIXIN -->
-		@click.self="close"
-		<!-- #endif -->
-		>
-		<view class="ljs-dialog-vue3-box" :style="{
+		}"
+		@click.stop="shadeClose ? close() : () => {}">
+		<view @click.stop class="ljs-dialog-vue3-box" :style="{
 				width,
 				height: tcMaxHeightTag ? box_h : 'auto',
 				position: tcMaxHeightTag ? 'absolute' : 'relative',
