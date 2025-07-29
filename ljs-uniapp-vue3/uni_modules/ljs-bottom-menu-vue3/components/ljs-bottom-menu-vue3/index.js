@@ -2,16 +2,19 @@ export default {
 	name: 'LjsBottomMenu',
 	data() {
 		return {
-			bottomHeight: 0,
+			bottomSafeHeight: 0, // 底部安全距离
 			menuList: [],
 			// 当前选中第几个菜单
 			butTag: 0,
 			useOpts: {
+				height: 120, // 菜单高度
 				fontColor: '#333', // 字体颜色
 				fontActiveColor: '#5c70fe', // 选中字体颜色
 				fontSize: '20rpx', // 字体大小
 				menuBgColor: '#FFF', // 菜单背景颜色
 				menuShadowColor: 'rgb(0, 0, 0, .2)', // 菜单上边沿颜色
+				specialButtonWidth: 80, // 特殊菜单宽度
+				specialButtonHeight: 80, // 特殊菜单高度
 			},
 			level2Show: false, // 是否展示二级菜单。
 		}
@@ -57,7 +60,8 @@ export default {
 	},
 	created() {
 		const winInfo = uni.getWindowInfo();
-		this.bottomHeight = winInfo.screenHeight - winInfo.windowHeight - winInfo.statusBarHeight;
+		// 底部安全距离
+		this.bottomSafeHeight = winInfo.screenHeight - winInfo.safeArea.bottom;
 	},
 	methods: {
 		// 跳转

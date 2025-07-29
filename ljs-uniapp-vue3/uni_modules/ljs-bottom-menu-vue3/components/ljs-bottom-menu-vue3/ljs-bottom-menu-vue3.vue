@@ -1,6 +1,7 @@
 <template>
 	<view class="ljs-bottom-menu-vue3" v-show="menuList.length > 0"
 		:style="{
+			height: `calc(${useOpts.height}rpx + ${bottomSafeHeight}px)`,
 			'background-color': useOpts.menuBgColor,
 			'box-shadow': '0 0 6rpx 6rpx ' + useOpts.menuShadowColor,
 			'z-index': zIndex,
@@ -16,6 +17,8 @@
 				}">
 				<view class="ljs-bottom-menu-vue3-specialButton-box"
 					:style="{
+						width: `${useOpts.specialButtonWidth}rpx`,
+						height: `${useOpts.specialButtonHeight}rpx`,
 						'background-color': useOpts.fontActiveColor,
 					}">
 					<image class="ljs-bottom-menu-vue3-specialButton-icon" :src="item.icon"></image>
@@ -28,7 +31,8 @@
 				@click="goPage(i, item)"
 				:style="{
 					width: `calc(100% / ${menuList.length})`,
-					color: useOpts.fontColor
+					color: useOpts.fontColor,
+					'padding-bottom': `${bottomSafeHeight}px`,
 				}">
 				<image class="ljs-bottom-menu-vue3-one-icon" :src="butTag === i ? item.iconActive : item.icon"></image>
 				<view class="ljs-bottom-menu-vue3-one-text"

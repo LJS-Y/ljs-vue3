@@ -1,6 +1,5 @@
 .ljs-bottom-menu-vue3{
 	width: 100%;
-	height: calc(138upx + var(--window-bottom));
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -9,12 +8,13 @@
 		height: 100%;
 		float: left;
 		text-align: center;
-		padding-top: 18upx;
 		position: relative;
 		z-index: 2;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
 		&.ljs-bottom-menu-vue3-specialButton{
 			display: block;
 			padding-top: 0;
