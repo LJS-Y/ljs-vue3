@@ -166,13 +166,13 @@ export default {
 			this.editHeadpicReset();
 			API.getUserProfile().then((res) => {
 				if (res.code === 200) {
-					this.editHeadpic_tc.title = '修改头像';
-					this.editHeadpic_tc.open = true;
 					if (!this.$LJSbase.fieldCheck(res.data.avatar)) {
 						this.editHeadpic_form.data.imgList = [{
 							url: this.$CONFIG.base_url + res.data.avatar
 						}];
 					}
+					this.editHeadpic_tc.title = '修改头像';
+					this.editHeadpic_tc.open = true;
 				}
 			});
 		},

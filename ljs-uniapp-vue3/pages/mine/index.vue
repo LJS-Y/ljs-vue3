@@ -65,7 +65,7 @@
 		</ljs-bottom-menu-vue3>
 		
 		<!-- 修改密码 -->
-		<ljs-dialog-vue3 :title="editPassword_tc.title" v-model="editPassword_tc.open" class="comTc">
+		<ljs-dialog-vue3 :title="editPassword_tc.title" v-model="editPassword_tc.open" class="comTc" zIndex="1000">
 			<view class="comForm">
 				<view class="one">
 					<view class="label">旧密码：</view>
@@ -96,7 +96,7 @@
 		</ljs-dialog-vue3>
 		
 		<!-- 修改头像 -->
-		<ljs-dialog-vue3 :title="editHeadpic_tc.title" v-model="editHeadpic_tc.open" class="comTc">
+		<ljs-dialog-vue3 :title="editHeadpic_tc.title" v-model="editHeadpic_tc.open" class="comTc" zIndex="1000">
 			<view class="comForm">
 				<view class="one">
 					<view class="label">头像：</view>

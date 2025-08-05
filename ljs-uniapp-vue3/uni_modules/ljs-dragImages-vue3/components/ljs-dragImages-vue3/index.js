@@ -121,6 +121,7 @@ export default {
         }
       },
       deep: true,
+	  immediate: true,
     },
     moveBoxW: {
       handler(n) {
@@ -139,9 +140,11 @@ export default {
   methods: {
     initData() {
       this.modelValue.forEach((item) => {
+		const url = item.url;
+		const name = !this.fieldCheck(item.name) ? item.name : this.getFileName(item.url, true);
         this.dataList.push({
-          name: item.name,
-          url: item.url,
+          name,
+          url,
           x: 0,
           y: 0,
           oldx: 0,
@@ -437,6 +440,12 @@ export default {
 	      return str.slice(lastIndex, str.length)
 	    }
 	  }
-	}
+	},
+	fieldCheck(field) {
+	  if (field === undefined || field === null || field === '') {
+	    return true
+	  }
+	  return false
+	},
   },
 }
