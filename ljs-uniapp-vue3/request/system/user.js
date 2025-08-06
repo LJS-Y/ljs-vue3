@@ -1,4 +1,4 @@
-import { get, put, post, uploadFile } from '@/uni_modules/ljs-sdk-public/js_sdk/utils/request/index.js';
+import { get, put, post, uploadFile } from '@/uni_modules/ljs-sdk/js_sdk/utils/request/index.js';
 
 const api = {
   // 用户密码重置

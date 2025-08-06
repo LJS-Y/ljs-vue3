@@ -1,4 +1,4 @@
-import { login, get, post, uploadFile } from '@/uni_modules/ljs-sdk-public/js_sdk/utils/request/index.js';
+import { login, get, post, uploadFile } from '@/uni_modules/ljs-sdk/js_sdk/utils/request/index.js';
 
 const api = {
   // 登录

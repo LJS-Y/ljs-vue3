@@ -7,7 +7,7 @@ import "@/assets/css/base.scss";
 import "@/assets/fonts/iconfont.css";
 
 // 全局注入公共JS-SDK
-import ljsPublic from './uni_modules/ljs-sdk-public/js_sdk/index.js'
+import ljsSDK from './uni_modules/ljs-sdk/js_sdk/index.js'
 import toolsBase from '@/tools/base.js'
 import toolsCommon from '@/tools/common.js'
 import ljsAPI from '@/request/index.js' // API
@@ -22,9 +22,7 @@ export function createApp() {
 	app.config.globalProperties.$API = ljsAPI;
 	app.config.globalProperties.$CONFIG = CONFIG;
 	app.config.globalProperties.$ljsBottomMenuRouter = true;
-	app.use(ljsPublic, {
-		beforeEachTag: false
-	});
+	app.use(ljsSDK);
 	app.use(store);
 	return {
 		app
