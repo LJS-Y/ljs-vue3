@@ -90,11 +90,25 @@ export function longNumText({
       result = sign * num
 	  dwIndex = 0
     } else if (num >= 10000 && num < 10000 * 10000) {
-      result = sign * (num / 10000 + limit_min_num).toFixed(ws)
-	  dwIndex = 1
+	  let tempResult = num / 10000 + limit_min_num
+      tempResult = Number((tempResult).toFixed(ws));
+	  if (tempResult < 10000) {
+		result = sign * tempResult
+		dwIndex = 1
+	  } else {
+		result = sign * tempResult / 10000
+		dwIndex = 2
+	  }
     } else if (num >= 10000 * 10000 && num < 10000 * 10000 * 10000) {
-      result = sign * (num / (10000 * 10000) + limit_min_num).toFixed(ws)
-	  dwIndex = 2
+	  let tempResult = num / (10000 * 10000) + limit_min_num
+	  tempResult = Number((tempResult).toFixed(ws));
+	  if (tempResult < 10000) {
+		result = sign * tempResult
+		dwIndex = 2
+	  } else {
+		result = sign * tempResult / 10000
+		dwIndex = 3
+	  }
     } else if (num >= 10000 * 10000 * 10000) {
       result = sign * (num / (10000 * 10000 * 10000) + limit_min_num).toFixed(ws)
 	  dwIndex = 3

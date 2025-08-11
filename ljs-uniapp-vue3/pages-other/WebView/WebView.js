@@ -11,7 +11,8 @@ export default {
 		this.url = webView(options);
 	},
 	onShareAppMessage() {
-		const title = this.$CONFIG.base_url;
+		const title = !this.$LJSbase.fieldCheck(this.optionsTemp.shareText) ? this.optionsTemp.shareText : this.$CONFIG.base_url;
+		const imageUrl = !this.$LJSbase.fieldCheck(this.optionsTemp.shareImg) ? idForFile(this.optionsTemp.shareImg) : null
 		const urlAndQuery = this.$LJSurl.getUrlAllParameter(this.url)
 		let path = `pages/index/index`
 		if (!this.$LJSbase.fieldCheck(urlAndQuery)) {
@@ -19,6 +20,7 @@ export default {
 		}
 		return {
 			title,
+			imageUrl,
 			path,
 		}
 	},

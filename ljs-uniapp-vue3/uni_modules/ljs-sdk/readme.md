@@ -8,7 +8,7 @@
 ### 1.全局注入
 ```js
 // 全局注入公共JS-SDK
-import ljsSDK from './uni_modules/ljs-sdk/js_sdk/index.js'
+import ljsSDK from '@/uni_modules/ljs-sdk/js_sdk/index.js'
 app.use(ljsSDK, options)
 ```
 
@@ -68,7 +68,7 @@ uni.$on('routerBeforeEach', (to, from, next) => {
 npm i crypto-js -S
 ```
 ```js
-import LJSCryptoJs from './uni_modules/ljs-sdk/js_sdk/utils/cryptoJs.js'
+import LJSCryptoJs from '@/uni_modules/ljs-sdk/js_sdk/utils/cryptoJs.js'
 app.config.globalProperties.$LJSCryptoJs = LJSCryptoJs; // vue3
 ```
 ### 9.请求封装（request）
@@ -105,7 +105,7 @@ export default {
 ```
 3.根目录创建文件request/module/common.js;
 ```
-import { get, post } from '@/uni_modules/ljs-sdk/js_sdk/utils/request/index.js';
+import { get, post, put, del, uploadFile, uploadFiles, login } from '@/uni_modules/ljs-sdk/js_sdk/utils/request/index.js';
 
 const api = {
   // 登录
@@ -136,21 +136,25 @@ this.$store.commit('SET_token', res1.token);
 
 参数  | 类型| 解释
 ---- | ----- | :------ 
-login(url, params = {}) | Function | 独立，只在登录使用，绕过header["Authorization"] 
-get(url, params = {}, timeout, isInternalRequest, responseInterceptor, headerParams) | Function | GET
-post(url, params = {}, submitDD, timeout, isInternalRequest, responseInterceptor) | Function | POST
-put(url, params = {}, submitDD, timeout, isInternalRequest, responseInterceptor) | Function  | PUT
-del(url, params = {}, submitDD, isInternalRequest, responseInterceptor) | Function | DELETE
+get(url, params, timeout, isInternalRequest, responseInterceptor, headerParams) | Function | GET
+post(url, params, submitDD, timeout, isInternalRequest, responseInterceptor) | Function | POST
+put(url, params, submitDD, timeout, isInternalRequest, responseInterceptor) | Function  | PUT
+del(url, params, submitDD, isInternalRequest, responseInterceptor) | Function | DELETE
+login(url, params) | Function | POST。独立，只在登录使用，绕过header["Authorization"] 
 uploadFile(url, name, filePath, timeout) | Function | 
+uploadFiles(url, name, files, params, timeout) | Function | 
+other(url, params, headerParams, methodTag, method, submitDD, timeout, isInternalRequest, responseInterceptor) | Function | 根据methodTag, method两个参数搭配组合。
 
 ### request方法参数
 参数  | 类型| 必填项 | 默认值 | 说明
 ---- | ----- | ----- | ----- | :------ 
 url | string | √ |  | 接口地址 
 params | Object | × | {} | 参数的对象 
+headerParams | Object | × | {} | headerParams，额外的header参数。 
+methodTag | string | × | GET | 请求方式标记，用来区分不同需要的请求处理；LOGIN：登录请求，OTHER：其他请求，不向header中增加token；GET、POST、DELETE、PUT直接应用于请求的类型，此时method无效。
+method | string | × | POST | methodTag为LOGIN或OTHER时可用；
 submitDD | Boolean | × | false | 防抖动，是否需要开启 
-timeout | Number | × | 10000 | 超时时间，默认6000毫秒 
-headerParams | Object | × | | headerParams，额外的header参数。
+timeout | Number | × | 60000 | 超时时间，单位毫秒 
 isInternalRequest | Boolean | × | true | 是否为内部请求。外部请求通常为http://****\/接口名称
 responseInterceptor | Boolean | × | true | 是否进入公共response拦截器处理数据，默认为true。
  

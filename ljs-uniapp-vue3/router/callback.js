@@ -1,4 +1,4 @@
-import LJS from '../uni_modules/ljs-sdk/js_sdk/index.js'
+import LJS from '@/uni_modules/ljs-sdk/js_sdk/index.js'
 import store from '@/store/index';
 import APIcommon from '@/request/common/common';
 import CONFIG from "@/request/config.js";

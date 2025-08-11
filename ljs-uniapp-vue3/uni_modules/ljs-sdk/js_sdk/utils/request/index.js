@@ -15,13 +15,24 @@ let tokenGq = false; // token是否过期
  * @param {string} url 接口地址
  * @param {Object} params 参数的对象
  * @param {Object} headerParams headerParams，额外的header参数。
- * @param {string} methodTag 标记，用来区分不同需要的请求处理；LOGIN：登录请求，需要增加header头内容；
+ * @param {string} methodTag 请求方式标记，用来区分不同需要的请求处理；LOGIN：登录请求，OTHER：其他请求，不向header中增加token；
+ * @param {string} method methodTag为LOGIN或OTHER时可用；
  * @param {Boolean} submitDD 防抖动，是否需要开启
  * @param {Number} timeout 超时时间，默认6秒
  * @param {Boolean} isInternalRequest 是否为内部请求，默认为true。外部请求通常为http://****\/接口名称
  * @param {Boolean} responseInterceptor 是否进入公共response拦截器处理数据，默认为true。
  * */
-export function ax({url, params = {}, headerParams = {}, methodTag, submitDD = false, timeout = 60000, isInternalRequest = true, responseInterceptor = true}) {
+export function ax({
+	url,
+	params = {},
+	headerParams = {},
+	methodTag = 'GET',
+	method = 'POST',
+	submitDD = false,
+	timeout = 60000,
+	isInternalRequest = true,
+	responseInterceptor = true
+}) {
 	
 	// 防抖动：开启
 	if(submitDD){
@@ -46,7 +57,7 @@ export function ax({url, params = {}, headerParams = {}, methodTag, submitDD = f
 		'Content-Type': 'application/json;charset=UTF-8'
 	};
 	// methodTag:LOGIN
-	if(methodTag !== "LOGIN" && !BASE.fieldCheck(token)){
+	if(methodTag !== "LOGIN" && methodTag !== "OTHER" && !BASE.fieldCheck(token)){
 		header["Authorization"] = token;
 	}
 	
@@ -65,7 +76,7 @@ export function ax({url, params = {}, headerParams = {}, methodTag, submitDD = f
 		uni.request({
 			url: isInternalRequest ? config.base_url + url : url,
 			data: params,
-			method: methodTag === 'LOGIN' ? 'POST' : methodTag,
+			method: (methodTag === 'LOGIN' || methodTag === 'OTHER') ? method : methodTag,
 			header: header,
 			timeout: timeout,
 			success: (response) => {
@@ -239,6 +250,42 @@ export function login(url, params = {}) {
 	return ax({url, params, methodTag: "LOGIN", submitDD: true});
 }
 
+/**
+ * 其他 - 该方式可以自定义配置请求。
+ * @param {string} url 接口地址
+ * @param {Object} params 参数的对象
+ * @param {Object} headerParams headerParams，额外的header参数。
+ * @param {string} methodTag 请求方式标记，用来区分不同需要的请求处理；LOGIN：登录请求，OTHER：其他请求，不向header中增加token；
+ * @param {string} method methodTag为LOGIN或OTHER时可用；
+ * @param {Boolean} submitDD 防抖动，是否需要开启
+ * @param {Number} timeout 超时时间，默认6秒
+ * @param {Boolean} isInternalRequest 是否为内部请求，默认为true。外部请求通常为http://****\/接口名称
+ * @param {Boolean} responseInterceptor 是否进入公共response拦截器处理数据，默认为true。
+ * */
+export function other({
+	url,
+	params = {},
+	headerParams = {},
+	methodTag = 'GET',
+	method = 'POST',
+	submitDD = false,
+	timeout = 60000,
+	isInternalRequest = true,
+	responseInterceptor = true
+}) {
+	return ax({
+		url,
+		params,
+		headerParams,
+		methodTag,
+		method,
+		submitDD,
+		timeout,
+		isInternalRequest,
+		responseInterceptor
+	});
+}
+
 export default {
 	get,
 	post,
@@ -247,4 +294,5 @@ export default {
 	uploadFile,
 	uploadFiles,
 	login,
+	other,
 }

@@ -24,6 +24,8 @@ obj: {
   query: {
     share: '0',
     url: 'http://192.168.3.61:9900/ai/index',
+	shareText: '', // 自定义分享的标题
+	shareImg: '', // 自定义分享的图片
     queryStr: JSON.stringify({
       // token: userInfo.token, // token不需要额外添加
       id: 1

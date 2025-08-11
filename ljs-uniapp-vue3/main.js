@@ -7,7 +7,7 @@ import "@/assets/css/base.scss";
 import "@/assets/fonts/iconfont.css";
 
 // 全局注入公共JS-SDK
-import ljsSDK from './uni_modules/ljs-sdk/js_sdk/index.js'
+import ljsSDK from '@/uni_modules/ljs-sdk/js_sdk/index.js'
 import toolsBase from '@/tools/base.js'
 import toolsCommon from '@/tools/common.js'
 import ljsAPI from '@/request/index.js' // API
