@@ -5,13 +5,26 @@
 提供一套常用的实战性JS-JDK，提高开发效率。
 
 # 使用方法
-### 1.全局注入
+### 1.注入
+#### 全局注入
 ```js
 // 全局注入公共JS-SDK
 import ljsSDK from '@/uni_modules/ljs-sdk/js_sdk/index.js'
 app.use(ljsSDK, options)
 ```
-
+#### 局部注入
+```js
+import {
+	LJSbase,
+	LJSdate,
+	LJSnum,
+	LJSfc,
+	LJSmsg,
+	LJSrun,
+	LJSanimation,
+	LJSprivacy,
+} from '@/uni_modules/ljs-sdk/js_sdk/index.js'
+```
 ##### options参数
 | 参数  | 类型 | 说明 | 说明 |
 | ----- | :----: | --- | --- |

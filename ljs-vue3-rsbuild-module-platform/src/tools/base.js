@@ -87,6 +87,19 @@ export function picError({form, key = 'src', img = $em.errorImage_def}) {
 }
 
 /**
+ * 时间控制器
+ * @param time 需要控制的时间长度，毫秒。
+ * @example this.$base.timeControl(); // 配置blue为默认
+ */
+export function timeControl(time = 300) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      resolve(true)
+    }, time)
+  })
+}
+
+/**
   *  模块点击
   *  @param {object} obj 模块对象
   *  @example this.$base.itemClick(item, 'imgPath')
@@ -165,6 +178,7 @@ export default {
   checkWindowRatio,
   initSkin,
   picError,
+  timeControl,
   itemClick,
 };
 

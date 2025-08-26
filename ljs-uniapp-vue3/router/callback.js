@@ -1,4 +1,4 @@
-import LJS from '@/uni_modules/ljs-sdk/js_sdk/index.js'
+import { LJSbase } from '@/uni_modules/ljs-sdk/js_sdk/index.js'
 import store from '@/store/index';
 import APIcommon from '@/request/common/common';
 import CONFIG from "@/request/config.js";
@@ -7,10 +7,10 @@ import { getMenu } from "@/tools/menu.js"
 uni.$on('routerBeforeEach', (to, from, next) => {
 	// 取vuex
 	let token = store.getters.token;
-	if (LJS.LJSbase.fieldCheck(token)) {
+	if (LJSbase.fieldCheck(token)) {
 		// 取缓存
 		token = uni.getStorageSync('ljs_uniapp_token');
-		if (LJS.LJSbase.fieldCheck(token)) {
+		if (LJSbase.fieldCheck(token)) {
 			// token不存在
 			if (to.route !== '/pages/login/index') {
 				next('/pages/login/index');
@@ -24,7 +24,7 @@ uni.$on('routerBeforeEach', (to, from, next) => {
 	const userinfo = store.getters.userinfo;
 	
 	if (
-		!LJS.LJSbase.fieldCheck(token) && LJS.LJSbase.fieldCheck(userinfo)
+		!LJSbase.fieldCheck(token) && LJSbase.fieldCheck(userinfo)
 	) {
 		return getUserInfo(next);
 	}

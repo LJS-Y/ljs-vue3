@@ -1,7 +1,7 @@
 {
 	"id": "ljs-sdk",
 	"displayName": "ljs-sdk，vue3版，提供一套常用的实战性JS-JDK，提高开发效率。",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "ljs-sdk，vue3版，提供一套常用的实战性JS-JDK，提高开发效率。",
 	"keywords": [
         "sdk",

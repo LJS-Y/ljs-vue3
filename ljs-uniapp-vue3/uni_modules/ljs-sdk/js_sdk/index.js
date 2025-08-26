@@ -53,16 +53,18 @@ const globals = {
       }
     })
   },
-  // 局部引入时使用
-  // 方法
-  LJSbase,
-  LJSdate,
-  LJSnum,
-  LJSfc,
-  LJSmsg,
-  LJSrun,
-  LJSanimation,
-  LJSprivacy,
 }
 
 export default globals
+export {
+	// 局部引入时使用
+	// 方法
+	LJSbase,
+	LJSdate,
+	LJSnum,
+	LJSfc,
+	LJSmsg,
+	LJSrun,
+	LJSanimation,
+	LJSprivacy,
+}

@@ -27,6 +27,6 @@ export default {
 		state.menuList = [];
 		state.permissions = [];
 		state.roles = [];
-		uni.removeStorageSync('ljs_uniapp_token');
+		uni.clearStorageSync();
 	},
 };

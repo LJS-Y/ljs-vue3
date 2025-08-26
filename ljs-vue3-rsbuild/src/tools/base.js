@@ -85,10 +85,24 @@ export function picError({form, key = 'src', img = $em.errorImage_def}) {
   form[key] = img;
 }
 
+/**
+ * 时间控制器
+ * @param time 需要控制的时间长度，毫秒。
+ * @example this.$base.timeControl(); // 配置blue为默认
+ */
+export function timeControl(time = 300) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      resolve(true)
+    }, time)
+  })
+}
+
 export default {
   screenListen,
   checkWindowRatio,
   initSkin,
   picError,
+  timeControl,
 };
 

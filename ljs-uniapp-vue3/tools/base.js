@@ -1,4 +1,4 @@
-import LJS from '@/uni_modules/ljs-sdk/js_sdk/index.js'
+import { LJSbase, LJSrun } from '@/uni_modules/ljs-sdk/js_sdk/index.js'
 import APIcommon from '@/request/common/common';
 import CONFIG from "@/request/config.js";
 import store from '@/store/index';
@@ -46,13 +46,13 @@ export function wxUpdate() {
  *  @example this.$base.androidCheckApp()
  * */
 export function androidCheckApp() {
-	// this.LJS.LJSbase.getAppBaseInfo().appVersion
+	// this.LJSbase.getAppBaseInfo().appVersion
 	const edition = uni.getStorageSync('ljs-app-edition');
-	if (LJS.LJSbase.fieldCheck(edition)) {
-		uni.setStorageSync('ljs-app-edition', LJS.LJSbase.getAppBaseInfo().appVersion);
+	if (LJSbase.fieldCheck(edition)) {
+		uni.setStorageSync('ljs-app-edition', LJSbase.getAppBaseInfo().appVersion);
 	} else {
 		// 检查是否需要重启应用的条件
-		if (edition !== LJS.LJSbase.getAppBaseInfo().appVersion) {
+		if (edition !== LJSbase.getAppBaseInfo().appVersion) {
 			// 通过plus对象重启应用
 			if (uni.getSystemInfoSync().platform === 'android') {
 				uni.removeStorageSync('ljs-app-edition');
@@ -69,11 +69,11 @@ export function androidCheckApp() {
 export function listenRefresh(_this) {
 	// 取vuex
 	let token = store.getters.token;
-	if (LJS.LJSbase.fieldCheck(token)) {
+	if (LJSbase.fieldCheck(token)) {
 		// 取缓存
 		token = uni.getStorageSync('ljs_uniapp_token');
-		if (LJS.LJSbase.fieldCheck(token)) {
-			LJS.LJSrun.gp_reLaunch('/pages/login/index');
+		if (LJSbase.fieldCheck(token)) {
+			LJSrun.gp_reLaunch('/pages/login/index');
 			return;
 		} else {
 			store.commit('SET_token', token);
@@ -84,7 +84,7 @@ export function listenRefresh(_this) {
 	const userinfo = store.getters.userinfo;
 
 	if (
-		!LJS.LJSbase.fieldCheck(token) && LJS.LJSbase.fieldCheck(userinfo)
+		!LJSbase.fieldCheck(token) && LJSbase.fieldCheck(userinfo)
 	) {
 		getUserInfo();
 	}
@@ -113,7 +113,7 @@ async function getUserInfo() {
 	setTimeout(() => {
 		$LJSmsg.msg('当前用户无权限访问，请联系管理员！');
 	}, 2000);
-	LJS.LJSrun.gp_reLaunch('/pages/login/index');
+	LJSrun.gp_reLaunch('/pages/login/index');
 	return;
 }
 
