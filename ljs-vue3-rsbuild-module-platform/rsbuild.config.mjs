@@ -45,6 +45,11 @@ export default defineConfig(() => {
         media: 1024 * 10,
       }
     },
+    output: {
+      distPath: {
+        root: 'dist'
+      }
+    },
     tools: {
       rspack: {
         plugins: [
