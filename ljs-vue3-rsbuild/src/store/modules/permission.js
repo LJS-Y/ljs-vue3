@@ -206,7 +206,8 @@ export function menuListChange(list, level, routerPath = '', menuId = 0) {
 
 // 超管以外用户不可见菜单
 export function notAdminMenu(res) {
-  const notShows = ['cacheList'];
+  // 默认所有用户不可见/monitor，如果业务需要可清除notShows内容，通过权限控制。
+  const notShows = ['/monitor'];
   if (!res.data) {
     return;
   }

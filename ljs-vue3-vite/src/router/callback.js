@@ -102,19 +102,19 @@ async function getUserInfo(next) {
   return next();
 }
 
-// 地址是否存在于动态路由中
+// 地址是否存在于路由中
 function determine404(path) {
   const routerList = store.getters.routerList;
   const nowList = router.getRoutes();
-  const newList = [];
-  nowList.forEach((item) => {
-    newList.push({
-      mate: item.mate,
-      name: item.name,
-      path: item.path
-    });
-  });
-  const allRouters = newList.concat(routerList);
+  
+  let allRouters = [];
+  if (routerList.length === 0) {
+    allRouters = nowList;
+  } else {
+    allRouters = routerList;
+  }
+  
+  // console.log(allRouters);
   const nums = allRouters.length;
   for (let i = 0; i < nums; i++) {
     if (allRouters[i].path === path) {

@@ -107,7 +107,7 @@ export default {
       if (this.fileSize) {
         const isLt = file.size / 1024 / 1024 < this.fileSize;
         if (!isLt) {
-          this.$modal.msgError(`文件“${fileName}”的大小不能超过 ${this.fileSize} MB!`);
+          this.$modal.msgError(`文件“${fileName}”的大小不能超过 ${this.fileSize >= 1 ? `${this.fileSize}MB` : `${this.fileSize * 1024}KB`}!`);
           this.$modal.closeLoading();
           return false;
         }

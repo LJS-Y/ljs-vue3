@@ -22,10 +22,12 @@
     <!-- 上传提示 -->
     <div class="el-upload__tip" v-if="showTip">
       请上传
-      <template v-if="fileSize"> 大小不超过 <b style="color: #f56c6c">{{ fileSize }}MB</b> </template>
+      <template v-if="fileSize"> 大小不超过 <b style="color: #f56c6c">{{ fileSize >= 1 ? `${fileSize}MB` : `${fileSize * 1024}KB` }}</b> </template>
       <template v-if="fileType"> 格式为 <b style="color: #f56c6c">{{ fileType.join("/") }}</b> </template>
       的文件
     </div>
+    <!-- 更多提示信息的插槽 -->
+    <slot name="suggestion"></slot>
 
     <el-dialog
       v-model="dialogVisible"
