@@ -52,8 +52,11 @@ export function visibilitychangeListen () {
     }
 
     LJSEl.delMessageBox({
+      type: 'success',
       title: '系统提示',
-      message: `检测到系统有新版本发布，是否立即刷新页面？`,
+      message: `检测到系统有新版本发布，是否立即更新？`,
+      confirmButtonText: '现在更新',
+      draggable: true,
       doSomething: () => {
         location.reload();
       }
