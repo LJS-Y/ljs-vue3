@@ -7,8 +7,11 @@ import { pluginSvgSpriteLoader } from "rsbuild-plugin-svg-sprite-loader";
 import AutoImport from 'unplugin-auto-import/rspack';
 import AutoComponents from 'unplugin-vue-components/rspack';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import { DefinePlugin } from '@rspack/core';
+import { getBuildTime } from './src/tools/build';
 
 export default defineConfig(() => {
+  const buildTime = getBuildTime();
   return {
     plugins: [
       pluginVue(),
@@ -19,6 +22,9 @@ export default defineConfig(() => {
       }),
     ],
     source: {
+      define: {
+        BUILD_TIME: JSON.stringify(buildTime)
+      },
       // Specify the entry file
       entry: {
         index: './src/index.js',
@@ -79,6 +85,10 @@ export default defineConfig(() => {
                 importStyle: 'scss',
               }),
             ],
+          }),
+          new DefinePlugin({
+            // 格式：'变量名' : JSON.stringify(变量值)
+            '__BUILD_TIME__': JSON.stringify(buildTime),
           }),
         ],
       },

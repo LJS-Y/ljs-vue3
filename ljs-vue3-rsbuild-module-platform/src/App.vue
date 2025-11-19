@@ -32,6 +32,7 @@ export default {
   mounted() {
   },
   created() {
+    this.$base.visibilitychangeListen();
     this.$base.screenListen();
     this.$LJSbase.setRemUnit();
     this.init();

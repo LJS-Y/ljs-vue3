@@ -4,7 +4,7 @@
  *  */
 import store from '@/store/index.js';
 import $em from '@/tools/errorImages.js';
-import { LJSbase, LJSsession, LJSmenu } from 'ljs-tools';
+import { LJSbase, LJSsession, LJSmenu, LJSEl } from 'ljs-tools';
 import { getPermissionsInfo } from '@/api/common/module';
 import RUN from '@/tools/run';
 
@@ -36,6 +36,37 @@ export function screenListen () {
   window.onresize = () => {
     store.commit('SET_screenWidth', document.body.clientWidth);
   }
+}
+
+/**
+ * 监听页面可见性变化的事件
+ * @example 
+App.vue调用：
+this.$base.visibilitychangeListen(); 
+ */
+export function visibilitychangeListen () {
+  document.addEventListener('visibilitychange', async () => {
+    const buildTime = await getHtmlBuildTime();
+    if (buildTime === BUILD_TIME) {
+      return;
+    }
+
+    LJSEl.delMessageBox({
+      title: '系统提示',
+      message: `检测到系统有新版本发布，是否立即刷新页面？`,
+      doSomething: () => {
+        location.reload();
+      }
+    });
+  });
+}
+async function getHtmlBuildTime() {
+  const baseURL = import.meta.env.BASE_URL;
+  const res = await fetch(`${baseURL}index.html`);
+  const html = await res.text();
+  const match = html.match(/<meta name="build-time" content="(.*)">/);
+  const buildTime = match?.[1] || '';
+  return buildTime;
 }
 
 /**
@@ -175,6 +206,7 @@ export async function itemClick(obj) {
 
 export default {
   screenListen,
+  visibilitychangeListen,
   checkWindowRatio,
   initSkin,
   picError,

@@ -108,6 +108,9 @@ export default {
             }
           }
           this.$LJSsession.clearVuex(this.$store);
+          if (this.captchaOnOff) {
+            this.getCode();
+          }
           this.$store.commit('loadingStore', {
             tag: false,
             text: '加载中....'
