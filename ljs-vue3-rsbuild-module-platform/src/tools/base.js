@@ -50,7 +50,11 @@ export function visibilitychangeListen () {
     if (buildTime === BUILD_TIME) {
       return;
     }
-
+    const ljs_visibilitychange_message = LJSsession.getSS('ljs_visibilitychange_message');
+    if (ljs_visibilitychange_message === '1') {
+      return;
+    }
+    LJSsession.setSS('ljs_visibilitychange_message', '1');
     LJSEl.delMessageBox({
       type: 'success',
       title: '系统提示',
@@ -58,7 +62,11 @@ export function visibilitychangeListen () {
       confirmButtonText: '现在更新',
       draggable: true,
       doSomething: () => {
-        location.reload();
+        window.location.href = window.location.href + '?_=' + Date.now();
+        LJSsession.delSS('ljs_visibilitychange_message');
+      },
+      cancelDoSomething: () => {
+        LJSsession.delSS('ljs_visibilitychange_message');
       }
     });
   });
