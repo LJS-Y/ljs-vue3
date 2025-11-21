@@ -420,6 +420,15 @@ export default {
     tabCloseAll() {
       this.$LJSmenu.fristOpenMenu(this.$store);
       const menuNowOpen = this.$store.state.menuNowOpen;
+      
+      // 恢复展开状态。保留用户刷新前最后的菜单操作状态。
+      const parents = this.$LJSbase.getTreeParents({
+        data: this.menu.list,
+        value: menuNowOpen.menuId,
+        key: 'menuId'
+      });
+      this.$LJSmenu.updateTreeOpen({menuList: this.menu.list, parents});
+
       this.$run.push({
         path: menuNowOpen.url
       })
