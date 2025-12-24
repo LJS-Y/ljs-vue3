@@ -17,6 +17,10 @@ export default {
 				backNum: 1,
 				// home图标指向。用于getCurrentPages().length === 1 时的处理地址。通常用于二级页面分享后快速回到首页。
 				homePath: '/pages/index/index',
+				// 执行前的回调函数。返回true放行，返回false阻止。
+				beforeCallback: () => {
+					return true
+				},
 				// 回退方式，true为默认方法，false为消息传递方法
 				backFTag: true,
 				// 回退所传递的消息。backFTag: false时可自定义
@@ -35,6 +39,7 @@ export default {
 			// 页面数量
 			pagesTotal: 0,
 			timer: null,
+			jnButtonWidth: null, // 胶囊按钮的宽度
 		}
 	},
 	props: {
@@ -54,6 +59,11 @@ export default {
 		titleWeight: {
 			type: Number,
 			default: 400,
+		},
+		// 标题位置，可选值：center，left
+		titleAlign: {
+			type: String,
+			default: 'center',
 		},
 
 		// 返回按钮相关配置
@@ -152,7 +162,13 @@ export default {
 				this.bgColorOrImage.width = '100%';
 			}
 		},
-		backF() {
+		async backF() {
+			const beforeState = await this.myback.beforeCallback();
+			if (!beforeState) {
+				console.warn('阻止回退');
+				return;
+			}
+			
 			if (this.myback.backFTag) {
 				if (this.pagesTotal <= 1) {
 					uni.reLaunch({
@@ -214,6 +230,9 @@ export default {
 					opacity: this.backgroundImageOpacity,
 				}
 			}
+			// #endif
+			// #ifdef MP
+			this.jnButtonWidth = uni.getMenuButtonBoundingClientRect().width + 10;
 			// #endif
 			this.statusBarHeight = this.getWindowInfo().statusBarHeight;
 			this.initBack();

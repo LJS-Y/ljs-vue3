@@ -29,7 +29,7 @@ export function ax({
 	methodTag = 'GET',
 	method = 'POST',
 	submitDD = false,
-	timeout = 60000,
+	timeout = 6000,
 	isInternalRequest = true,
 	responseInterceptor = true
 }) {
@@ -88,18 +88,20 @@ export function ax({
 					if (isInternalRequest && responseInterceptor) {
 						if (code === 200) {
 							tokenGq = false;
-						} else if (code === 401) {
-							if (!tokenGq) {
-								MSG.msg("您的访问权限已过期，请重新登录！", 3000);
-								tokenGq = true;
-								store.commit('RESET_STORE');
-								setTimeout(() => {
-									RUN.gp_reLaunch(!BASE.fieldCheck(config.tokenExpireUrl) ? config.tokenExpireUrl : '/pages/login/index');
-								}, 3000)
-							}
-							return false; // 流数据
 						} else {
-							MSG.msg(!BASE.fieldCheck(msg) ? msg : '未知错误！', 3000);
+							if ((!BASE.fieldCheck(config.tokenExpireCodes) && config.tokenExpireCodes.length > 0) ? config.tokenExpireCodes.indexOf(code) > -1 : code === 401) {
+								if (!tokenGq) {
+									MSG.msg("您的访问权限已过期，请重新登录！", 3000);
+									tokenGq = true;
+									store.commit('RESET_STORE');
+									setTimeout(() => {
+										RUN.gp_reLaunch(!BASE.fieldCheck(config.tokenExpireUrl) ? config.tokenExpireUrl : '/pages/login/index');
+									}, 3000)
+								}
+								return false; // 流数据
+							} else {
+								MSG.msg(!BASE.fieldCheck(msg) ? msg : '未知错误！', 3000);
+							}
 						}
 					}
 				} else {
@@ -122,7 +124,7 @@ export function ax({
  * GET
  * @param {string} url 接口地址
  * @param {string} params 参数的对象
- * @param {string} timeout 超时时间，默认10秒
+ * @param {string} timeout 超时时间
  * */
 export function get(url, params = {}, timeout, isInternalRequest, responseInterceptor, headerParams) {
 	return ax({url, params, headerParams, methodTag: "GET", submitDD: false, timeout, isInternalRequest, responseInterceptor});
@@ -133,7 +135,7 @@ export function get(url, params = {}, timeout, isInternalRequest, responseInterc
  * @param {string} url 接口地址
  * @param {string} params 参数的对象
  * @param {string} submitDD 防抖动，是否需要开启
- * @param {string} timeout 超时时间，默认10秒
+ * @param {string} timeout 超时时间
  * */
 export function post(url, params = {}, submitDD, timeout, isInternalRequest, responseInterceptor) {
 	return ax({url, params, methodTag: "POST", submitDD, timeout, isInternalRequest, responseInterceptor});
@@ -144,7 +146,7 @@ export function post(url, params = {}, submitDD, timeout, isInternalRequest, res
  * @param {string} url 接口地址
  * @param {string} params 参数的对象
  * @param {string} submitDD 防抖动，是否需要开启
- * @param {string} timeout 超时时间，默认10秒
+ * @param {string} timeout 超时时间
  * */
 export function put(url, params = {}, submitDD, timeout, isInternalRequest, responseInterceptor) {
 	return ax({url, params, methodTag: "PUT", submitDD, timeout, isInternalRequest, responseInterceptor});
@@ -167,7 +169,7 @@ export function del(url, params = {}, submitDD, isInternalRequest, responseInter
  * @param {string} filePath 要上传文件资源的路径。
  * @param {Number} timeout 超时时间。
  * */
-export function uploadFile(url, name, filePath, timeout = 6000) {
+export function uploadFile(url, name, filePath, timeout = 10000) {
 	let header = {};
 	// methodTag:LOGIN
 	const token = store.getters.token; // token验证串
@@ -203,7 +205,7 @@ export function uploadFile(url, name, filePath, timeout = 6000) {
  * @param {string} params 其他参数。
  * @param {Number} timeout 超时时间。
  * */
-export function uploadFiles(url, name, files, params = {}, timeout = 6000) {
+export function uploadFiles(url, name, files, params = {}, timeout = 10000) {
 	let formData = new FormData();
 	for (const key in params) {
 		formData.append(key, params[key]);
@@ -269,7 +271,7 @@ export function other({
 	methodTag = 'GET',
 	method = 'POST',
 	submitDD = false,
-	timeout = 60000,
+	timeout = 6000,
 	isInternalRequest = true,
 	responseInterceptor = true
 }) {

@@ -16,6 +16,7 @@
 			<view class="ljs-dialog-vue3-title" v-if="headerShow" :style="{
 				height: titleHeight + 'rpx',
 				'line-height': titleHeight + 'rpx',
+				fontSize: titleFontSize + 'rpx'
 			}">
 				{{ title }}
 				<image @click.stop="close" class="ljs-dialog-vue3-close" :src="closeImg" v-if="closeButShow" :style="{

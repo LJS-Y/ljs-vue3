@@ -5,6 +5,11 @@ export default {
 		modelValue: Boolean,
 		// 弹窗标题。headerShow为true时有效。
 		title: String,
+		// 弹窗标题：字号。
+		titleFontSize: {
+			type: Number,
+			default: 28,
+		},
 		// 弹窗标题栏高度，单位upx。默认90，最小为90。headerShow为true时有效。
 		setTitleHeight: {
 			type: Number,
@@ -111,6 +116,9 @@ export default {
 							this.overflow_y = 'hidden';
 						}
 						this.box_h = box_h + 'px';
+						setTimeout(() => {
+							this.$emit('openAfter');
+						}, 0)
 					}
 				}).exec();
 			});

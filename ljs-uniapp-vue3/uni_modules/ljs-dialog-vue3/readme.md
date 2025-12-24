@@ -13,6 +13,7 @@ ljs-dialog-vue3，dialog弹框，灵活好用的弹框。可以设置最大高�
 ---- | ----- | ------ | ------  | ------ 
 v-model | Boolean | √ |  | 是否开启
 title | String | × |  | 弹窗标题。headerShow为true时有效且必填。
+titleFontSize | Number | × | 28 | 弹窗标题：字号。
 headerShow | Boolean | × | true | 是否显示头部区域。
 setTitleHeight | Number | × | 90 | 弹窗标题栏高度，单位upx。默认90，最小为90。headerShow为true时有效。
 width | String | × | 90% | 弹窗宽度。
@@ -31,6 +32,7 @@ zIndex | Number, String | × | 100 | z-index值。
 
 参数  | 类型| 解释
 ---- | ----- | :------ 
+@openAfter | 打开弹窗后的回调函数 | 弹窗打开完成的回调。
 @closeBefore | 关闭弹窗前的回调函数 | 当点击右上角关闭按钮或者点击遮罩时的回调函数，此函数优先于弹窗关闭。
 @closeAfter | 关闭弹窗后的回调函数 | 当点击右上角关闭按钮或者点击遮罩时的回调函数，此函数在弹窗关闭后执行。
 

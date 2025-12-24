@@ -1,7 +1,7 @@
 {
   "id": "ljs-dialog-vue3",
   "displayName": "ljs-dialog-vue3 dialog弹框，灵活好用的弹框。",
-  "version": "1.1.0",
+  "version": "1.2.3",
   "description": "ljs-dialog-vue3 dialog弹框，灵活好用的弹框。",
   "keywords": [
     "ljs-dialog",
@@ -12,14 +12,14 @@
   "repository": "",
   "engines": {
     "HBuilderX": "^3.1.0",
-    "uni-app": "^4.06",
-    "uni-app-x": "^4.06"
+    "uni-app": "^4.07",
+    "uni-app-x": "^4.07"
   },
   "dcloudext": {
     "type": "component-vue",
     "sale": {
       "regular": {
-        "price": "1.00"
+        "price": "0.00"
       },
       "sourcecode": {
         "price": "0.00"

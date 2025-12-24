@@ -7,7 +7,7 @@ export default {
 			// 当前选中第几个菜单
 			butTag: 0,
 			useOpts: {
-				height: 120, // 菜单高度
+				height: 90, // 菜单高度
 				fontColor: '#333', // 字体颜色
 				fontActiveColor: '#5c70fe', // 选中字体颜色
 				fontSize: '20rpx', // 字体大小

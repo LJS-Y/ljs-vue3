@@ -33,7 +33,7 @@ ljs-bottom-menu-vue3，通用底部菜单组件。提供传统、通用的功能
 
  参数  | 类型| 必填项 | 默认值 | 说明
  ---- | ----- | ------ | ------  | ------ 
- height | Number | × | 80 | 菜单高度。
+ height | Number | × | 90 | 菜单高度。
  fontColor | String | × | #333 | 字体颜色。
  fontActiveColor | String | × | #5c70fe | 选中字体颜色。
  fontSize | String | × | 20rpx | 字体大小。

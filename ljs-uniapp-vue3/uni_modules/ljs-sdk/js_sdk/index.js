@@ -7,6 +7,7 @@ import LJSrun, { setBeforeEachTag } from './utils/run'
 import LJSanimation from './utils/animation'
 import LJSurl from './utils/url'
 import LJSprivacy from './utils/privacy'
+import LJSstorage from './utils/storage'
 
 // function：工具方法
 // directive：指令
@@ -22,6 +23,7 @@ const tools = [
   { type: 'function', name: 'animation', entity: LJSanimation },
   { type: 'function', name: 'url', entity: LJSurl },
   { type: 'function', name: 'privacy', entity: LJSprivacy },
+  { type: 'function', name: 'storage', entity: LJSstorage },
 ]
 
 /* 
@@ -66,5 +68,7 @@ export {
 	LJSmsg,
 	LJSrun,
 	LJSanimation,
+	LJSurl,
 	LJSprivacy,
+	LJSstorage,
 }

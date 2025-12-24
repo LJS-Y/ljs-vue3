@@ -51,7 +51,9 @@
 					height: titleHeight + 'rpx',
 					'line-height': titleHeight + 'rpx',
 					'font-weight': titleWeight,
-					opacity: titleOpacity
+					opacity: titleOpacity,
+					'text-align': titleAlign,
+					padding: titleAlign === 'left' ? `0 ${jnButtonWidth}px 0 ${myback.show ? 100 : 20}rpx` : `0 ${jnButtonWidth}px`,
 				}">{{title}}</text>
 			</view>
 		</view>

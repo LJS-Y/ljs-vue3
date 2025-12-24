@@ -16,6 +16,7 @@ pages.json文件需开启"navigationStyle": "custom"。
  titleOpacity | Number | × | 1 | title层透明度
  titleColor | String | × | #FFFFFF | 标题颜色
  titleWeight | Number | × | 400 | 标题字重
+ titleAlign | String | × | center | 标题位置，可选值：center，left
  back | Object | × |  | 返回按钮相关配置
  backgroundColor | String | × | #004799 | 背景颜色，支持渐变色，如：linear-gradient(to top right, #CDDC39, #8BC34A, #FFEB3B)
  backgroundImageShow | Boolean | × | false | 开启背景图片，未开启，使用背景颜色，开启backgroundImage为必填项
@@ -33,6 +34,7 @@ pages.json文件需开启"navigationStyle": "custom"。
  imgUrl | String | × | ico_back | 返回按钮的图片地址。可传base64或自定义图片（import ico_back from '../static/images/ico_back.png'）。imgUrl优先级高于imgTag。
  backNum | Number | × | 1 | 回退的步数。
  homePath | String | × | /pages/index/index | home图标指向。用于getCurrentPages().length === 1 时的处理地址。通常用于二级页面分享后快速回到首页。
+ beforeCallback | Function | × | | 执行前的回调函数。返回true放行，返回false阻止。
  backFTag | Boolean | × | true | 回退方式，true为默认方法，false为消息传递方法
  msg | Any | × | null | 回退所传递的消息。backFTag: false时可自定义
  backFunName | String | × | ljs_top_backF | 回退回调函数的函数名，用于接收msg内容。backFTag: false时可用
@@ -111,7 +113,7 @@ export default {
 ```js
 // 执行页面的回传数据
 ljs_top_backF(res) {
-	if (!this.$LJSbase.fieldCheck(res) && res.code === 200) {
+	if (!this.$ljsPublic.base.fieldCheck(res) && res.code === 200) {
 		// ....
 	}
 },

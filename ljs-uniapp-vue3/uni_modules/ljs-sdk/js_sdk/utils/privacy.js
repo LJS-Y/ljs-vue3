@@ -61,23 +61,32 @@ export function desensitizationPhone(phone, handleNum = 4) {
 
 /**
  * 脱敏 - 身份证号
- * @param {String} idCard 身份证号
- * @param {String} handleNum 需要脱敏的数量
+ * 也可用于其他文本的脱敏处理
+ * @param {String} str 身份证号
+ * @param {Number} keepStart 前保留
+ * @param {Number} keepEnd 后保留
+ * @param {String} maskChar 脱敏符号
+ * @param {Number} maskLength 脱敏符号显示的数量
  * @returns {String} 返回脱敏后的数据
- * @example this.$LJSprivacy.desensitizationIdentityID('13200001234');
+ * @example this.$LJSprivacy.desensitizationStr({ str: '640323198906252017' })
  */
-export function desensitizationIdCard(idCard, keepStart = 3, keepEnd = 4, maskChar = '*') {
-	if (!idCard || idCard.length < keepStart + keepEnd) return idCard
-
-	const start = idCard.substr(0, keepStart)
-	const end = idCard.substr(-keepEnd)
-	const maskLength = idCard.length - keepStart - keepEnd
-
+export function desensitizationStr({
+	str,
+	keepStart = 3,
+	keepEnd = 4,
+	maskChar = '*',
+	maskLength = 4
+}) {
+	if (!str || str.length < keepStart + keepEnd) return str + maskChar.repeat(maskLength)
+	const start = str.slice(0, keepStart)
+	const end = keepEnd !== 0 ? str.slice(-keepEnd) : ''
+	// 真实的位数进行脱敏处理
+	// maskLength = str.length - keepStart - keepEnd
 	return start + maskChar.repeat(maskLength) + end
 }
 
 export default {
 	desensitizationName,
 	desensitizationPhone,
-	desensitizationIdCard,
+	desensitizationStr,
 }

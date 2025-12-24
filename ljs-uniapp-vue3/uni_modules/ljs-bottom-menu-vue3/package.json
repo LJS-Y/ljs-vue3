@@ -1,7 +1,7 @@
 {
   "id": "ljs-bottom-menu-vue3",
   "displayName": "ljs-bottom-menu-vue3，通用底部菜单",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "ljs-bottom-menu-vue3，通用底部菜单",
   "keywords": [
     "菜单",
@@ -13,7 +13,7 @@
   "repository": "",
   "engines": {
     "HBuilderX": "^3.1.0",
-    "uni-app": "^4.06",
+    "uni-app": "^4.07",
     "uni-app-x": ""
   },
   "dcloudext": {

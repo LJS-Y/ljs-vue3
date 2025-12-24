@@ -204,7 +204,7 @@ export function selectDictLabel(datas, value, labelKey = 'dictLabel', valueKey =
   })
   // 返回索引值
   if (labelKey === '$index') {
-    return actions
+    return null
   }
   if (actions.length === 0) {
     actions.push(value)

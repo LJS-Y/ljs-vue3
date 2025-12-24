@@ -58,12 +58,15 @@
       }
       .title {
         width: 100%;
-        text-align: center;
         color: #fff;
         font-size: 32upx;
         position: absolute;
         top: 0;
         left: 0;
+		box-sizing: border-box;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
       }
     }
   }
