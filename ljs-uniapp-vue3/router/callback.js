@@ -58,9 +58,6 @@ async function getUserInfo(next) {
 	uni.clearStorageSync();
 	store.commit('RESET_STORE');
 	$LJSmsg.msg_error('登录失败！');
-	setTimeout(() => {
-		$LJSmsg.msg('当前用户无权限访问，请联系管理员！');
-	}, 2000);
 	return next({
 		path:'/pages/login/index',
 		NAVTYPE:'push'

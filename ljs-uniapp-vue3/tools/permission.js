@@ -1,4 +1,5 @@
 import store from '@/store'
+import { LJSbase, LJSstorage } from '@/uni_modules/ljs-sdk/js_sdk/index.js'
 
 /**
  * 字符权限校验
@@ -7,7 +8,10 @@ import store from '@/store'
  */
 export function checkPermi(value) {
   if (value && value instanceof Array && value.length > 0) {
-    const permissions = store.getters && store.getters.permissions
+    let permissions = store.getters && store.getters.permissions
+	if (LJSbase.fieldCheck(permissions) || permissions.length === 0) {
+		permissions = LJSstorage.getStorageSync('permissions', true)
+	}
     const permissionDatas = value
     const all_permission = "*:*:*"
 
@@ -32,7 +36,10 @@ export function checkPermi(value) {
  */
 export function checkRole(value) {
   if (value && value instanceof Array && value.length > 0) {
-    const roles = store.getters && store.getters.roles
+    let roles = store.getters && store.getters.roles
+	if (LJSbase.fieldCheck(roles) || roles.length === 0) {
+		roles = LJSstorage.getStorageSync('roles', true)
+	}
     const permissionRoles = value
     const super_admin = "admin"
 
