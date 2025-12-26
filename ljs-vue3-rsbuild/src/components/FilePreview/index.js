@@ -1,7 +1,8 @@
-import VuePdfEmbed, { useVuePdfEmbed } from 'vue-pdf-embed';
+// 在线预览PDF的插件打包为2.45Mb，占用资源。非必要不引入
+// import VuePdfEmbed, { useVuePdfEmbed } from 'vue-pdf-embed';
 export default {
   components: {
-    VuePdfEmbed
+    // VuePdfEmbed
   },
   props: {
     // 文件数组

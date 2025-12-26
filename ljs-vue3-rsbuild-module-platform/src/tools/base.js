@@ -50,11 +50,14 @@ export function visibilitychangeListen () {
     if (buildTime === BUILD_TIME) {
       return;
     }
+    
+    // 处理误操作多次弹出问题。
     const ljs_visibilitychange_message = LJSsession.getSS('ljs_visibilitychange_message');
     if (ljs_visibilitychange_message === '1') {
       return;
     }
     LJSsession.setSS('ljs_visibilitychange_message', '1');
+
     LJSEl.delMessageBox({
       type: 'success',
       title: '系统提示',
@@ -62,7 +65,7 @@ export function visibilitychangeListen () {
       confirmButtonText: '现在更新',
       draggable: true,
       doSomething: () => {
-        window.location.href = window.location.href + '?_=' + Date.now();
+        location.reload(true);
         LJSsession.delSS('ljs_visibilitychange_message');
       },
       cancelDoSomething: () => {
@@ -72,12 +75,16 @@ export function visibilitychangeListen () {
   });
 }
 async function getHtmlBuildTime() {
-  const baseURL = import.meta.env.BASE_URL;
-  const res = await fetch(`${baseURL}index.html`);
-  const html = await res.text();
-  const match = html.match(/<meta name="build-time" content="(.*)">/);
-  const buildTime = match?.[1] || '';
-  return buildTime;
+  try {
+    const baseURL = import.meta.env.BASE_URL;
+    const res = await fetch(`${baseURL}index.html`);
+    const html = await res.text();
+    const match = html.match(/<meta name="build-time" content="(.*)">/);
+    const buildTime = match?.[1] || '';
+    return buildTime;
+  } catch (error) {
+    return '';
+  }
 }
 
 /**

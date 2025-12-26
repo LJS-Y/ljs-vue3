@@ -32,7 +32,7 @@
         :src="tc.row.url"
       />
     </template>
-    <template v-else-if="tc.fileType === 'pdf'">
+    <!-- <template v-else-if="tc.fileType === 'pdf'">
       <VuePdfEmbed class="pdfBox" :source="tc.pdf.data" :page="tc.pdf.page" @loaded="initPdf" />
       <pagination
         v-if="tc.pdf.total > 0"
@@ -42,7 +42,7 @@
         v-model:limit="tc.pdf.pageSize"
         @pagination="pdfNext"
       />
-    </template>
+    </template> -->
     <template v-else-if="tc.fileType === 'video'">
       <video controls class="video-preview">
         <source :src="tc.row.url" type="video/mp4" />
