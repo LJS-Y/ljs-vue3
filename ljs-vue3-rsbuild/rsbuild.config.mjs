@@ -10,6 +10,8 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import { DefinePlugin } from '@rspack/core';
 import CompressionPlugin from 'compression-webpack-plugin'; // gzip通用压缩插件
 import { getBuildTime } from './src/tools/build';
+// rsbuild框架使用xlsx-style-vite报错fs问题修复。
+// import { pluginNodePolyfill } from '@rsbuild/plugin-node-polyfill';
 
 export default defineConfig(() => {
   const buildTime = getBuildTime();
@@ -21,6 +23,16 @@ export default defineConfig(() => {
         path: path.resolve(__dirname, 'src/assets/icons/svg'),
         symbolId: '[name]',
       }),
+      // rsbuild框架使用xlsx-style-vite报错fs问题修复。
+      // pluginNodePolyfill({
+      //   // 按需 polyfill xlsx-style-vite 依赖的 Node 模块
+      //   modules: ['fs', 'path', 'buffer'],
+      //   // 启用全局变量（部分旧库依赖 Buffer/process）
+      //   globals: {
+      //     Buffer: true,
+      //     process: true,
+      //   },
+      // }),
     ],
     source: {
       define: {
