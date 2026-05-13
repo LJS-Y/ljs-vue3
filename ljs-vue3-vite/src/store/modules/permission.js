@@ -180,7 +180,8 @@ export function menuListChange(list, level, routerPath = '', menuId = 0) {
         open: false, // 是否展开子菜单
         choose: false, // 是否选中菜单
         level: level, // 层级
-        children: [] // 子菜单数据集
+        children: [], // 子菜单数据集
+        isFrame: !LJSbase.fieldCheck(item.meta?.link), // 是否外部链接，true，菜单打开需要打开新的卡片，展示外部链接的页面。
       };
       let tempPath = '';
       if (routerPath !== '') {
