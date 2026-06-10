@@ -1,6 +1,7 @@
 // 引入axios
 import store from '@/store/index.js';
 import axios from 'axios';
+import { requestEncrypt, responeDecrypt } from './smExecute';
 import { ElMessage, ElLoading } from 'element-plus';
 import { LJSbase, LJSsession } from 'ljs-tools';
 import run from '@/tools/run.js';
@@ -49,6 +50,9 @@ httpService.interceptors.request.use(
       params = {};
       config.url = (url + '?' + tansParams(params)).slice(0, -1);
     }
+    
+    requestEncrypt(config)
+
     return config;
   },
   (err) => {
@@ -63,6 +67,7 @@ httpService.interceptors.response.use(
       return data; // 流数据
     }
     if (code === 200) {
+      responeDecrypt(response)
       tokenGq = false;
     } else if (code === 401) {
       if (!tokenGq) {
