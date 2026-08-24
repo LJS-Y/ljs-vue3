@@ -1,0 +1,124 @@
+.menuZJ{
+  background-color: var(--frame_menuBg);
+  border-radius: 2px;
+  // 禁止左键选中页面内容
+  &{
+    -webkit-touch-callout: none;
+    /*系统默认菜单被禁用*/
+    -webkit-user-select: none;
+    /*webkit浏览器*/
+    -khtml-user-select: none;
+    /*早期浏览器*/
+    -moz-user-select: none;
+    /*火狐*/
+    -ms-user-select: none;
+    /*IE10*/
+    user-select: none;
+  }
+  .one{
+    position: relative;
+    .f{
+      width: 100%;
+      height: 50px;
+      color: var(--menu_oneTitleColor);
+      padding-right: 15px;
+      padding-left: var(--fPaddingLeft);
+      cursor: pointer;
+      .ico{
+        width: 14px;
+        height: 14px;
+        line-height: 14px;
+        // margin: 18px 5px 0 0;
+        text-align: center;
+        font-size: 16px;
+        float: left;
+        color: var(--menu_oneTitleColor);
+      }
+      .name{
+        width: calc(100% - 50px);
+        float: left;
+        line-height: 50px;
+        font-size: 14px;
+        display: block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .jt{
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        font-size: 18px;
+        float: right;
+        margin-top: 15px;
+        margin-right: 5px;
+        font-size: 16px;
+        &.zhuan{
+          transition: transform 0.5s;
+          transform: rotate(180deg);
+        }
+        &.hui{
+          transition: transform 0.5s;
+          transform: rotate(0deg);
+        }
+      }
+      &:hover{
+        color: var(--menu_oneTitleHoverColor);
+        .ico{
+          color: var(--menu_oneTitleHoverColor);
+        }
+      }
+      &.active{
+        background-color: var(--menu_hoverBg);
+        color: var(--menu_oneTitleHoverColor);
+      }
+    }
+    .c{
+      width: 100%;
+      &.open{
+        animation: cOpen 0.5s ease-in forwards;
+        -webkit-animation: cOpen 0.5s ease-in forwards;
+        /* 动画结束应用于元素 */
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+        @keyframes cOpen {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        /*Safari 和 Chrome:*/
+        @-webkit-keyframes cOpen {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .c2{
+      width: 230px;
+      position: fixed;
+      left: 63px;
+      z-index: 9999;
+      padding-left: 3px;
+      overflow: hidden;
+      display: none;
+      background-color: var(--frame_menuBg);
+      border-left: 1px solid #222;
+      :deep(.__panel){
+        z-index: auto !important;
+      }
+    }
+    &:hover{
+      .c2{
+        display: block;
+      }
+    }
+  }
+}

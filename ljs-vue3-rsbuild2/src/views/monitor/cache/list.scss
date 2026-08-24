@@ -1,0 +1,16 @@
+.comPage{
+  width: 100% !important;
+  height: 100%;
+  padding: 0;
+  background-color: transparent;
+  overflow: hidden;
+  .one{
+    width: calc((100% - 24px) / 3);
+    height: 100%;
+    float: left;
+    margin-right: 12px;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}

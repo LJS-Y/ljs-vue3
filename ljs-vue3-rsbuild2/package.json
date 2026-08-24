@@ -1,0 +1,36 @@
+{
+  "name": "ljs-vue3-rsbuild2",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "rsbuild dev --open",
+    "build": "rsbuild build",
+    "test": "rsbuild build --env-mode test",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "axios": "^1.19.0",
+    "echarts": "^5.6.0",
+    "echarts-gl": "^2.0.9",
+    "element-plus": "^2.14.4",
+    "ljs-tools": "^0.10.0",
+    "screenfull": "^5.0.2",
+    "throttle-box": "^0.0.5",
+    "vue": "^3.5.41",
+    "vue-router": "^5.2.0",
+    "vuex": "^4.1.0",
+    "vuex-persistedstate": "^4.1.0"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^2.1.13",
+    "@rsbuild/plugin-sass": "^2.0.1",
+    "@rsbuild/plugin-vue": "^2.0.1",
+    "file-saver": "^2.0.5",
+    "rsbuild-plugin-compression": "^0.1.2",
+    "rspack-plugin-svg-sprite": "^1.5.1",
+    "sass": "~1.26.3",
+    "unplugin-auto-import": "^19.1.2",
+    "unplugin-vue-components": "^28.5.0"
+  }
+}

@@ -379,6 +379,26 @@ body,
   }
 }
 
+// 单行省略
+.comIgnore1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+// 2行省略
+.comIgnore2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+// 3行省略
+.comIgnore3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
 /***框架样式 - 结束***/
 
 /***UI - 公共调整 - 开始***/

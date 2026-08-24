@@ -1,0 +1,17 @@
+.addressBox{
+  margin-left: 20px;
+  overflow: hidden;
+  float: left;
+  .one{
+    float: left;
+    font-size: 14px;
+    font-weight: 400;
+    color: #515a6e;
+  }
+  .icon{
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    float: left;
+  }
+}
