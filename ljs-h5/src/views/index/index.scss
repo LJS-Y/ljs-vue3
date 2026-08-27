@@ -1,3 +1,9 @@
 .comPage{
     padding: 20px;
+    position: relative;
+    .logout{
+        position: fixed;
+        top: 20px;
+        right: 20px;
+    }
 }

@@ -7,6 +7,6 @@ export default [
     meta: {
       title: 'AI'
     },
-    component: () => import('@/views/ai/index/index.vue')
+    component: () => import('@/views/ai/index.vue')
   },
 ];

@@ -8,8 +8,6 @@ import $em from '@/tools/errorImages.js';
  * 路由的钩子函数，处理是否登录的判断
  * **/
 router.beforeEach(async (to, from) => {
-  // 监测是否有用户数据
-  const userinfo = store.getters.userinfo;
 
   const token = store.state.token;
   if (token === null && to.path !== '/login') {
@@ -17,6 +15,7 @@ router.beforeEach(async (to, from) => {
   }
   
   // 监测是否有用户数据
+  const userinfo = store.getters.userinfo;
   if (token !== null && userinfo === null) {
     return getUserInfo();
   }

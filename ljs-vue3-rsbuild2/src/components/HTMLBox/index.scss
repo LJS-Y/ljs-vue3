@@ -1,0 +1,12 @@
+.html {
+  width: 100%;
+}
+
+:deep(p),
+:deep(span) {
+  color: #000 !important;
+}
+:deep(img) {
+  width: 100% !important;
+  height: auto !important;
+}

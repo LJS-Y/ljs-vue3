@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 const routerHistory = createWebHistory(import.meta.env.BASE_URL);
-// AI
-// import ai from './modules/ai';
+// 子路由
+import ai from './modules/ai';
 
 // 基础路由
 export const constantRoutes = [
@@ -19,14 +19,22 @@ export const constantRoutes = [
         hidden: true, // 菜单隐藏，路由不隐藏
         component: () => import('@/views/index/index.vue')
       },
-      // ...ai
+      ...ai,
     ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/login/index.vue')
   },
   {
     path: '/404', // 页面不存在的情况下会跳到404页面
     name: '404',
     component: () => import('@/views/404.vue')
   }
+];
+export const dynamicRoutes = [
+  // 可自行增加固定路由
 ];
 
 export default createRouter({

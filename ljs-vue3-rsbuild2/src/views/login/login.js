@@ -3,7 +3,6 @@ import {
   getInfo,
   getCodeImg
 } from '@/api/common/login.js';
-import { LJSws } from 'ljs-tools'
 export default {
   name: 'Login',
   data() {

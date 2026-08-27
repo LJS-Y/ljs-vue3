@@ -74,7 +74,7 @@ export default defineConfig(async ({ mode }) => {
     },
     server: {
       host: 'localhost',
-      port: 9900,
+      port: 9990,
       // server.base 决定 import.meta.env.BASE_URL / process.env.BASE_URL 的值
       // 同时自动作为 dev.assetPrefix 和 output.assetPrefix 的默认值
       base: baseUrl,

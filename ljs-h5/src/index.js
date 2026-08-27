@@ -3,6 +3,9 @@ import App from './App.vue';
 import router from './router/index.js';
 import store from './store/index.js';
 
+// svg图标
+import '@/assets/icons/svg/index.js'
+
 import '@/router/callback.js'; // permission control
 
 import '@/assets/fonts/iconfont.css'; // 引入字体库(my - 框架 - 新框架)
@@ -16,7 +19,6 @@ import '@/assets/css/base.scss';
 import 'ljs-tools/index.css';
 import LjsTools from 'ljs-tools';
 import tools from '@/tools/index.js';
-import ButtonThrottle from 'throttle-box';
 
 
 const app = createApp(App);
@@ -24,7 +26,6 @@ const app = createApp(App);
 app.use(Vant);
 app.use(LjsTools);
 app.use(tools);
-app.use(ButtonThrottle);
 
 app.use(router).use(store);
 app.mount('#app');

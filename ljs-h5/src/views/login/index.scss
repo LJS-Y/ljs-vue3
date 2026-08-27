@@ -1,0 +1,54 @@
+.comPage {
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7f8fa;
+  box-sizing: border-box;
+
+  .logo {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 80px;
+  }
+
+  .login-form-box {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px 2px rgba(#000, 0.1);
+    margin-bottom: 80px;
+    background-color: #FFF;
+
+    .login-options {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .login-submit {
+      padding: 0 16px 16px;
+
+      .register {
+        margin-top: 16px;
+        text-align: center;
+        font-size: 14px;
+        color: #1989fa;
+      }
+    }
+
+    .login-code-img {
+      height: 24px;
+      width: 80px;
+      cursor: pointer;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+    :deep(.van-field__label){
+      width: 50px;
+    }
+  }
+}

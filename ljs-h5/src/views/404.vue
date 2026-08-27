@@ -18,11 +18,8 @@ export default {
   methods: {
     // 回首页
     goIndex() {
-      this.$LJSmenu.fristOpenMenu(this.$store);
-      const menuNowOpen = this.$store.state.menuNowOpen; 
-      // console.log('监测路由是否存在', this.$router.hasRoute(menuNowOpen.name));
       this.$run.replace({
-        path: menuNowOpen.url
+        path: '/'
       });
     }
   }

@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import createPersistedState from 'vuex-persistedstate';
 import mutations from './mutations.js';
 import getters from './getters.js';
+import permission from './modules/permission.js';
 
 // 持久化某几个数据
 const PERSIST_PATHS = ['token', 'userinfo', 'apiShake', 'permissions', 'roles', 'menuList', 'routerList', 'menuOpenList', 'menuNowOpen', 'menuShrink', 'frameTheme'];
@@ -30,6 +31,9 @@ const store = createStore({
     mutations: mutations,
     actions: {},
     getters: getters,
+   	modules: {
+      permission
+    },
     plugins: [
       createPersistedState({
         storage: window.sessionStorage,

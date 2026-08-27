@@ -40,5 +40,16 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 
-app.use(router).use(store);
-app.mount('#app');
+// 在路由器启动初始导航前预加载动态路由，避免刷新动态路由地址时
+// vue-router 因路由尚未注册而报 VUE_ROUTER_R0004 告警
+(async () => {
+  if (store.state.token && store.getters.userinfo) {
+    try {
+      await store.dispatch('GenerateRoutes');
+    } catch (e) {
+      // 预加载失败时交给路由守卫处理
+    }
+  }
+  app.use(router).use(store);
+  app.mount('#app');
+})();
