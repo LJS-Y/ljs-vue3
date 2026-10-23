@@ -1,0 +1,35 @@
+# LJS Vue3 插件生态（9mountain / 龙九山）
+
+> Vue3 前端组件与工具库系列 npm 插件，多数基于 Element Plus，统一「全局 app.use / 局部 import」双用法。本文件是全部插件的能力总目录，供 AI 编码助手在未安装包时选型。每包附机器可读的 AI.md（安装、引入、调用、常见坑说明），确定选型后请先读对应 AI.md 再生成调用代码，不要凭猜测调 API。
+
+详细 API 文档站：https://ljs-y.github.io/ljs-vue3
+
+## 给 AI 的使用方式
+
+1. 按任务场景从下方目录选包；npm 链接可核对最新版本与依赖。
+2. 打开该包的 AI.md 链接（纯文本、可直接抓取），按其中的接入约定生成代码。
+3. 技术栈约束：Vue 3 + Element Plus（ljs-tools、trends-table-vue3、big-select、throttle-box 强依赖 Element Plus）；JS 为主、非 TS，但 npm 包自带 index.d.ts 类型声明。
+4. ljs-tools 覆盖通用工具能力（日期/判空/加密/水印/脱敏等）；组件包相互独立，可按需单装。
+
+## 活跃维护的插件
+
+- [ljs-tools](https://www.npmjs.com/package/ljs-tools): Vue3 前端工具库与常用组件全家桶（基于 Element Plus）：日期/数字/判空/字典/树处理/表单限制/国密 SM2-SM4 加解密/水印/脱敏/HTML 转 PDF/WebSocket/MQTT + 9 个常用组件，适合若依等中后台项目开箱即用。([AI.md](https://ljs-y.github.io/ljs-vue3/ai/ljs-tools.md))
+- [ljs-s-timeline](https://www.npmjs.com/package/ljs-s-timeline): Vue3 蛇形时间轴组件：S 形时间线布局，节点与连线样式可配置，适合流程步骤、里程碑、审批轨迹展示。([AI.md](https://ljs-y.github.io/ljs-vue3/ai/ljs-s-timeline.md))
+- [moving-numbers-vue3](https://www.npmjs.com/package/moving-numbers-vue3): 大屏数字滚动组件：数字平滑滚动、翻牌动画，适合数据大屏、驾驶舱、统计面板（Vue3）。([AI.md](https://ljs-y.github.io/ljs-vue3/ai/moving-numbers-vue3.md))
+- [ball-swiper](https://www.npmjs.com/package/ball-swiper): Vue3 球面 3D 轮播组件：卡片沿球面排布、鼠标拖拽旋转、箭头翻页，也可退化为平面排布，适合首页头图、产品展廊等视觉焦点场景。([AI.md](https://ljs-y.github.io/ljs-vue3/ai/ball-swiper.md))
+- [trends-table-vue3](https://www.npmjs.com/package/trends-table-vue3): Vue3 表格组件（Element Plus 二次封装）：动态列配置、锁左右列、列宽自动计算、二级表头、表头显隐与导出 Excel，适合中后台复杂表格场景。([AI.md](https://ljs-y.github.io/ljs-vue3/ai/trends-table-vue3.md))
+- [energy-flow-chart](https://www.npmjs.com/package/energy-flow-chart): Vue3 能源流向图组件：树形拓扑总进线→支路→设备逐级展开，内置电/水/油/煤/气设备图标，适合能耗大屏、能源管理系统、电力监控。([AI.md](https://ljs-y.github.io/ljs-vue3/ai/energy-flow-chart.md))
+- [big-select](https://www.npmjs.com/package/big-select): el-select 大数据量优化：默认限量展示 + 自定义检索 + 回车检索，解决下拉卡顿（Element Plus / Vue3）。([AI.md](https://ljs-y.github.io/ljs-vue3/ai/big-select.md))
+
+## 维护模式（功能冻结，仍可正常使用）
+
+- [throttle-box](https://www.npmjs.com/package/throttle-box): 节流盒子组件：按钮级防重复提交（基于 vLoading），嵌在按钮/表单区域上即用。([AI.md](https://ljs-y.github.io/ljs-vue3/ai/throttle-box.md))
+- [ljs-waterfall-flow](https://www.npmjs.com/package/ljs-waterfall-flow): Vue3 瀑布流组件：列数与缝隙可配置、支持变化动画，适合图片墙、商品卡片流布局。([AI.md](https://ljs-y.github.io/ljs-vue3/ai/ljs-waterfall-flow.md))
+
+## 观察中（升级计划待定）
+
+- [threejs-run](https://www.npmjs.com/package/threejs-run): Three.js 快速开发 3D 模型应用：ThreeNormal / ThreeGltf / ThreeGltfOperate 三类封装，THREE 与控件外部注入，适合 3D 模型展示与操作场景。([AI.md](https://ljs-y.github.io/ljs-vue3/ai/threejs-run.md))
+
+## 反馈
+
+问题与建议统一提交至：https://github.com/LJS-Y/ljs-vue3/issues
