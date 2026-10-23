@@ -14,7 +14,7 @@
     "echarts": "^5.6.0",
     "echarts-gl": "^2.0.9",
     "element-plus": "^2.14.4",
-    "ljs-tools": "^0.10.1",
+    "ljs-tools": "^1.0.0",
     "screenfull": "^5.0.2",
     "throttle-box": "^0.0.5",
     "vue": "^3.5.41",
