@@ -150,7 +150,6 @@ export function routerDataChange(modules, router, menu, keepAlive = false, route
 }
 
 export function loadView(modules, view) {
-  const componentStr = `/src/views/${view}`;
   for (const path of modules.keys()) {
     const mod = modules(path);
     if (path.indexOf(view) > -1) {

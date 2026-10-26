@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv } from '@rsbuild/core';
+import { defineConfig } from '@rsbuild/core';
 import path from 'path';
 
 import { pluginVue } from '@rsbuild/plugin-vue';
@@ -56,14 +56,6 @@ export default defineConfig(() => {
       compress: true,
       port: 9900,
     },
-    seroutput: {
-      dataUriLimitver: {
-        svg: 1024 * 10,
-        font: 1024 * 10,
-        image: 1024 * 10,
-        media: 1024 * 10,
-      }
-    },
     output: {
       distPath: { root: 'dist' },
       dataUriLimit: {
@@ -76,58 +68,11 @@ export default defineConfig(() => {
         js: false,
         css: false,
       },
-      // 核心：调整代码分割规则，确保路由组件独立打包
-      splitChunks: {
-        cacheGroups: {
-          // 新增：单独拆分 Element Plus（优先级最高）
-          elementPlus: {
-            test: /[\\/]node_modules[\\/]element-plus[\\/]/,
-            name: 'lib-elementPlus', // 生成 lib-elementPlus.xxx.js
-            priority: 30, // 高于 routes(10)/vendor(-10)
-            enforce: true, // 强制拆分，无视其他规则
-            chunks: 'all',
-          },
-          // 新增：拆分其他大体积第三方库（如 echarts/xlsx 等，按需添加）
-          bigLibs: {
-            test: /[\\/]node_modules[\\/](echarts|xlsx|moment)[\\/]/,
-            name: 'lib-bigLibs',
-            priority: 20,
-            enforce: true,
-          },
-          // 保留原有 vendor 规则（拆分剩余依赖）
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendor',
-            priority: 5,
-            enforce: true,
-          },
-          // 路由规则（仅保留纯业务代码）
-          routes: {
-            test: /[\\/]src[\\/]views[\\/]/,
-            // 优化：按「一级路由目录」拆分（如 views/goods/ → route-goods.js）
-            name: (module) => {
-              const fullPath = module.nameForCondition();
-              // 匹配 src/views/[一级目录]/xxx.vue → route-[一级目录]
-              const match = fullPath.match(/src\/views\/([^\/]+)/);
-              const dirName = match ? match[1] : 'unknown';
-              return `route-${dirName.toLowerCase()}`;
-            },
-            priority: 10,
-            enforce: true,
-            minSize: 0,
-            minChunks: 1,
-            reuseExistingChunk: false,
-          },
-          common: false, // 禁用公共代码合并
-        },
-      },
-      // 生成独立的 chunk 文件名（包含路由名称）
+      // 生成带 hash 的 chunk 文件名（拆包策略见 performance.chunkSplit）
       filename: {
         js: '[name].[contenthash:8].js',
         chunkFilename: '[name].[contenthash:8].js', // 异步 chunk 命名规则
       },
-      // 禁用 chunk 合并（兜底）
-      mergeDuplicateChunks: false,
     },
     tools: {
       rspack: {

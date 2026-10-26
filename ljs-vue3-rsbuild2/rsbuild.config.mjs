@@ -101,51 +101,50 @@ export default defineConfig(async ({ mode }) => {
         js: false,
         css: false,
       },
-      splitChunks: {
-        // 全局阈值:模块至少 20KB 才单独成包,避免微小 chunk 增加首屏 HTTP 请求
-        minSize: 20 * 1024,
-        // maxAsyncSize: 200 * 1024, // 单个异步 chunk 上限,过大时再拆(可选)
-        cacheGroups: {
-          // Element Plus 单独分包(变更频率低,长期缓存)
-          elementPlus: {
-            test: /[\\/]node_modules[\\/]element-plus[\\/]/,
-            name: 'lib-elementPlus',
-            priority: 30,
-            enforce: true,
-            chunks: 'all',
-          },
-          // 大库单独分包(echarts/xlsx/moment 体积大,按需加载)
-          bigLibs: {
-            test: /[\\/]node_modules[\\/](echarts|xlsx|moment)[\\/]/,
-            name: 'lib-bigLibs',
-            priority: 20,
-            enforce: true,
-          },
-          // 业务公共代码:被 2 个以上 chunk 共享且 ≥20KB 才提取
-          common: {
-            test: /[\\/]src[\\/]/,
-            name: 'common',
-            minChunks: 2,
-            minSize: 20 * 1024,
-            priority: 10,
-            enforce: true,
-            chunks: 'all',
-          },
-          // 其他三方依赖
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendor',
-            priority: 5,
-            enforce: true,
-          },
-        },
-      },
       filename: {
         js: '[name].[contenthash:8].js',
-        chunkFilename: '[name].[contenthash:8].js',
       },
-      // 合并重复 chunk,消除冗余代码
-      mergeDuplicateChunks: true,
+    },
+    // Rsbuild 2.x 拆包配置在顶层 splitChunks(output.splitChunks/mergeDuplicateChunks/
+    // filename.chunkFilename 与 performance.chunkSplit 均不是 v2 的生效键位)
+    splitChunks: {
+      // 全局阈值:模块至少 20KB 才单独成包,避免微小 chunk 增加首屏 HTTP 请求
+      minSize: 20 * 1024,
+      // maxAsyncSize: 200 * 1024, // 单个异步 chunk 上限,过大时再拆(可选)
+      cacheGroups: {
+        // Element Plus 单独分包(变更频率低,长期缓存)
+        elementPlus: {
+          test: /[\\/]node_modules[\\/]element-plus[\\/]/,
+          name: 'lib-elementPlus',
+          priority: 30,
+          enforce: true,
+          chunks: 'all',
+        },
+        // 大库单独分包(echarts/xlsx/moment 体积大,按需加载)
+        bigLibs: {
+          test: /[\\/]node_modules[\\/](echarts|xlsx|moment)[\\/]/,
+          name: 'lib-bigLibs',
+          priority: 20,
+          enforce: true,
+        },
+        // 业务公共代码:被 2 个以上 chunk 共享且 ≥20KB 才提取
+        common: {
+          test: /[\\/]src[\\/]/,
+          name: 'common',
+          minChunks: 2,
+          minSize: 20 * 1024,
+          priority: 10,
+          enforce: true,
+          chunks: 'all',
+        },
+        // 其他三方依赖
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          priority: 5,
+          enforce: true,
+        },
+      },
     },
     tools: {
       rspack: {
@@ -183,10 +182,6 @@ export default defineConfig(async ({ mode }) => {
       removeConsole: ['log', 'warn', 'info'],
       removeMomentLocale: true,
       printFileSize: {},
-      // 关闭内置自动分包,完全使用你自定义 splitChunks
-      chunkSplit: {
-        strategy: 'custom',
-      },
     },
   };
 });

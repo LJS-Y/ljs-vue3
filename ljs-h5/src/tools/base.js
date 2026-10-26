@@ -197,29 +197,29 @@ export async function fastCopy(text = null) {
  * 
 try {
   const apiList = [
-    this.$dict.getDict('wine_activity_type'),
-    this.$dict.getDict('wine_activity_jointype'),
+    this.$dict.getDict('ljs_activity_type'),
+    this.$dict.getDict('ljs_activity_jointype'),
   ]
   const results = await this.$base.PromiseAll(apiList)
 
   results.forEach((res, i) => {
     if (i === 0) {
-      this.wine_activity_type = res;
-      this.wine_activity_type_search = [
+      this.ljs_activity_type = res;
+      this.ljs_activity_type_search = [
         {
           dictLabel: '全部',
           dictValue: ''
         },
-        ...this.wine_activity_type,
+        ...this.ljs_activity_type,
       ];
     } else if (i === 1) {
-      this.wine_activity_jointype = res;
-      this.wine_activity_jointype_search = [
+      this.ljs_activity_jointype = res;
+      this.ljs_activity_jointype_search = [
         {
           dictLabel: '全部',
           dictValue: ''
         },
-        ...this.wine_activity_jointype,
+        ...this.ljs_activity_jointype,
       ];
     }
   })

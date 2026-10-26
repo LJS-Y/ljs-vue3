@@ -85,6 +85,12 @@ export default {
           // 登录
           const res1 = await login(this.loginForm);
           if (res1 && res1.code === 200) {
+            // 秘钥，于后端约束结构
+            if (!this.$LJSbase.fieldCheck(res1.encryptKeys) && !this.$LJSbase.fieldCheck(res1.encryptKeys.KPAPu) && !this.$LJSbase.fieldCheck(res1.encryptKeys.KPBPr)) {
+              this.$LJSsession.setSS('ljs_a', res1.encryptKeys.KPAPu);
+              this.$LJSsession.setSS('ljs_b', res1.encryptKeys.KPBPr);
+            }
+            
             this.$store.commit('SET_token', res1.token);
             // 获取用户信息
             const res2 = await getInfo();

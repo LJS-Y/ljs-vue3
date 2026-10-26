@@ -44,17 +44,17 @@ export function checkToken(to) {
   // 开发模式：自动存入token，生产从地址中获取
   if (import.meta.env.PUBLIC_CURRENTMODE === 'development') {
     // LJSsession.setSS('smSwitch', '1');
-    // LJSsession.setSS('wine_a', '0429d443e1d07a544b26b10e78df312b7a40aee85d4e65d140170314a5bd3c01724464939845bb72655062320ee01c45a9a6d9d78f2b7a16690bd20d6c95045d9d');
-    // LJSsession.setSS('wine_b', '3563705a077599d3c7c7b5bf55f84ff25e4ab6ede4f7ab0f539b2f057df872eb');
+    // LJSsession.setSS('ljs_a', '0429d443e1d07a544b26b10e78df312b7a40aee85d4e65d140170314a5bd3c01724464939845bb72655062320ee01c45a9a6d9d78f2b7a16690bd20d6c95045d9d');
+    // LJSsession.setSS('ljs_b', '3563705a077599d3c7c7b5bf55f84ff25e4ab6ede4f7ab0f539b2f057df872eb');
   } else {
     // 从小程序获取国密数据
     const smSwitch = LJSurl.getUrlParameter('smSwitch');
     if (!LJSbase.fieldCheck(smSwitch) && smSwitch === '1') {
-      const wine_a = LJSurl.getUrlParameter('wine_a');
-      const wine_b = LJSurl.getUrlParameter('wine_b');
+      const ljs_a = LJSurl.getUrlParameter('ljs_a');
+      const ljs_b = LJSurl.getUrlParameter('ljs_b');
       LJSsession.setSS('smSwitch', smSwitch);
-      LJSsession.setSS('wine_a', wine_a);
-      LJSsession.setSS('wine_b', wine_b);
+      LJSsession.setSS('ljs_a', ljs_a);
+      LJSsession.setSS('ljs_b', ljs_b);
     }
   }
 

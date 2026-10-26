@@ -203,29 +203,29 @@ export async function fastCopy(text = null) {
  * 
 try {
   const apiList = [
-    this.$dict.getDict('wine_activity_type'),
-    this.$dict.getDict('wine_activity_jointype'),
+    this.$dict.getDict('sys_normal_disable'),
+    this.$dict.getDict('sys_notice_type'),
   ]
   const results = await this.$base.PromiseAll(apiList)
 
   results.forEach((res, i) => {
     if (i === 0) {
-      this.wine_activity_type = res;
-      this.wine_activity_type_search = [
+      this.statusOptions = res;
+      this.statusOptions_search = [
         {
           dictLabel: '全部',
           dictValue: ''
         },
-        ...this.wine_activity_type,
+        ...this.statusOptions,
       ];
     } else if (i === 1) {
-      this.wine_activity_jointype = res;
-      this.wine_activity_jointype_search = [
+      this.noticeTypeOptions = res;
+      this.noticeTypeOptions_search = [
         {
           dictLabel: '全部',
           dictValue: ''
         },
-        ...this.wine_activity_jointype,
+        ...this.noticeTypeOptions,
       ];
     }
   })
