@@ -1,0 +1,41 @@
+# 行尾与文本文件处理规则
+# 作用：把行尾策略固化进仓库，覆盖各机器上的 core.autocrlf 差异，
+#       避免不同工具（sed/脚本/编辑器）写入不同行尾导致海量假 diff。
+# 约定：文本文件一律以 LF 存入仓库（前端生态事实标准）。
+
+# 默认：git 自动识别文本文件，仓库内统一 LF
+* text=auto eol=lf
+
+# Windows 专属脚本保留 CRLF，避免 cmd/PowerShell 解析异常
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+*.ps1   text eol=crlf
+
+# 二进制文件：禁止行尾转换，也禁止 diff 文本处理
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.svg   text eol=lf
+*.webp  binary
+*.bmp   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.eot   binary
+*.otf   binary
+*.pdf   binary
+*.zip   binary
+*.gz    binary
+*.7z    binary
+*.rar   binary
+*.xlsx  binary
+*.xls   binary
+*.docx  binary
+*.doc   binary
+*.pptx  binary
+*.mp4   binary
+*.mp3   binary
+*.glb   binary
+*.gltf  text eol=lf
