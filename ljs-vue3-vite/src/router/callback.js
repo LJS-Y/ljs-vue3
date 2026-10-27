@@ -1,6 +1,6 @@
 import router from './index'
 import store from '../store';
-import { LJSsession } from 'ljs-tools';
+import { LJSsession, LJSmenu } from 'ljs-tools';
 import $base from '@/tools/base';
 import { getInfo } from '@/api/common/login';
 

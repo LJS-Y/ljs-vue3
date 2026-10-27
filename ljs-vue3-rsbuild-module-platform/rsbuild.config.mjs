@@ -112,8 +112,8 @@ export default defineConfig(() => {
       },
       // 生成独立的 chunk 文件名（包含路由名称）
       filename: {
+        // 异步 chunk 命名同样取此模板（rsbuild 内部派生），chunkFilename 非 1.x 生效键
         js: '[name].[contenthash:8].js',
-        chunkFilename: '[name].[contenthash:8].js', // 异步 chunk 命名规则
       },
       // 禁用 chunk 合并（兜底）
       mergeDuplicateChunks: false,

@@ -24,7 +24,7 @@ export default {
         // 下载模板的地址
         downloadUrl: '/ywpt/ywptInputData/importTemplate',
         // 上传的地址
-        url: import.meta.env.PUBLIC_API_URL + '/ywpt/ywptInputData/importData',
+        url: import.meta.env.VITE_APP_API_URL + '/ywpt/ywptInputData/importData',
       },
     };
   },

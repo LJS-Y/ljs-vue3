@@ -43,11 +43,14 @@ export function checkToken(to) {
 
   // 开发模式：自动存入token，生产从地址中获取
   if (import.meta.env.PUBLIC_CURRENTMODE === 'development') {
+    // 【国密调试专用，勿删】以下三行是调试国密加解密时手动注入密钥的入口。
+    // 生产环境不在此处写入：密钥由微信小程序 web-view 通过 URL 参数下发，见下方 else 分支。
+    // 调试时按需解注释并替换为登录接口返回的 encryptKeys.KPAPu / KPBPr。
     // LJSsession.setSS('smSwitch', '1');
     // LJSsession.setSS('ljs_a', '0429d443e1d07a544b26b10e78df312b7a40aee85d4e65d140170314a5bd3c01724464939845bb72655062320ee01c45a9a6d9d78f2b7a16690bd20d6c95045d9d');
     // LJSsession.setSS('ljs_b', '3563705a077599d3c7c7b5bf55f84ff25e4ab6ede4f7ab0f539b2f057df872eb');
   } else {
-    // 从小程序获取国密数据
+    // 从小程序获取国密数据（h5 作为微信小程序 web-view 内嵌页，密钥随 token 由小程序传入 URL）
     const smSwitch = LJSurl.getUrlParameter('smSwitch');
     if (!LJSbase.fieldCheck(smSwitch) && smSwitch === '1') {
       const ljs_a = LJSurl.getUrlParameter('ljs_a');

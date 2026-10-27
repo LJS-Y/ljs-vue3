@@ -141,8 +141,8 @@ export default defineConfig(async ({ mode }) => {
         },
       },
       filename: {
+        // 异步 chunk 命名同样取此模板（rsbuild 内部派生），chunkFilename 非 1.x 生效键
         js: '[name].[contenthash:8].js',
-        chunkFilename: '[name].[contenthash:8].js',
       },
       // 合并重复 chunk,消除冗余代码
       mergeDuplicateChunks: true,

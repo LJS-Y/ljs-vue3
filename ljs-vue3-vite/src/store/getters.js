@@ -11,9 +11,6 @@ export default {
   roles: state => {
     return state.roles;
   },
-  menuChoose: state => {
-    return state.menuChoose;
-  },
   routerList: state => {
     return state.routerList;
   },

@@ -139,7 +139,7 @@ export default {
       getUserProfile().then(res => {
         if (res.code === 200) {
           this.user = res.data;
-          const BASEURL = import.meta.env.PUBLIC_API_URL;
+          const BASEURL = import.meta.env.VITE_APP_API_URL;
           this.headUrl = this.user.avatar && this.user.avatar !== '' && this.user.avatar !== null ? BASEURL + this.user.avatar : this.$em.errorImage_head;
           const userinfo = this.$store.getters.userinfo;
           userinfo.avatar = this.headUrl;

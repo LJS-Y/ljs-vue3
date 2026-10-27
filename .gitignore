@@ -1,0 +1,20 @@
+# 依赖
+node_modules/
+
+# 构建产物（打包内容不入库，各模板另有自己的 .gitignore）
+dist/
+dist-ssr/
+dist-verify/
+
+# 本地与环境
+*.local
+.env.local
+.env.*.local
+*.log*
+
+# 编辑器与系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json

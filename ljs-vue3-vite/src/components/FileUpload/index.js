@@ -25,7 +25,7 @@ export default {
     // api接口
     uploadUrl: {
       type: String,
-      default: import.meta.env.PUBLIC_API_URL + '/common/upload'
+      default: import.meta.env.VITE_APP_API_URL + '/common/upload'
     },
     // 数据格式。若依格式：true；列表格式：false;
     dataType: {
@@ -40,8 +40,8 @@ export default {
       dialogImageUrl: '',
       dialogVisible: false,
       hideUpload: false,
-      baseUrl: import.meta.env.PUBLIC_API_URL,
-      // uploadImgUrl: import.meta.env.PUBLIC_API_URL + '/common/upload', // 上传的文件服务器地址
+      baseUrl: import.meta.env.VITE_APP_API_URL,
+      // uploadImgUrl: import.meta.env.VITE_APP_API_URL + '/common/upload', // 上传的文件服务器地址
       headers: {
         Authorization: 'Bearer ' + this.$store.state.token,
       },
@@ -166,7 +166,7 @@ export default {
     handlePictureCardPreview(file) {
       const type = this.$LJSbase.getFileType(file.url);
       if (type === '.png' || type === '.jpg' || type === '.jpeg') {
-        this.dialogImageUrl = import.meta.env.PUBLIC_API_URL + file.url;
+        this.dialogImageUrl = import.meta.env.VITE_APP_API_URL + file.url;
         this.dialogVisible = true;
       } else {
         this.$run.goExternalUrl(file.url)
