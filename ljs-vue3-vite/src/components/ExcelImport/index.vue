@@ -1,5 +1,5 @@
 
-<!-- <el-col :span="1.5" v-hasPermi="['ywpt:ywptInputData:import']">
+<!-- <el-col :span="1.5" v-hasPermi="['system:xxx:import']">
   <el-button
     type="info"
     @click="upload.open = true"
@@ -22,9 +22,9 @@ export default {
         // 是否显示弹出层（导入）
         open: false,
         // 下载模板的地址
-        downloadUrl: '/ywpt/ywptInputData/importTemplate',
+        downloadUrl: '/system/xxx/importTemplate',
         // 上传的地址
-        url: import.meta.env.VITE_APP_API_URL + '/ywpt/ywptInputData/importData',
+        url: import.meta.env.VITE_APP_API_URL + '/system/xxx/importData',
       },
     };
   },
