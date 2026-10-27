@@ -71,7 +71,6 @@ export default defineConfig(() => {
       // 生成带 hash 的 chunk 文件名（拆包策略见 performance.chunkSplit）
       filename: {
         js: '[name].[contenthash:8].js',
-        chunkFilename: '[name].[contenthash:8].js', // 异步 chunk 命名规则
       },
     },
     tools: {
