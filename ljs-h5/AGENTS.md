@@ -197,7 +197,7 @@ export default index;
 以下问题在本模板或同源模板中真实出现过，**写代码时不要照抄这些写法**：
 
 1. **`package.json` 的 name 曾是 `ljs-vue3-rsbuild`**（复制模板未改），已修正为 `ljs-h5`。新增模板时务必改 name，`package-lock.json` 里也有两处。
-2. **`.env` 的 `BASE_URL = '/aaa/'`** 疑似测试残留——部署前必须核对成真实子路径，否则资源 404。
+2. **`.env` 的 `BASE_URL` 曾是 `'/aaa/'`**（测试子路径残留），已修正为 `'/'`。该变量只影响生产构建的 `server.base`（资源前缀），部署到子路径时须改成实际路径（如 `'/app/'`），填错会导致资源 404。
 3. **配置死键**：`output.filename.chunkFilename` 在 Rsbuild 1.x 是无效键（已从其他模板清除）。Rsbuild 2.x 用顶层 `splitChunks`，`performance.chunkSplit` 在 2.x 已废弃。
 4. **隐式全局依赖**：曾出现 `callback.js` 用了 `LJSmenu` 但没 import（vite 模板），运行即炸。用了什么就 import 什么。
 5. **死 getter**：曾出现 `store/getters.js` 定义 `menuChoose` 但 state 中没有该字段。加 getter 前先确认 state 有对应字段。
