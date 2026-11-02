@@ -210,6 +210,7 @@ export default index;
 6. **动态路由 API 不同**：本模板用 `import.meta.glob('../../views/**/*.vue')`；`import.meta.webpackContext` 是 ljs-vue3-rsbuild（Rsbuild 1.x）的写法，在本模板不生效。
 7. **路由守卫风格不同**：本模板 vue-router 5，守卫写**返回值**；勿从 vue-router 4 模板搬 `next()` 写法。
 8. **压缩插件不同**：本模板用 `rsbuild-plugin-compression`（algorithms: gzip+brotli）；`compression-webpack-plugin` 是 Rsbuild 1.x 模板的写法。
+9. **Element Plus 为「全量引入」，勿擅自切按需**：`src/index.js` 全量 `app.use(ElementPlus)` + 全量图标注册。2026-11-02 已删除 `rsbuild.config.mjs` 里失效的 unplugin 按需解析器（全量引入下 resolver 不会介入，属误导性配置）。**后续改造为按需引入是独立技术债任务，硬性要求：改完后使用者写 `<el-button>` / `<el-icon><Search /></el-icon>` 时无需手动 import，即解析器必须同时覆盖组件与图标。** 详见知识库《技术债-ElementPlus全量转按需》。**动这里之前先报告。**
 
 **同源模板（ljs-vue3-vite）的教训，本模板无此问题但必须警惕：**
 

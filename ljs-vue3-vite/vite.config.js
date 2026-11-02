@@ -4,9 +4,9 @@ import path from "path";
 import { defineConfig, loadEnv } from "vite";
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import { createHtmlPlugin } from "vite-plugin-html";
-import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+// Element Plus 目前为「全量引入」（见 src/main.js 的 app.use(ElementPlus)）。
+// unplugin 按需解析器在全量引入下不生效，保留会误导维护者，故已移除。
+// 后续改造为按需引入时，需同时移除 main.js 的全量注册，并保证「无需用户手动新增 import」。
 import viteCompression from 'vite-plugin-compression';
 
 
@@ -64,12 +64,6 @@ const viteConfig = defineConfig((mode) => {
             title: getViteEnv(mode, "VITE_PROJECT_NAME"),
           },
         },
-      }),
-      AutoImport({
-        resolvers: [ElementPlusResolver()],
-      }),
-      Components({
-        resolvers: [ElementPlusResolver()],
       }),
     ],
     // 静态资源服务的文件夹

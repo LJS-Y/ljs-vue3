@@ -195,6 +195,7 @@ export default index;
 5. **易变细节不写进本文件**：组件参数表/API 清单放文档站，本文件只留稳定原则与入口。
 6. **改 `rsbuild.config.mjs` 先核对官方 schema 键名**——拼写错误的键会被**静默忽略**（如历史上曾有 `output.splitChunks`、`seroutput.dataUriLimitver` 这类无效键）。配置是否生效看**产物实证**（chunk 文件命名），不看注释自述。
 7. **勿绕过 moduleGuide 自建一级入口**：模块化平台的子系统入口统一在导航页，见 3.9。
+8. **Element Plus 为「全量引入」，勿擅自切按需**：`src/index.js` 全量 `app.use(ElementPlus)` + 全量图标注册。2026-11-02 已删除 `rsbuild.config.mjs` 里失效的 unplugin 按需解析器（全量引入下 resolver 不会介入，属误导性配置）。**后续改造为按需引入是独立技术债任务，硬性要求：改完后使用者写 `<el-button>` / `<el-icon><Search /></el-icon>` 时无需手动 import，即解析器必须同时覆盖组件与图标。** 详见知识库《技术债-ElementPlus全量转按需》。**动这里之前先报告。**
 
 ## 7 不要模仿清单（历史教训）
 

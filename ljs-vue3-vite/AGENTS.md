@@ -175,7 +175,7 @@ export default index;
 4. **新增 env 变量必须 `VITE_` 前缀并补齐 .env 四件套**——漏前缀 = 运行时 undefined。**跨构建器移植代码必须逐处换前缀**（Rsbuild 模板用 `PUBLIC_`）。
 5. **易变细节不写进本文件**：组件参数表/API 清单放文档站，本文件只留稳定原则与入口。
 6. **改 `vite.config.js` 先核对官方文档与插件类型定义**——拼写错误的键会被**静默忽略**；配置是否生效看产物实证，不看注释自述。
-7. **勿混用两套 Element Plus 引入机制**：本模板 `main.js` 全量 `app.use(ElementPlus)` + 全量图标注册，同时 `vite.config.js` 里又配了 `unplugin-vue-components` 的 `ElementPlusResolver`（按需解析）。新增组件时**以全量引入为准**，不要去依赖按需解析器补注册；若将来要切按需引入，全量与按需必须二选一，不可并存。**改动前先报告**。
+7. **Element Plus 为「全量引入」，勿擅自切按需**：本模板 `main.js` 全量 `app.use(ElementPlus)` + 全量图标注册。2026-11-02 已删除 `vite.config.js` 里失效的 unplugin 按需解析器（全量引入下 resolver 不会介入，属误导性配置）。**后续改造为按需引入是独立技术债任务，硬性要求：改完后使用者写 `<el-button>` / `<el-icon><Search /></el-icon>` 时无需手动 import，即解析器必须同时覆盖组件与图标。** 详见知识库《技术债-ElementPlus全量转按需》。**任何人动这里之前先报告。**
 
 ## 7 不要模仿清单（历史教训）
 
@@ -195,8 +195,8 @@ export default index;
 4. **他项目残留**：模板内示例注释曾出现具体项目名的路径/权限串（如 `ywpt:*`、`/api/activity/*`）。
    **教训：模板内示例必须中性（`/system/xxx/…`、`system:xxx:import`），禁止带具体项目名的路径/权限串。**
 
-5. **Element Plus 双机制并存（现存问题，未拍板）**：`main.js` 全量与 `vite.config.js` 按需解析器同时存在。功能上可跑（全量兜底），但会让构建产物与预期不符（按需解析形同虚设），也误导后续维护者。
-   **教训：见红线 7；引入机制必须唯一，二选一后再动手。**
+5. **Element Plus 引入机制曾双套并存（2026-11-02 已修）**：`main.js` 全量 `app.use(ElementPlus)` 与 `vite.config.js` 的 unplugin 按需解析器同时存在。功能上可跑（全量兜底），但按需解析形同虚设，产物与预期不符，也误导后续维护者。已删除失效的 resolver 配置，保留全量引入。
+   **教训：见红线 7；同一机制不要配两条路，其中一条必然失效且难察觉。**
 
 ## 附则
 

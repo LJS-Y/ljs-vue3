@@ -4,9 +4,9 @@ import path from 'path';
 import { pluginVue } from '@rsbuild/plugin-vue';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { pluginSvgSpriteLoader } from "rsbuild-plugin-svg-sprite-loader";
-import AutoImport from 'unplugin-auto-import/rspack';
-import AutoComponents from 'unplugin-vue-components/rspack';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+// Element Plus 目前为「全量引入」（见 src/index.js 的 app.use(ElementPlus)）。
+// unplugin 按需解析器在全量引入下不生效，保留会误导维护者，故已移除。
+// 后续改造为按需引入时，需同时移除全量注册，并保证「无需用户手动新增 import」。
 import { DefinePlugin } from '@rspack/core';
 import CompressionPlugin from 'compression-webpack-plugin'; // gzip通用压缩插件
 // import BrotliPlugin from 'brotli-webpack-plugin'; // br压缩，没有gz压缩的比例高，暂时停用
@@ -121,32 +121,6 @@ export default defineConfig(() => {
     tools: {
       rspack: {
         plugins: [
-          AutoImport({
-            resolvers: [
-              ElementPlusResolver({
-                importStyle: 'scss',
-                // 新增：只导入使用的组件，禁用全量
-                exclude: /^ElIcon/, // 若用了 Icon 单独处理
-              }),
-            ],
-            imports: ['vue', 'vue-router'],
-            dts: false,
-            // 新增：关闭自动导入的冗余功能
-            eslintrc: false,
-            biomelintrc: { enabled: false },
-          }),
-          AutoComponents({
-            dirs: ['src/components'],
-            extensions: ['vue', 'jsx', 'tsx'],
-            dts: false,
-            resolvers: [
-              ElementPlusResolver({
-                importStyle: 'scss',
-                // 新增：强制按需加载
-                resolveIcons: true,
-              }),
-            ],
-          }),
           new DefinePlugin({
             // 格式：'变量名' : JSON.stringify(变量值)
             '__BUILD_TIME__': JSON.stringify(buildTime),

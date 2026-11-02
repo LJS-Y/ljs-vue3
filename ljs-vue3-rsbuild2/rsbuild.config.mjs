@@ -4,9 +4,9 @@ import path from 'path';
 import { pluginVue } from '@rsbuild/plugin-vue';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { pluginSvgSprite } from 'rspack-plugin-svg-sprite/rsbuild';
-import AutoImport from 'unplugin-auto-import/rspack';
-import AutoComponents from 'unplugin-vue-components/rspack';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+// Element Plus 目前为「全量引入」（见 src/index.js 的 app.use(ElementPlus)）。
+// unplugin 按需解析器在全量引入下不生效，保留会误导维护者，故已移除。
+// 后续改造为按需引入时，需同时移除全量注册，并保证「无需用户手动新增 import」。
 import { pluginCompression } from 'rsbuild-plugin-compression';
 import { getBuildTime } from './src/tools/build';
 
@@ -151,30 +151,7 @@ export default defineConfig(async ({ mode }) => {
         // 稳定 moduleIds/chunkIds,长期缓存友好(内容不变则 hash 不变)
         moduleIds: 'deterministic',
         chunkIds: 'deterministic',
-        plugins: [
-          AutoImport({
-            resolvers: [
-              ElementPlusResolver({
-                importStyle: 'scss',
-                exclude: /^ElIcon/,
-              }),
-            ],
-            imports: ['vue', 'vue-router'],
-            dts: false,
-            eslintrc: false,
-          }),
-          AutoComponents({
-            dirs: ['src/components'],
-            extensions: ['vue', 'jsx', 'tsx'],
-            dts: false,
-            resolvers: [
-              ElementPlusResolver({
-                importStyle: 'scss',
-                resolveIcons: true,
-              }),
-            ],
-          }),
-        ],
+        plugins: [],
       },
     },
     performance: {

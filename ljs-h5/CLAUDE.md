@@ -191,6 +191,7 @@ export default index;
 - ❌ **不要在 `index.vue` 里写业务逻辑**——必须走桥接三件套
 - ❌ **不要硬编码主题色**——走 `tools/skin/` 的 JS 对象 + CSS 变量
 - ❌ **不要改 `rsbuild.config.mjs` 前不查 schema**——配置键要先在 `node_modules/@rsbuild/core/dist/index.d.ts` 里确认存在，改完用产物实证（看 dist 文件名），不要相信注释
+- ⚠️ **Element Plus 解析器已移除（2026-11-02）**——本模板 UI 库是 Vant，代码里未实际使用 EP 组件（`el-table` 仅出现在 JSDoc 示例注释中）。原先 `rsbuild.config.mjs` 里的 `ElementPlusResolver` 属纯冗余配置，已删除。若将来真需要 EP，按红线第一条重新评估，不要直接恢复旧配置。
 
 ## 7 不要模仿清单（历史教训）
 

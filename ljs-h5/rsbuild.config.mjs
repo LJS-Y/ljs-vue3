@@ -4,9 +4,9 @@ import path from 'path';
 import { pluginVue } from '@rsbuild/plugin-vue';
 import { pluginSass } from '@rsbuild/plugin-sass';
 import { pluginSvgSprite } from 'rspack-plugin-svg-sprite/rsbuild';
-import AutoImport from 'unplugin-auto-import/rspack';
-import AutoComponents from 'unplugin-vue-components/rspack';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+// 本模板 UI 库为 Vant（全量 app.use(Vant)），未实际使用 Element Plus 组件
+// （代码里 el-table 仅出现在 JSDoc 示例注释中）。
+// 原 unplugin 的 ElementPlusResolver 属冗余配置，保留会误导维护者，故已移除。
 import { pluginCompression } from 'rsbuild-plugin-compression';
 import { getBuildTime } from './src/tools/build';
 
@@ -152,30 +152,7 @@ export default defineConfig(async ({ mode }) => {
         // 稳定 moduleIds/chunkIds,长期缓存友好(内容不变则 hash 不变)
         moduleIds: 'deterministic',
         chunkIds: 'deterministic',
-        plugins: [
-          AutoImport({
-            resolvers: [
-              ElementPlusResolver({
-                importStyle: 'scss',
-                exclude: /^ElIcon/,
-              }),
-            ],
-            imports: ['vue', 'vue-router'],
-            dts: false,
-            eslintrc: false,
-          }),
-          AutoComponents({
-            dirs: ['src/components'],
-            extensions: ['vue', 'jsx', 'tsx'],
-            dts: false,
-            resolvers: [
-              ElementPlusResolver({
-                importStyle: 'scss',
-                resolveIcons: true,
-              }),
-            ],
-          }),
-        ],
+        plugins: [],
       },
     },
     performance: {
