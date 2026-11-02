@@ -31,8 +31,6 @@
     "compression-webpack-plugin": "^11.1.0",
     "file-saver": "^2.0.5",
     "rsbuild-plugin-svg-sprite-loader": "^0.0.2",
-    "sass": "~1.26.3",
-    "unplugin-auto-import": "^19.1.2",
-    "unplugin-vue-components": "^28.5.0"
+    "sass": "~1.26.3"
   }
 }
