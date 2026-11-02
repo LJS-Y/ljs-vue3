@@ -331,10 +331,12 @@ export function upload(url, params = {}) {
   });
 }
 
-let downloadLoadingInstance;
 // 通用下载方法
+// 注：原实现用 ElLoading.service 显示下载遮罩，但本模板 UI 库是 Vant（未安装 Element Plus），
+// 该行被注释后 downloadLoadingInstance 从未赋值，后面的 .close() 调用会抛
+// TypeError: Cannot read properties of undefined (reading 'close')。
+// 已彻底移除 Loading 相关代码（声明 + 创建 + 两处 close），下载功能本身不受影响。
 export function download(url, params, filename, timeout = window.g.API_OUT_TIME, config) {
-  // downloadLoadingInstance = ElLoading.service({ text: "正在下载数据，请稍候", spinner: "el-icon-loading", background: "rgba(0, 0, 0, 0.7)", })
   // 所有请求添加token字段
   const token = store.getters.token;
   let headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
@@ -369,10 +371,8 @@ export function download(url, params, filename, timeout = window.g.API_OUT_TIME,
         Msg.error(rspObj.msg);
       }
     }
-    downloadLoadingInstance.close();
   }).catch((r) => {
     Msg.error('下载文件出现错误，请联系管理员！')
-    downloadLoadingInstance.close();
   });
 }
 

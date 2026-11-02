@@ -19,23 +19,6 @@ export function closeWindow() {
   window.close();
 }
 
-/**
- * 隔行配置表格颜色class
- * @param {Object} row 行对象
- * @param {Number} rowIndex 行索引
- * @example 
- <el-table
-  :row-class-name="$comB.tableRowClassName"
->
- */
-export function tableRowClassName({row, rowIndex}) {
-  if (rowIndex%2 === 1) {
-    return 'row-blueBg';
-  }
-  return '';
-}
-
 export default {
   closeWindow,
-  tableRowClassName,
 };
