@@ -62,7 +62,7 @@ ljs-dragImages-vue3，可拖动排序的文件上传组件。
 		data() {
 			return {
 				imgList: [{
-					url: 'http://192.168.1.100:8087/profile/avatar/2024/08/16/2632b40aaa5d12a60bd6e724807a5561_20240816181530A012.jpeg'
+					url: 'http://localhost:8087/profile/avatar/2024/08/16/2632b40aaa5d12a60bd6e724807a5561_20240816181530A012.jpeg'
 				}]
 			}
 		},

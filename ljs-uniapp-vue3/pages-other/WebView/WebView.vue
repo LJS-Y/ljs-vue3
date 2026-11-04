@@ -23,7 +23,7 @@ obj: {
   page: '/pages-other/WebView/WebView',
   query: {
     share: '0',
-    url: 'http://192.168.3.61:9900/ai/index',
+    url: 'https://example.com/ai/index',
 	shareText: '', // 自定义分享的标题
 	shareImg: '', // 自定义分享的图片
     queryStr: JSON.stringify({

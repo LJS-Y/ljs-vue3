@@ -192,7 +192,7 @@ export default index;
 3. **死代码**：`api/axios.js` 曾有 `if (method === 'get' && params) { params = {}; … }` 这样的写法——覆盖的是解构出的局部变量，对 `config.params` 无效，净效果为零。
    **教训：改参数必须写回 config/对象本身；"看起来在做事"的无效代码直接删。**
 
-4. **他项目残留**：模板内示例注释曾出现具体项目名的路径/权限串（如 `ywpt:*`、`/api/activity/*`）。
+4. **他项目残留**：模板内示例注释曾出现具体项目名的路径/权限串——已改中性。
    **教训：模板内示例必须中性（`/system/xxx/…`、`system:xxx:import`），禁止带具体项目名的路径/权限串。**
 
 5. **Element Plus 引入机制曾双套并存（2026-11-02 已修）**：`main.js` 全量 `app.use(ElementPlus)` 与 `vite.config.js` 的 unplugin 按需解析器同时存在。功能上可跑（全量兜底），但按需解析形同虚设，产物与预期不符，也误导后续维护者。已删除失效的 resolver 配置，保留全量引入。

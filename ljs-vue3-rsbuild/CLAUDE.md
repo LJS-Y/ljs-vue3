@@ -189,7 +189,7 @@ export default index;
    **教训：getter/工具方法必须有真实消费方，无主即删。**
 3. **死配置块（两处）**：`rsbuild.config.mjs` 曾有 `seroutput.dataUriLimitver`（拼写错误键）和 `output.splitChunks`+`mergeDuplicateChunks`（Rsbuild 不认的键，拆包实际由 `performance.chunkSplit` 决定）——整块从未生效，却让人以为做了精细拆包（另有 `loadEnv` 未用导入一并清理）。
    **教训：配置键以官方 schema 为准；配置是否生效看产物实证（chunk 文件命名），不看注释自述。**
-4. **他项目残留**：`components/ExcelImport/index.vue` 注释示例曾写死 `/ywpt/ywptInputData/*` 路径与 `ywpt:*` 权限串、`api/smExecute.js` 白名单注释曾写 `'/api/activity/info'`。
+4. **他项目残留**：`components/ExcelImport/index.vue` 注释示例曾写死具体项目的业务路径与权限串、`api/smExecute.js` 白名单注释曾写具体项目接口路径——已改中性。
    **教训：模板内示例必须中性（`/system/xxx/…`、`system:xxx:import`），禁止带具体项目名的路径/权限串。**
 
 **补记（2026-10-26 国密复核轮）：** 加/解密前缀门曾硬编码 `apiUrl.startsWith('/api/')`，与本模板业务 API 形态（`/system/*` 等）不匹配——密钥+开关齐备也恒不触发加解密分支。已改为入参 `apiPrefix`（默认取 env `PUBLIC_SM_API_PREFIX`，缺省 '/api/'）。

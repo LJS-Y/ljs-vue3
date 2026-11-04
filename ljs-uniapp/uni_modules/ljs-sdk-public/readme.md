@@ -49,7 +49,7 @@ request/config.js;
 const technical_support = "龙九山"; // 技术支持
 //测试 - 
 export default {
-  base_url: 'http://192.168.1.100:8080', // 接口地址
+  base_url: 'http://localhost:8080', // 接口地址
 	technical_support,
 }
 

@@ -195,9 +195,9 @@ export default index;
    **教训：改参数必须写回 config/对象本身；"看起来在做事"的无效代码直接删。**
 2. **死 getter**：`store/getters.js` 曾有 `menuChoose`——state 无此字段、全工程无消费方（真正逻辑在 frame 组件局部 `menu.rightMenu.menuChoose`）；已删（2026-10-26）。
    **教训：getter/工具方法必须有真实消费方，无主即删。**
-3. **他项目残留**：`components/ExcelImport/index.vue` 曾写死 `/ywpt/ywptInputData/*` 路径与 `ywpt:*` 权限串、`api/smExecute.js` 白名单注释曾写 `'/api/activity/info'`——已改中性（2026-10-26，`/system/xxx/…`、`system:xxx:import`、注释 `'/system/xxx/list'`）。
+3. **他项目残留**：`components/ExcelImport/index.vue` 曾写死具体项目的业务路径与权限串、`api/smExecute.js` 白名单注释曾写具体项目接口路径——已改中性（2026-10-26，`/system/xxx/…`、`system:xxx:import`、注释 `'/system/xxx/list'`）。
    **教训：模板内示例必须中性，禁止带具体项目名的路径/权限串。**
-4. **他项目命名残留**：`tools/base.js` JSDoc 示例曾残留 `wine_*` 字典名、`api/smExecute.js` 的 session key 曾叫 `wine_a`/`wine_b`——已改中性（2026-10-26，`sys_normal_disable` 等、`ljs_a`/`ljs_b`）。
+4. **他项目命名残留**：`tools/base.js` JSDoc 示例曾残留具体项目的字典名前缀、`api/smExecute.js` 的 session key 曾带项目名——已改中性（2026-10-26，`sys_normal_disable` 等、`ljs_a`/`ljs_b`）。
    **教训：字典名/存储键名同样不得带具体项目名。**
 5. **死配置块（Rsbuild 2.x 键位陷阱）**：`rsbuild.config.mjs` 曾把拆包写在 `output.splitChunks` + `output.mergeDuplicateChunks` + `output.filename.chunkFilename`——**均不在 Rsbuild 2.x schema**，整块从未生效（产物实证：自定义 chunk 名命中 0）。已迁移到**顶层 `splitChunks`** 并删除 deprecated 的 `performance.chunkSplit`（2026-10-26，产物实证 lib-elementPlus/lib-bigLibs/common/vendor 四签名全部命中）。
    **教训：配置键以当前版本官方 d.ts schema 为准（1.x 经验在 2.x 键位全变）；配置是否生效看产物 chunk 命名实证，不看注释自述。**

@@ -100,7 +100,7 @@ request/config.js;
 const technical_support = "龙九山"; // 技术支持
 //测试 - 
 export default {
-	base_url: 'http://192.168.1.100:8080', // 接口地址
+	base_url: 'http://localhost:8080', // 接口地址
 	tokenExpireUrl: '/pages/index/index', // token失效跳转。不配置默认跳转地址为：/pages/login/index
 	tokenExpireCodes: [401, 403], // token失效code。不配置默认判断401。
 	technical_support,
