@@ -8,15 +8,17 @@
 
 ## 这个仓库是什么
 
-LJS 体系分三层，本仓库是**框架层**：
+LJS 体系分四层，本仓库是 **Web 框架层**：
 
 ```
-ljs-tools      工具层   npm 包（15 个工具模块 + 9 个组件）
-ljs-vue3       框架层   ← 你在这里
-你的项目        业务层
+ljs-tools         工具层    npm 包（15 个工具模块 + 9 个组件）
+ljs-vue3          Web 框架  ← 你在这里（中后台 5 套 + H5 + uni-app 2 套）
+create-ljs        脚手架    一条命令生成 Web 工程
+ljs-mini-program  移动端    小程序框架（uni-app Vue3 + TS，7 个 ljs-* 套件）
 ```
 
 `ljs-tools` 负责「工具函数和通用组件」，`ljs-vue3` 负责「完整可跑的中后台工程」，两者是**上下层关系，不是谁依赖谁**。
+要做**微信小程序**，用 [ljs-mini-program](https://github.com/LJS-Y/ljs-mini-program)，不是本仓库的 uni-app 模板。
 
 ---
 
@@ -24,28 +26,50 @@ ljs-vue3       框架层   ← 你在这里
 
 > 一句话：**要 Web 中后台选前 4 个，要移动端 H5 选 ljs-h5，要小程序/App 选后 2 个。**
 
+### 选择决策树
+
+```
+你的项目形态？
+├─ Web 后台管理
+│   ├─ 单体项目 ────┬─ 生态稳、坑少 ───────────── ljs-vue3-vite
+│   │                ├─ 想要更快冷启动 ─────────── ljs-vue3-rsbuild
+│   │                └─ 想要新版 Rsbuild 实践 ──── ljs-vue3-rsbuild2
+│   └─ 多子系统／模块化平台 ───────────────────── ljs-vue3-rsbuild-module-platform
+├─ 移动端 H5（微信内嵌页等）────────────────────── ljs-h5
+└─ 小程序 / App
+    ├─ 新项目（Vue 3）────────────────────────── ljs-uniapp-vue3
+    └─ 存量维护（Vue 2）──────────────────────── ljs-uniapp
+
+不确定？→ ljs-vue3-vite
+```
+
 ### Web 中后台（CLI 项目）
 
-| 模板 | 构建工具 | Vue 版本 | 适用场景 | 什么时候别选它 |
-| --- | --- | --- | --- | --- |
-| **ljs-vue3-vite** | Vite | 3.3 | 常规中后台，生态最广、坑最少 | 追求极致构建速度时 |
-| **ljs-vue3-rsbuild** | Rsbuild | 3.5 | 想要更快冷启动与热更新 | 团队不熟悉 Rspack 生态 |
-| **ljs-vue3-rsbuild2** | Rsbuild | 3.5.41 | rsbuild 新版实践，配置更现代 | 需要与老项目保持一致时 |
-| **ljs-vue3-rsbuild-module-platform** | Rsbuild | 3.3 | 模块化平台型项目（多子系统） | 单体型中后台，杀鸡用牛刀 |
+| 模板 | 构建工具 | Vue | ljs-tools | 适用场景 | 什么时候别选它 |
+| --- | --- | --- | --- | --- | --- |
+| **ljs-vue3-vite** | Vite 5 | 3.3 | ^1.0.0 | 常规中后台，生态最广、坑最少 | 追求极致构建速度时 |
+| **ljs-vue3-rsbuild** | Rsbuild 1.x | 3.5 | ^1.0.0 | 想要更快冷启动与热更新 | 团队不熟悉 Rspack 生态 |
+| **ljs-vue3-rsbuild2** | Rsbuild 2.x | 3.5.41 | ^1.0.0 | rsbuild 新版实践，配置更现代 | 需要与老项目保持一致时 |
+| **ljs-vue3-rsbuild-module-platform** | Rsbuild 1.x | 3.3 | ^1.0.0 | 模块化平台型项目（多子系统） | 单体型中后台，杀鸡用牛刀 |
 
 **ljs-vue3-vite 和 ljs-vue3-rsbuild 怎么选？**
 
 两者功能一致，区别只在构建工具。Vite 生态成熟、插件多；Rsbuild 冷启动更快。**不确定就选 Vite。**
 
+**rsbuild 和 rsbuild2 怎么选？**
+
+`rsbuild2` 用 Rsbuild **2.x**（配置键位与 1.x 有差异，如拆包从 `performance.chunkSplit` 迁到顶层 `splitChunks`）。
+新项目优先 `rsbuild2`；需要与已有 1.x 项目保持一致时用 `rsbuild`。
+
 ### 移动端 H5（CLI 项目）
 
-| 模板 | 构建工具 | Vue 版本 | 适用场景 |
-| --- | --- | --- | --- |
-| **ljs-h5** | Rsbuild | 3.5 | 移动端 H5 页面、微信内嵌页 |
+| 模板 | 构建工具 | Vue | ljs-tools | 适用场景 |
+| --- | --- | --- | --- | --- |
+| **ljs-h5** | Rsbuild 2.x | 3.5.41 | ^1.0.0 | 移动端 H5 页面、微信内嵌页 |
 
 ### 小程序 / App（HBuilderX 项目）
 
-| 模板 | 工具链 | Vue 版本 | 适用场景 |
+| 模板 | 工具链 | Vue | 适用场景 |
 | --- | --- | --- | --- |
 | **ljs-uniapp-vue3** | HBuilderX | **Vue 3** | 新项目，小程序 + App 多端 |
 | **ljs-uniapp** | HBuilderX | **Vue 2** | 存量 Vue2 项目维护 |
@@ -53,6 +77,9 @@ ljs-vue3       框架层   ← 你在这里
 > ⚠️ **uni-app 两个模板是 HBuilderX 项目，不是 CLI 项目。**
 > 依赖走 `uni_modules/` 内嵌，**不需要 `npm install`**，用 HBuilderX 直接打开即可运行。
 > 新项目请用 `ljs-uniapp-vue3`；`ljs-uniapp` 是 Vue 2 版本，仅供存量项目参考。
+>
+> 要做**微信小程序且偏现代工程化（TS + 约定式路由 + pnpm）**，推荐用独立仓库
+> [ljs-mini-program](https://github.com/LJS-Y/ljs-mini-program)，而不是这里的 uni-app 模板。
 
 ---
 
@@ -157,9 +184,42 @@ git clone https://github.com/LJS-Y/ljs-vue3.git
 | 国密支持 | 无 | **内置 SM2/SM3/SM4** |
 | 多端支持 | 无 | **Web / H5 / 小程序 / App** |
 | 模板数量 | 1 套 | **7 套** |
+| AI 就绪 | 无 | **ljs-tools 有 AI.md + index.d.ts；5 个模板有 AGENTS.md** |
 
-> 关于「AI 就绪」：`ljs-tools` 已补齐 `AI.md` 与 `index.d.ts`（让 AI 编码助手更容易正确调用），
-> 框架层模板的 `AGENTS.md` 约定包**尚未落地**，属于后续计划。
+## 选型对比：什么情况下**不**选本仓库
+
+诚实地讲清边界，帮你少走弯路：
+
+| 你的情况 | 建议 | 原因 |
+| --- | --- | --- |
+| 后端**不是**若依系，且不打算用若依的权限模型 | 考虑 vue-pure-admin / vben 等通用中后台模板 | 本项目深度绑定若依的菜单/字典/权限接口结构 |
+| 只需要几个页面，不要中后台体系 | 直接 `npm create vue@latest` | 本项目的路由、权限、请求层对轻量项目是负担 |
+| 要做**微信小程序**为主 | [ljs-mini-program](https://github.com/LJS-Y/ljs-mini-program) | 本仓库的 uni-app 模板是 HBuilderX 工程，工程化程度不如独立小程序框架 |
+| 团队强制用 Webpack | 用 `ljs-vue3-vite` 自己改，或另选模板 | 本项目不提供 webpack 方案 |
+| 需要 React 生态 | 不适用 | 本项目是 Vue3 |
+| 项目要长期维护、不想被单一框架绑定 | 用若依官方 ruoyi-ui 或通用模板 | 本项目含作者个人封装（`$LJS*` 系列），有学习成本 |
+
+**反过来说**，以下情况本项目最合适：
+
+- 后端是**若依分离版**（或同样接口结构），想直接跑起来不改接口层
+- 需要**国密 SM2/SM3/SM4**（多数开源模板没有）
+- 同一套体系要覆盖 **Web 中后台 + H5 + 小程序**
+- 想**少写重复代码**（字典、权限指令、请求封装、表格封装都已就位）
+
+---
+
+## AI 就绪程度
+
+本项目按「AI 是用户」的思路整理过，各层现状：
+
+| 层级 | 现状 |
+| --- | --- |
+| **ljs-tools**（工具层）| ✅ `AI.md` + `index.d.ts` 齐全，`llms.txt` 有索引 |
+| **5 个 Web/H5 模板** | ✅ 各有 `AGENTS.md` + `CLAUDE.md`（技术栈、目录约定、常见任务手册、红线）|
+| **uni-app 2 个模板** | ⚠️ 暂无 AGENTS.md（HBuilderX 工程，后续补）|
+| **框架级 AI.md** | ⚠️ 暂无（本 README + `llms.txt` 承担该职责）|
+
+`AGENTS.md` 是写给 AI 协作者的项目约定，Claude Code / Cursor / Codex 等工具进项目后会自动读取。
 
 ---
 
@@ -168,6 +228,7 @@ git clone https://github.com/LJS-Y/ljs-vue3.git
 | 仓库 | 说明 |
 | --- | --- |
 | [ljs-tools](https://github.com/LJS-Y/LJSTools) | 工具库与组件（本项目的基础依赖） |
+| [ljs-mini-program](https://github.com/LJS-Y/ljs-mini-program) | 小程序框架：uni-app Vue3 + TS + UnoCSS |
 | [create-ljs](https://github.com/LJS-Y/create-ljs) | 一条命令生成工程：`npm create ljs@latest` |
 | 10 个独立 npm 插件 | [npm @9mountain](https://www.npmjs.com/~9mountain) |
 
@@ -175,6 +236,7 @@ git clone https://github.com/LJS-Y/ljs-vue3.git
 
 - **API 文档**：[ljs-y.github.io/ljs-vue3](https://ljs-y.github.io/ljs-vue3)
 - **llms.txt**（给 AI 读的项目索引）：[ljs-y.github.io/ljs-vue3/llms.txt](https://ljs-y.github.io/ljs-vue3/llms.txt)
+- **模板内约定**：各模板目录下的 `AGENTS.md`（或 `CLAUDE.md`，内容一致）
 
 ---
 
